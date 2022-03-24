@@ -1,14 +1,12 @@
-import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
-import store from './redux/store/index.js';
-
+import store from './redux/store/index';
 
 render(
   <Provider store={store}>
-    <App dispatch={store.dispatch}/>
+    <App/>
   </Provider>,
   document.getElementById('root')
 )
