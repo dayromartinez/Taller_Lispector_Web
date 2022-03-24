@@ -7,17 +7,19 @@ export const Navbar: FC = () => {
     
     return (
         <div>
-            <nav>
-                <img src={logo} width={150} />
-                <Link to='/'>
-                    <span className='text-1xl'>Inicio</span>
-                </Link>
-                <Link to='/sesiones'>
-                    <span>Sesiones</span>
-                </Link>
-                <Link to='/publicaciones'>
-                    <span>Publicaciones</span>
-                </Link>
+            <nav className='flex justify-between bg-red-500'>
+                <img src={logo} width={150} className='py-2 px-2' />
+                <div className='pt-6'>
+                    <Link to='/'>
+                        <span className='px-3 py-3 hover:underline'>Inicio</span>
+                    </Link>
+                    <Link to='/sesiones'>
+                        <span className='px-3 py-3 hover:underline'>Sesiones</span>
+                    </Link>
+                    <Link to='/publicaciones'>
+                        <span className='px-3 py-3 hover:underline'>Publicaciones</span>
+                    </Link>
+                </div>
             </nav>
         </div>
     )

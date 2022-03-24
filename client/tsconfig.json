@@ -17,6 +17,6 @@
     "jsx": "react-jsx",
     "noImplicitAny": false
   },
-  "include": ["src"],
+  "include": ["src", "postcss.config.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

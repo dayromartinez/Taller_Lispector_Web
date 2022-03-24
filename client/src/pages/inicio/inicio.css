@@ -1,7 +1,29 @@
 .imgClarice {
-    margin-top: 2rem;
-    margin-left: -60rem;
+    margin-top: 1rem;
+    margin-left: 2rem;
     width: 20%;
     height: auto;
     border-radius: 50rem;
+}
+
+.contenedor_frase_lispector {
+    display: flex;
+    text-align: left;
+    
+}
+
+.nombre_frase_lispector{
+    margin-left: 1rem;
+    margin-top: 1.5rem;
+    width: 15rem;
+}
+
+#nombre_clarice_lispector {
+    margin-right: 64rem;
+    margin-top: 1rem;
+}
+
+.libro_frase {
+    font-weight: bold;
+    margin-top: -1.5rem;
 }
