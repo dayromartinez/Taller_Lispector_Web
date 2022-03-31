@@ -1,9 +1,9 @@
 import React from 'react'
-import { Navbar } from '../../components/Navbar'
-import { Footer } from '../../components/Footer'
-import imagenClarice from '../../images/Clarice1.jpg';
-import './inicio.css'
-import { NuestrasPublicaciones } from '../../components/NuestrasPublicaciones'
+import { Navbar } from '../components/Navbar'
+import { Footer } from '../components/Footer'
+import imagenClarice from './../images/Clarice1.jpg';
+import '.././index.css';
+import { NuestrasPublicaciones } from '../components/NuestrasPublicaciones'
 
 
 export const InicioPage = () => {

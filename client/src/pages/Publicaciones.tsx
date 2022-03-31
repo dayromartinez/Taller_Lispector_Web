@@ -1,8 +1,8 @@
 import React from 'react'
-import { Navbar } from '../../components/Navbar'
-import ecosDeResistencia from '../../images/Ecos_de_resistencia.jpeg'
-import { Footer } from '../../components/Footer'
-import { NuestrasPublicaciones } from '../../components/NuestrasPublicaciones';
+import { Navbar } from '../components/Navbar';
+import ecosDeResistencia from './../images/Ecos_de_resistencia.jpeg'
+import { Footer } from '../components/Footer'
+import { NuestrasPublicaciones } from '../components/NuestrasPublicaciones';
 
 export const PublicacionesPage = () => {
 

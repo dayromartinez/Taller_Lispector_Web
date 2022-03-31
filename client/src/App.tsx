@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
-import { InicioPage } from './pages/inicio/Inicio'
+import { InicioPage } from './pages/Inicio';
 import { Route, Routes } from 'react-router-dom'
-import { SesionesPage } from './pages/sesiones/Sesiones'
-import { PublicacionesPage } from './pages/publicaciones/Publicaciones'
+import { SesionesPage } from './pages/Sesiones'
+import { PublicacionesPage } from './pages/Publicaciones'
+import { Login } from './pages/Login';
+import { Registro } from './pages/Registro';
 
 function App() {
   
@@ -15,6 +17,8 @@ function App() {
         <Route path='/' element={<InicioPage />}/>
         <Route path='/sesiones' element={<SesionesPage />}/>
         <Route path='/publicaciones' element={<PublicacionesPage />}/>
+        <Route path='/inicio_sesion' element={<Login />}/>
+        <Route path='/registrarse' element={<Registro />}/>
       </Routes>
     </div>
   )
