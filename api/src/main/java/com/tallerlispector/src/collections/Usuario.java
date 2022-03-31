@@ -9,7 +9,6 @@ public class Usuario {
 
     @Id
     private String id;
-    private String cedula;
     private String nombre;
     private String correo;
     private String imageUser;
@@ -24,14 +23,6 @@ public class Usuario {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
     }
 
     public String getNombre() {

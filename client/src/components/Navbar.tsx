@@ -19,6 +19,9 @@ export const Navbar: FC = () => {
                     <Link to='/publicaciones'>
                         <span className='px-3 py-3 hover:underline'>Publicaciones</span>
                     </Link>
+                    <Link to='/inicio_sesion'>
+                        <span className='px-3 py-3 hover:underline'>Iniciar Sesión</span>
+                    </Link>
                 </div>
             </nav>
         </div>

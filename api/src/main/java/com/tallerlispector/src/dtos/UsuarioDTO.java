@@ -9,8 +9,6 @@ public class UsuarioDTO {
 
     private String id;
     @NotBlank
-    private String cedula;
-    @NotBlank
     private String nombre;
     @NotBlank
     private String correo;
@@ -21,12 +19,11 @@ public class UsuarioDTO {
     @NotBlank
     private String contrasena;
 
-    public UsuarioDTO(String id, String cedula, String nombre, String correo, String celular, Rol rol, String contrasena) {
+    public UsuarioDTO(String id, String nombre, String correo, String celular, String contrasena) {
         this.id = id;
-        this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
-        this.rol = rol;
+        this.rol = Rol.usuario;
         this.contrasena = contrasena;
         this.celular = celular;
         this.codigoPublicacionPostales = "";
@@ -38,14 +35,6 @@ public class UsuarioDTO {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
     }
 
     public String getNombre() {
@@ -109,19 +98,18 @@ public class UsuarioDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UsuarioDTO that = (UsuarioDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(cedula, that.cedula) && Objects.equals(nombre, that.nombre) && Objects.equals(correo, that.correo) && Objects.equals(imageUser, that.imageUser) && Objects.equals(celular, that.celular) && rol == that.rol && Objects.equals(codigoPublicacionPostales, that.codigoPublicacionPostales) && Objects.equals(contrasena, that.contrasena);
+        return Objects.equals(id, that.id) && Objects.equals(nombre, that.nombre) && Objects.equals(correo, that.correo) && Objects.equals(imageUser, that.imageUser) && Objects.equals(celular, that.celular) && rol == that.rol && Objects.equals(codigoPublicacionPostales, that.codigoPublicacionPostales) && Objects.equals(contrasena, that.contrasena);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, cedula, nombre, correo, imageUser, celular, rol, codigoPublicacionPostales, contrasena);
+        return Objects.hash(id, nombre, correo, imageUser, celular, rol, codigoPublicacionPostales, contrasena);
     }
 
     @Override
     public String toString() {
         return "UsuarioDTO{" +
                 "id='" + id + '\'' +
-                ", cedula='" + cedula + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", correo='" + correo + '\'' +
                 ", imageUser='" + imageUser + '\'' +
