@@ -16,6 +16,7 @@ public class Publicacion {
     private String anoLanzamiento;
     private List<String> autores;
     private List<String> generos;
+    private String urlDocumento;
 
     public String getId() {
         return id;
@@ -71,5 +72,13 @@ public class Publicacion {
 
     public void setGeneros(List<String> generos) {
         this.generos = generos;
+    }
+
+    public String getUrlDocumento() {
+        return urlDocumento;
+    }
+
+    public void setUrlDocumento(String urlDocumento) {
+        this.urlDocumento = urlDocumento;
     }
 }
