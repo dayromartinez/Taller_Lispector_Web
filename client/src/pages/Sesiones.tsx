@@ -1,13 +1,15 @@
 import React from 'react'
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer'
+import { Calendario } from '../components/Calendario';
+
 
 export const SesionesPage = () => {
   return (
     <div>
         <Navbar />
         <div className='flex justify-between m-10'>
-          <h2 className='text-3xl font-bold mx-10'>(Calendario)</h2>
+          <Calendario />
           <div className='mx-10'>
             (Acá va el carrusel de imgs)
           </div>

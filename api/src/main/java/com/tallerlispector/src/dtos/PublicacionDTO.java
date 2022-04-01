@@ -12,26 +12,25 @@ public class PublicacionDTO {
     @NotBlank
     private String descripcion;
     private String numeroPaginas;
+    @NotBlank
     private String anoLanzamiento;
     @NotBlank
     private List<String> autores;
     private List<String> generos;
+    @NotBlank
+    private String urlDocumento;
 
     public PublicacionDTO() {
     }
 
-    public PublicacionDTO(String nombre, String descripcion, List<String> autores) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.autores = autores;
-    }
-
-    public PublicacionDTO(String nombre, String descripcion, String numeroPaginas, String anoLanzamiento, List<String> autores, List<String> generos) {
+    public PublicacionDTO(String id, String nombre, String descripcion, String numeroPaginas, String anoLanzamiento, List<String> autores, String urlDocumento, List<String> generos) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.numeroPaginas = numeroPaginas;
         this.anoLanzamiento = anoLanzamiento;
         this.autores = autores;
+        this.urlDocumento = urlDocumento;
         this.generos = generos;
     }
 
@@ -91,17 +90,25 @@ public class PublicacionDTO {
         this.generos = generos;
     }
 
+    public String getUrlDocumento() {
+        return urlDocumento;
+    }
+
+    public void setUrlDocumento(String urlDocumento) {
+        this.urlDocumento = urlDocumento;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PublicacionDTO that = (PublicacionDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(nombre, that.nombre) && Objects.equals(descripcion, that.descripcion) && Objects.equals(numeroPaginas, that.numeroPaginas) && Objects.equals(anoLanzamiento, that.anoLanzamiento) && Objects.equals(autores, that.autores) && Objects.equals(generos, that.generos);
+        return Objects.equals(id, that.id) && Objects.equals(nombre, that.nombre) && Objects.equals(descripcion, that.descripcion) && Objects.equals(numeroPaginas, that.numeroPaginas) && Objects.equals(anoLanzamiento, that.anoLanzamiento) && Objects.equals(autores, that.autores) && Objects.equals(generos, that.generos) && Objects.equals(urlDocumento, that.urlDocumento);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, descripcion, numeroPaginas, anoLanzamiento, autores, generos);
+        return Objects.hash(id, nombre, descripcion, numeroPaginas, anoLanzamiento, autores, generos, urlDocumento);
     }
 
     @Override
@@ -114,6 +121,7 @@ public class PublicacionDTO {
                 ", anoLanzamiento='" + anoLanzamiento + '\'' +
                 ", autores=" + autores +
                 ", generos=" + generos +
+                ", urlDocumento='" + urlDocumento + '\'' +
                 '}';
     }
 }

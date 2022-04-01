@@ -8,8 +8,8 @@ import { PublicacionesPage } from './pages/Publicaciones'
 import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
 
+
 function App() {
-  
 
   return (
     <div className="App">
