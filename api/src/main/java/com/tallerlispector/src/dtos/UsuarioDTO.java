@@ -19,11 +19,11 @@ public class UsuarioDTO {
     @NotBlank
     private String contrasena;
 
-    public UsuarioDTO(String id, String nombre, String correo, String celular, String contrasena) {
+    public UsuarioDTO(String id, String nombre, String correo, String celular, String contrasena, Rol rol) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
-        this.rol = Rol.usuario;
+        this.rol = rol;
         this.contrasena = contrasena;
         this.celular = celular;
         this.codigoPublicacionPostales = "";

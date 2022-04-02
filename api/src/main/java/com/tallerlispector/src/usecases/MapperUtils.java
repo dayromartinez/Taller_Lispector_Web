@@ -24,6 +24,6 @@ public class MapperUtils {
     }
 
     public Function<Usuario, UsuarioDTO> mapEntityToUsuario(){
-        return entity -> new UsuarioDTO(entity.getId(), entity.getNombre(), entity.getCorreo(), entity.getCelular(), entity.getContrasena());
+        return entity -> new UsuarioDTO(entity.getId(), entity.getNombre(), entity.getCorreo(), entity.getCelular(), entity.getContrasena(), entity.getRol());
     }
 }
