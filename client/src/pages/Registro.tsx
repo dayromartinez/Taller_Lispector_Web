@@ -4,6 +4,7 @@ import { Footer } from '../components/Footer'
 import { Navbar } from '../components/Navbar'
 import clarice from '../images/Clarice1.jpg';
 import "../images/Clarice1.jpg";
+
 export const Registro = () => {
 
   return (
