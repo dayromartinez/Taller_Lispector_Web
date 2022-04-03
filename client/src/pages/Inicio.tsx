@@ -18,7 +18,7 @@ export const InicioPage = () => {
                 </div>
             </div>
             <h3 className='text-3xl font-bold' id='nombre_clarice_lispector'>Clarice Lispector</h3>
-            <div className='bg-red-500 my-10 py-7 w-full'>
+            <div className='bg-slate-500 my-10 py-7 w-full'>
                 <h2 className='text-3xl font-bold'>Quiénes somos?</h2>
                 <h2 className='text-3xl font-bold'>Qué hacemos?</h2>
             </div>
@@ -28,17 +28,17 @@ export const InicioPage = () => {
                     (Acá va el carrusel de imgs)
                 </div>
             </div>
-            <div className='bg-red-500 my-6 py-5 w-full'>
+            <div className='bg-slate-500 my-6 py-5 w-full'>
                 <h1 className='text-3xl font-bold'>Frase Lispector</h1>
             </div>
-            <div>
+            <div className='mb-10'>
                 <NuestrasPublicaciones />
                 <div className='flex justify-between mt-10'>
                     <div className='mx-10'>Espacio de CARRUSEL</div>
                     <h1 className='text-2xl font-bold mx-10'>Frase Lispector</h1>
                 </div>
             </div>
-            <Footer></Footer>
+            <Footer />
         </div>
     )
 }

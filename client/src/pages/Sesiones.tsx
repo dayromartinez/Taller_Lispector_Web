@@ -14,7 +14,7 @@ export const SesionesPage = () => {
             (Acá va el carrusel de imgs)
           </div>
         </div>
-        <div className='bg-red-500'>
+        <div className='bg-slate-500'>
           <h1 className='text-3xl font-bold pt-6'>Ciclo 1</h1>
           <p className='p-10'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt? Fet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt.</p>
         </div>
@@ -24,7 +24,7 @@ export const SesionesPage = () => {
           <div className='bg-gray-200 p-10 my-5'>Sesión 2 - Imagen</div>
           <div className='bg-gray-200 p-10 my-5'>Sesión 3 - Imagen</div>
         </div>
-        <div className='bg-red-500'>
+        <div className='bg-slate-500'>
           <h1 className='text-3xl font-bold  pt-6'>Ciclo 2</h1>
           <p className='p-10'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt? Fet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt.</p>
         </div>

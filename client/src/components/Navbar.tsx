@@ -7,20 +7,20 @@ export const Navbar: FC = () => {
     
     return (
         <div>
-            <nav className='flex justify-between bg-red-500'>
+            <nav className='flex justify-between bg-slate-700'>
                 <img src={logo} width={150} className='py-2 px-2' />
                 <div className='pt-6'>
                     <Link to='/'>
-                        <span className='px-3 py-3 hover:underline'>Inicio</span>
+                        <span className='px-3 py-3 text-slate-200 hover:underline'>Inicio</span>
                     </Link>
                     <Link to='/sesiones'>
-                        <span className='px-3 py-3 hover:underline'>Sesiones</span>
+                        <span className='px-3 py-3 text-slate-200 hover:underline'>Sesiones</span>
                     </Link>
                     <Link to='/publicaciones'>
-                        <span className='px-3 py-3 hover:underline'>Publicaciones</span>
+                        <span className='px-3 py-3 text-slate-200 hover:underline'>Publicaciones</span>
                     </Link>
                     <Link to='/inicio_sesion'>
-                        <span className='px-3 py-3 hover:underline'>Iniciar Sesión</span>
+                        <span className='px-3 py-3 text-slate-200 hover:underline'>Iniciar Sesión</span>
                     </Link>
                 </div>
             </nav>

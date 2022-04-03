@@ -11,7 +11,7 @@ export const PublicacionesPage = () => {
     <div>
         <Navbar />
         <h1 className='text-6xl mt-8 mb-8'>Publicaciones</h1>
-        <div className='display: flex bg-red-500 mb-10'>
+        <div className='display: flex bg-slate-500 mb-10'>
           <img src={ecosDeResistencia} className='ml-16 mb-10 mt-11'/>
           <div>
             <h2 className='text-4xl mt-8'>Ecos de Resistencia</h2>
@@ -26,7 +26,7 @@ export const PublicacionesPage = () => {
         <div className='grid grid-cols-2 gap-4 m-10'>{
           microrelatos.map((microrelato) => {
             return (
-              <div className='bg-red-500 p-5 rounded-2xl'>
+              <div className='bg-slate-500 p-5 rounded-2xl'>
                 Minirelato o Poema <br/> {microrelato}
               </div>
             )
