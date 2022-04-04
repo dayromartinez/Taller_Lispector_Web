@@ -2,13 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import { Navbar } from '../components/Navbar'
+import { NavBar2 } from '../components/NavBar2'
 
 export const Login = () => {
     
   return (
-    <div className='bg-amber-500' >
-        <Navbar />
-        <div className="w-full max-w-xs mx-auto py-10 pt-7">
+    <div className='bg-slate-300' >
+        <NavBar2 />
+        <div className="w-full max-w-sm mx-auto py-10 pt-36 pb-48">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <h5 className='text-2xl my-3 mb-8'>Iniciar Sesión</h5>
                 <div className="mb-4">

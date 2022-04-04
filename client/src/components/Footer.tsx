@@ -1,17 +1,18 @@
 import React from 'react'
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 
 export const Footer: FC = () => {
   return (
-      <footer className="text-center bg-slate-700 text-white w-full">
+      <footer className="text-center bg-slate-700 text-slate-200 w-full">
         <div className="pt-6 w-full">
           <div className="flex place-content-center mb-5">
-            <a href="https://www.facebook.com/pages/category/Writer/Taller-Lispector-110133043831544/" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+            <a href="https://www.facebook.com/pages/category/Writer/Taller-Lispector-110133043831544/" type="button" className="rounded-full border-2 border-slate-200 text-slate-200 leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1 md:hover:text-sky-500 md:hover:border-sky-500">
               <svg aria-hidden="true"
               focusable="false"
               data-prefix="fab"
               data-icon="facebook-f"
-              className="w-2 h-full mx-auto"
+              className="w-2 h-full mx-auto "
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512"
@@ -23,7 +24,7 @@ export const Footer: FC = () => {
               </svg>
             </a>
 
-            <a href="https://www.instagram.com/tallerlispector/" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+            <a href="https://www.instagram.com/tallerlispector/" type="button" className="rounded-full border-2 border-slate-200 text-slate-200 leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1 md:hover:text-pink-600 md:hover:border-pink-600">
               <svg aria-hidden="true"
               focusable="false"
               data-prefix="fab"
@@ -40,7 +41,7 @@ export const Footer: FC = () => {
               </svg>
             </a>
 
-            <a href="https://github.com/dayromartinez/Taller_Lispector_Web" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1">
+            <a href="https://github.com/dayromartinez/Taller_Lispector_Web" type="button" className="rounded-full border-2 border-slate-200 text-slate-200 leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1 md:hover:text-slate-400 md:hover:border-slate-400">
               <svg aria-hidden="true"
               focusable="false"
               data-prefix="fab"
@@ -61,7 +62,7 @@ export const Footer: FC = () => {
 
         <div className="text-center p-4 pb-6">
           © 2022 Copyright:
-          <a className="text-whitehite" href="http://localhost:3000/"> Taller Lispector.</a>
+          <Link className="text-whitehite" to="/"> Taller Lispector.</Link>
           <br />
           Diseño por Manuel Mateus. Desarrollo por Dayro Martínez y David Díaz.
           <br /> 

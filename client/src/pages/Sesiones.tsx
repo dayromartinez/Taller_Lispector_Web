@@ -2,12 +2,13 @@ import React from 'react'
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer'
 import { Calendario } from '../components/Calendario';
+import { NavBar2 } from '../components/NavBar2';
 
 
 export const SesionesPage = () => {
   return (
     <div>
-        <Navbar />
+        <NavBar2 />
         <div className='flex justify-between m-10'>
           <Calendario />
           <div className='mx-10'>

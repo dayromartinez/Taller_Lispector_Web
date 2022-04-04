@@ -4,12 +4,13 @@ import { Footer } from '../components/Footer'
 import imagenClarice from './../images/Clarice1.jpg';
 import '.././index.css';
 import { NuestrasPublicaciones } from '../components/NuestrasPublicaciones'
+import { NavBar2 } from '../components/NavBar2';
 
 
 export const InicioPage = () => {
     return (
         <div>
-            <Navbar />
+            <NavBar2 />
             <div className='contenedor_frase_lispector'>
                 <img src={imagenClarice} className="imgClarice"/>
                 <div className='nombre_frase_lispector'>

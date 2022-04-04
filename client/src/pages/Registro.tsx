@@ -4,12 +4,13 @@ import { Footer } from '../components/Footer'
 import { Navbar } from '../components/Navbar'
 import clarice from '../images/Clarice1.jpg';
 import "../images/Clarice1.jpg";
+import { NavBar2 } from '../components/NavBar2';
 
 export const Registro = () => {
 
   return (
     <div className='bg-gray-100 h-4/5'>
-        <Navbar />
+        <NavBar2 />
         <div className="flex w-full mx-auto">
             <img className='w-full' src={clarice} height="20%"/>
             <form className="bg-white shadow-md max-w-md mx-auto rounded px-8 pt-6">
