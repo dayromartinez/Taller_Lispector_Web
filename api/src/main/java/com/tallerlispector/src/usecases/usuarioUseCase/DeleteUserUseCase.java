@@ -1,4 +1,4 @@
-package com.tallerlispector.src.usecases;
+package com.tallerlispector.src.usecases.usuarioUseCase;
 
 import com.tallerlispector.src.repositories.UsuarioRepository;
 import org.springframework.http.HttpStatus;
