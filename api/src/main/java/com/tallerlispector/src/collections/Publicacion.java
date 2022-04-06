@@ -17,6 +17,16 @@ public class Publicacion {
     private List<String> autores;
     private List<String> generos;
     private String urlDocumento;
+    private List<Comentario> comentarios;
+
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
 
     public String getId() {
         return id;
