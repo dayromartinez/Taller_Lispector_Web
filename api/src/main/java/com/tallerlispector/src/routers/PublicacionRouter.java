@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
 
-import static java.util.regex.Pattern.accept;
+
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
