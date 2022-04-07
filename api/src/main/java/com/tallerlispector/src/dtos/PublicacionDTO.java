@@ -16,7 +16,6 @@ public class PublicacionDTO {
     private String numeroPaginas;
     @NotBlank
     private String anoLanzamiento;
-    @NotBlank
     private List<String> autores;
     private List<String> generos;
     @NotBlank

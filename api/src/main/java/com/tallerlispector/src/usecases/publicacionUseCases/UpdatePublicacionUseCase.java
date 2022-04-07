@@ -30,10 +30,10 @@ public class UpdatePublicacionUseCase implements Function<PublicacionDTO, Mono<P
         return publicacionRepository.findById(publicacionDTO.getId())
                 .flatMap(publicacion -> {
                     publicacion.setNombre(publicacionDTO.getNombre());
-                    publicacion.setUrlDocumento(publicacion.getUrlDocumento());
-                    publicacion.setNumeroPaginas(publicacion.getNumeroPaginas());
-                    publicacion.setDescripcion(publicacion.getDescripcion());
-                    publicacion.setComentarios(publicacion.getComentarios());
+                    publicacion.setUrlDocumento(publicacionDTO.getUrlDocumento());
+                    publicacion.setNumeroPaginas(publicacionDTO.getNumeroPaginas());
+                    publicacion.setDescripcion(publicacionDTO.getDescripcion());
+                    publicacion.setComentarios(publicacionDTO.getComentarios());
                     return publicacionRepository.save(publicacion);
                 }).map(mapperUtils.mapEntityToPublicacion())
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)));
