@@ -16,15 +16,6 @@ public class Comentario {
     private List<String> fechaComentario;
     private int valoracion;
 
-    public Comentario(String id, String userId, String publicacionId, String comentario, List<String> fechaComentario, int valoracion) {
-        this.id = id;
-        this.userId = userId;
-        this.publicacionId = publicacionId;
-        this.comentario = comentario;
-        this.fechaComentario = fechaComentario;
-        this.valoracion = valoracion;
-    }
-
     public String getId() {
         return id;
     }

@@ -27,6 +27,54 @@ public class ComentarioDTO {
         this.valoracion = valoracion;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPublicacionId() {
+        return publicacionId;
+    }
+
+    public void setPublicacionId(String publicacionId) {
+        this.publicacionId = publicacionId;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public List<String> getFechaComentario() {
+        return fechaComentario;
+    }
+
+    public void setFechaComentario(List<String> fechaComentario) {
+        this.fechaComentario = fechaComentario;
+    }
+
+    public int getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(int valoracion) {
+        this.valoracion = valoracion;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

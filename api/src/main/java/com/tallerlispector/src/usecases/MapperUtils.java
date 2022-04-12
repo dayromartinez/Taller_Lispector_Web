@@ -1,7 +1,9 @@
 package com.tallerlispector.src.usecases;
 
+import com.tallerlispector.src.collections.Comentario;
 import com.tallerlispector.src.collections.Publicacion;
 import com.tallerlispector.src.collections.Usuario;
+import com.tallerlispector.src.dtos.ComentarioDTO;
 import com.tallerlispector.src.dtos.PublicacionDTO;
 import com.tallerlispector.src.dtos.UsuarioDTO;
 import org.springframework.stereotype.Component;
@@ -47,6 +49,25 @@ public class MapperUtils {
 
     public Function<Publicacion, PublicacionDTO> mapEntityToPublicacion(){
         return entity -> new PublicacionDTO(entity.getId(), entity.getNombre(), entity.getDescripcion(), entity.getNumeroPaginas(), entity.getAnoLanzamiento(), entity.getAutores(), entity.getUrlDocumento(), entity.getGeneros(), entity.getComentarios());
+    }
+
+    public Function<ComentarioDTO, Comentario> mapperToComentario(){
+        return updateComentario -> {
+            var comentario = new Comentario();
+
+            comentario.setId(updateComentario.getId());
+            comentario.setComentario(updateComentario.getComentario());
+            comentario.setFechaComentario(updateComentario.getFechaComentario());
+            comentario.setValoracion(updateComentario.getValoracion());
+            comentario.setPublicacionId(updateComentario.getPublicacionId());
+            comentario.setUserId(updateComentario.getUserId());
+
+            return comentario;
+        };
+    }
+
+    public Function<Comentario, ComentarioDTO> mapEntityToComentario(){
+        return entity -> new ComentarioDTO(entity.getId(), entity.getUserId(), entity.getPublicacionId(), entity.getComentario(), entity.getFechaComentario(), entity.getValoracion());
     }
 
 }

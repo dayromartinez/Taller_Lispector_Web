@@ -1,10 +1,7 @@
 package com.tallerlispector.src.routers;
 
-import com.tallerlispector.src.collections.Publicacion;
 import com.tallerlispector.src.dtos.PublicacionDTO;
-import com.tallerlispector.src.dtos.UsuarioDTO;
 import com.tallerlispector.src.usecases.publicacionUseCases.*;
-import com.tallerlispector.src.usecases.usuarioUseCases.GetAllUsersUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
