@@ -3,6 +3,7 @@ package com.tallerlispector.src.dtos;
 import com.tallerlispector.src.collections.Comentario;
 
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,12 +21,12 @@ public class PublicacionDTO {
     private List<String> generos;
     @NotBlank
     private String urlDocumento;
-    private List<Comentario> comentarios;
+    private List<ComentarioDTO> comentarios;
 
     public PublicacionDTO() {
     }
 
-    public PublicacionDTO(String id, String nombre, String descripcion, String numeroPaginas, String anoLanzamiento, List<String> autores, String urlDocumento, List<String> generos, List<Comentario> comentarios) {
+    public PublicacionDTO(String id, String nombre, String descripcion, String numeroPaginas, String anoLanzamiento, List<String> autores, String urlDocumento, List<String> generos) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -34,14 +35,14 @@ public class PublicacionDTO {
         this.autores = autores;
         this.urlDocumento = urlDocumento;
         this.generos = generos;
-        this.comentarios = comentarios;
+        this.comentarios = new ArrayList<ComentarioDTO>();
     }
 
-    public List<Comentario> getComentarios() {
+    public List<ComentarioDTO> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
+    public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
     }
 

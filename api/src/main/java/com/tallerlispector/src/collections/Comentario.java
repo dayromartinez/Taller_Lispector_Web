@@ -14,7 +14,7 @@ public class Comentario {
     private String publicacionId;
     private String comentario;
     private List<String> fechaComentario;
-    private int valoracion;
+    private Integer valoracion;
 
     public String getId() {
         return id;
@@ -56,11 +56,11 @@ public class Comentario {
         this.fechaComentario = fechaComentario;
     }
 
-    public int getValoracion() {
+    public Integer getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(int valoracion) {
+    public void setValoracion(Integer valoracion) {
         this.valoracion = valoracion;
     }
 }

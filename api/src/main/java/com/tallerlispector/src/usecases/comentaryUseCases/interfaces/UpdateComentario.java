@@ -6,6 +6,6 @@ import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 
 @FunctionalInterface
-public interface SaveComentario {
-    Mono<ComentarioDTO> saveComentario(@Valid ComentarioDTO comentarioDTO);
+public interface UpdateComentario {
+    Mono<String> apply(@Valid ComentarioDTO comentarioDTO);
 }

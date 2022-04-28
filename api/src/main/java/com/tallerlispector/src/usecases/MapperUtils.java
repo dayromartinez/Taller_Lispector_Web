@@ -35,7 +35,6 @@ public class MapperUtils {
         return updatePublicacion -> {
             var publicacion = new Publicacion();
             publicacion.setId(id);
-            publicacion.setComentarios(updatePublicacion.getComentarios());
             publicacion.setNombre(updatePublicacion.getNombre());
             publicacion.setAutores(updatePublicacion.getAutores());
             publicacion.setDescripcion(updatePublicacion.getDescripcion());
@@ -48,14 +47,14 @@ public class MapperUtils {
     }
 
     public Function<Publicacion, PublicacionDTO> mapEntityToPublicacion(){
-        return entity -> new PublicacionDTO(entity.getId(), entity.getNombre(), entity.getDescripcion(), entity.getNumeroPaginas(), entity.getAnoLanzamiento(), entity.getAutores(), entity.getUrlDocumento(), entity.getGeneros(), entity.getComentarios());
+        return entity -> new PublicacionDTO(entity.getId(), entity.getNombre(), entity.getDescripcion(), entity.getNumeroPaginas(), entity.getAnoLanzamiento(), entity.getAutores(), entity.getUrlDocumento(), entity.getGeneros());
     }
 
-    public Function<ComentarioDTO, Comentario> mapperToComentario(){
+    public Function<ComentarioDTO, Comentario> mapperToComentario(String id){
         return updateComentario -> {
             var comentario = new Comentario();
 
-            comentario.setId(updateComentario.getId());
+            comentario.setId(id);
             comentario.setComentario(updateComentario.getComentario());
             comentario.setFechaComentario(updateComentario.getFechaComentario());
             comentario.setValoracion(updateComentario.getValoracion());
@@ -67,7 +66,7 @@ public class MapperUtils {
     }
 
     public Function<Comentario, ComentarioDTO> mapEntityToComentario(){
-        return entity -> new ComentarioDTO(entity.getId(), entity.getUserId(), entity.getPublicacionId(), entity.getComentario(), entity.getFechaComentario(), entity.getValoracion());
+        return entity -> new ComentarioDTO(entity.getId(), entity.getUserId(), entity.getPublicacionId(), entity.getComentario(), entity.getValoracion(), entity.getFechaComentario());
     }
 
 }

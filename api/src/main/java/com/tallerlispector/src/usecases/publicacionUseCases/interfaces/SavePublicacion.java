@@ -1,4 +1,4 @@
-package com.tallerlispector.src.usecases.publicacionUseCases;
+package com.tallerlispector.src.usecases.publicacionUseCases.interfaces;
 
 import com.tallerlispector.src.dtos.PublicacionDTO;
 import reactor.core.publisher.Mono;

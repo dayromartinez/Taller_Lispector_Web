@@ -1,20 +1,19 @@
 package com.tallerlispector.src.usecases.publicacionUseCases;
 
+import com.tallerlispector.src.collections.Publicacion;
 import com.tallerlispector.src.dtos.PublicacionDTO;
 import com.tallerlispector.src.repositories.PublicacionRepository;
 import com.tallerlispector.src.usecases.MapperUtils;
-import org.springframework.http.HttpStatus;
+import com.tallerlispector.src.usecases.publicacionUseCases.interfaces.UpdatePublicacion;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
-import java.util.function.Function;
 
 @Service
 @Validated
-public class UpdatePublicacionUseCase implements Function<PublicacionDTO, Mono<PublicacionDTO>> {
+public class UpdatePublicacionUseCase implements UpdatePublicacion {
 
     private PublicacionRepository publicacionRepository;
     private MapperUtils mapperUtils;
@@ -25,17 +24,10 @@ public class UpdatePublicacionUseCase implements Function<PublicacionDTO, Mono<P
     }
 
     @Override
-    public Mono<PublicacionDTO> apply(PublicacionDTO publicacionDTO) {
+    public Mono<String> apply(PublicacionDTO publicacionDTO) {
         Objects.requireNonNull(publicacionDTO.getId(), "El ID no puede estar vacío");
-        return publicacionRepository.findById(publicacionDTO.getId())
-                .flatMap(publicacion -> {
-                    publicacion.setNombre(publicacionDTO.getNombre());
-                    publicacion.setUrlDocumento(publicacionDTO.getUrlDocumento());
-                    publicacion.setNumeroPaginas(publicacionDTO.getNumeroPaginas());
-                    publicacion.setDescripcion(publicacionDTO.getDescripcion());
-                    publicacion.setComentarios(publicacionDTO.getComentarios());
-                    return publicacionRepository.save(publicacion);
-                }).map(mapperUtils.mapEntityToPublicacion())
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        return publicacionRepository
+                .save(mapperUtils.mapperToPublicacion(publicacionDTO.getId()).apply(publicacionDTO))
+                .map(Publicacion::getId);
     }
 }

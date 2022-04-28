@@ -13,12 +13,11 @@ public class ComentarioDTO {
     private String publicacionId;
     @NotBlank
     private String comentario;
-    @NotBlank
     private List<String> fechaComentario;
-    @NotBlank
-    private int valoracion;
+    private Integer valoracion;
+    private UsuarioDTO usuarioDTO;
 
-    public ComentarioDTO(String id, String userId, String publicacionId, String comentario, List<String> fechaComentario, int valoracion) {
+    public ComentarioDTO(String id, String userId, String publicacionId, String comentario, Integer valoracion, List<String> fechaComentario) {
         this.id = id;
         this.userId = userId;
         this.publicacionId = publicacionId;
@@ -67,12 +66,20 @@ public class ComentarioDTO {
         this.fechaComentario = fechaComentario;
     }
 
-    public int getValoracion() {
+    public Integer getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(int valoracion) {
+    public void setValoracion(Integer valoracion) {
         this.valoracion = valoracion;
+    }
+
+    public UsuarioDTO getUsuarioDTO() {
+        return usuarioDTO;
+    }
+
+    public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
+        this.usuarioDTO = usuarioDTO;
     }
 
     @Override
@@ -80,12 +87,12 @@ public class ComentarioDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ComentarioDTO that = (ComentarioDTO) o;
-        return valoracion == that.valoracion && Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(publicacionId, that.publicacionId) && Objects.equals(comentario, that.comentario) && Objects.equals(fechaComentario, that.fechaComentario);
+        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(publicacionId, that.publicacionId) && Objects.equals(comentario, that.comentario) && Objects.equals(fechaComentario, that.fechaComentario) && Objects.equals(valoracion, that.valoracion) && Objects.equals(usuarioDTO, that.usuarioDTO);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, publicacionId, comentario, fechaComentario, valoracion);
+        return Objects.hash(id, userId, publicacionId, comentario, fechaComentario, valoracion, usuarioDTO);
     }
 
     @Override
@@ -97,6 +104,7 @@ public class ComentarioDTO {
                 ", comentario='" + comentario + '\'' +
                 ", fechaComentario=" + fechaComentario +
                 ", valoracion=" + valoracion +
+                ", usuarioDTO=" + usuarioDTO +
                 '}';
     }
 }

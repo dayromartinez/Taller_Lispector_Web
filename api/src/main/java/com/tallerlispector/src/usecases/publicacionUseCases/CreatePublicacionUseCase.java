@@ -3,6 +3,7 @@ package com.tallerlispector.src.usecases.publicacionUseCases;
 import com.tallerlispector.src.dtos.PublicacionDTO;
 import com.tallerlispector.src.repositories.PublicacionRepository;
 import com.tallerlispector.src.usecases.MapperUtils;
+import com.tallerlispector.src.usecases.publicacionUseCases.interfaces.SavePublicacion;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

@@ -45,6 +45,6 @@ public class AddComentaryUseCase implements SaveComentario {
         fechaHora.add(hora[0]);
         comentarioDTO.setFechaComentario(fechaHora);
 
-        return comentarioRepository.save(mapperUtils.mapperToComentario().apply(comentarioDTO)).map(comentario -> mapperUtils.mapEntityToComentario().apply(comentario));
+        return comentarioRepository.save(mapperUtils.mapperToComentario(comentarioDTO.getId()).apply(comentarioDTO)).map(comentario -> mapperUtils.mapEntityToComentario().apply(comentario));
     }
 }
