@@ -1,25 +1,37 @@
-//import * as actions from '../actions/index';
+import * as actions from '../actions/userActions';
 
 export const initialState = {
 
     loading: true,
     hasErrors: false,
-    questions: [],
-    question: {},
+    usuarios: [],
+    usuario: {},
     search: [],
+    publicaciones: [],
+    publicacion: {},
     redirect: null,
-    name: null,
-    email: null,
-    img: null,
-    uid: null
 
 }
 
-export default function rootReducer(state = initialState, action) {
+export default function rootReducer(state = initialState, actions) {
 
-    switch (action.type) {
+    switch (actions.type) {
 
-        
+        case actions.LOADING:
+            return { ...state, loading: true };
+
+        case actions.LOADED_SUCCESS:
+            return { ...state, ...actions.payload, loading: false, hasErrors: false };
+
+        case actions.LOADED_FAILURE:
+            return { ...state, loading: false, hasErrors: true }
+
+        case actions.LOGIN:
+            const payload = actions.payload;
+            return { ...state, usuario: payload };
+
+        case actions.LOGOUT:
+            return initialState;
 
         default:
             return state;
