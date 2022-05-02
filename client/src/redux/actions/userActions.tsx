@@ -20,8 +20,8 @@ export const success = (payload) => ({
 export const failure = () => ({ type: LOADED_FAILURE })
 
 //Acciones autenticacion
-export const login = (id : string, nombre : string, correo : string, celular: string, rol: string, codigoPublicacionPostales: string, contrasena : string) => ({ 
-    type: LOGIN, payload: {id, nombre, correo, celular, rol, codigoPublicacionPostales, contrasena} 
+export const login = (id : string, nombre : string, correo : string, celular: string, rol: string, codigoPublicacionPostales: string) => ({ 
+    type: LOGIN, payload: {id, nombre, correo, celular, rol, codigoPublicacionPostales} 
 });
 
 export const getAllUsers = () => {
@@ -30,8 +30,7 @@ export const getAllUsers = () => {
         try {
             const auth = await fetch(`${URL_BASE}/getAllUsers`)
             const data = await auth.json()
-            console.log(data)
-            dispatch(success({ usuarios: data, redirect: null }))
+            dispatch(success({ usuarios: data, redirect: null}))
         } catch (error) {
             dispatch(failure())
         }

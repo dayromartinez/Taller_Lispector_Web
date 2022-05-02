@@ -1,5 +1,5 @@
 import * as actions from '../actions/userActions';
-
+import { LOGIN, LOGOUT, LOADING, LOADED_SUCCESS, LOADED_FAILURE } from '../actions/userActions';
 export const initialState = {
 
     loading: true,
@@ -14,23 +14,22 @@ export const initialState = {
 }
 
 export default function rootReducer(state = initialState, actions) {
-
     switch (actions.type) {
 
-        case actions.LOADING:
+        case LOADING:
             return { ...state, loading: true };
 
-        case actions.LOADED_SUCCESS:
+        case LOADED_SUCCESS:
             return { ...state, ...actions.payload, loading: false, hasErrors: false };
 
-        case actions.LOADED_FAILURE:
+        case LOADED_FAILURE:
             return { ...state, loading: false, hasErrors: true }
 
-        case actions.LOGIN:
+        case LOGIN:
             const payload = actions.payload;
             return { ...state, usuario: payload };
 
-        case actions.LOGOUT:
+        case LOGOUT:
             return initialState;
 
         default:

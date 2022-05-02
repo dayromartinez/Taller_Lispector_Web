@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import imagenClarice from './../images/Clarice1.jpg';
@@ -8,6 +9,7 @@ import { NavBar2 } from '../components/NavBar2';
 
 
 export const InicioPage = () => {
+    const usuario = useSelector((state) => state.usuario);
     return (
         <div>
             <NavBar2 />
