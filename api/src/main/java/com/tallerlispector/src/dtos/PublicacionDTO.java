@@ -1,5 +1,6 @@
 package com.tallerlispector.src.dtos;
 
+import com.tallerlispector.src.collections.CodigoPublicaciones;
 import com.tallerlispector.src.collections.Comentario;
 
 import javax.validation.constraints.NotBlank;
@@ -22,11 +23,12 @@ public class PublicacionDTO {
     @NotBlank
     private String urlDocumento;
     private List<ComentarioDTO> comentarios;
+    private List<CodigoPublicaciones> codigosPublicacion;
 
     public PublicacionDTO() {
     }
 
-    public PublicacionDTO(String id, String nombre, String descripcion, String numeroPaginas, String anoLanzamiento, List<String> autores, String urlDocumento, List<String> generos) {
+    public PublicacionDTO(String id, String nombre, String descripcion, String numeroPaginas, String anoLanzamiento, List<String> autores, String urlDocumento, List<String> generos, List<CodigoPublicaciones> codigosPublicacion) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -36,6 +38,7 @@ public class PublicacionDTO {
         this.urlDocumento = urlDocumento;
         this.generos = generos;
         this.comentarios = new ArrayList<ComentarioDTO>();
+        this.codigosPublicacion = codigosPublicacion;
     }
 
     public List<ComentarioDTO> getComentarios() {
@@ -110,17 +113,25 @@ public class PublicacionDTO {
         this.urlDocumento = urlDocumento;
     }
 
+    public List<CodigoPublicaciones> getCodigosPublicacion() {
+        return codigosPublicacion;
+    }
+
+    public void setCodigosPublicacion(List<CodigoPublicaciones> codigosPublicacion) {
+        this.codigosPublicacion = codigosPublicacion;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PublicacionDTO that = (PublicacionDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(nombre, that.nombre) && Objects.equals(descripcion, that.descripcion) && Objects.equals(numeroPaginas, that.numeroPaginas) && Objects.equals(anoLanzamiento, that.anoLanzamiento) && Objects.equals(autores, that.autores) && Objects.equals(generos, that.generos) && Objects.equals(urlDocumento, that.urlDocumento) && Objects.equals(comentarios, that.comentarios);
+        return Objects.equals(id, that.id) && Objects.equals(nombre, that.nombre) && Objects.equals(descripcion, that.descripcion) && Objects.equals(numeroPaginas, that.numeroPaginas) && Objects.equals(anoLanzamiento, that.anoLanzamiento) && Objects.equals(autores, that.autores) && Objects.equals(generos, that.generos) && Objects.equals(urlDocumento, that.urlDocumento) && Objects.equals(comentarios, that.comentarios) && Objects.equals(codigosPublicacion, that.codigosPublicacion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, descripcion, numeroPaginas, anoLanzamiento, autores, generos, urlDocumento, comentarios);
+        return Objects.hash(id, nombre, descripcion, numeroPaginas, anoLanzamiento, autores, generos, urlDocumento, comentarios, codigosPublicacion);
     }
 
     @Override
@@ -135,6 +146,7 @@ public class PublicacionDTO {
                 ", generos=" + generos +
                 ", urlDocumento='" + urlDocumento + '\'' +
                 ", comentarios=" + comentarios +
+                ", codigosPublicacion=" + codigosPublicacion +
                 '}';
     }
 }

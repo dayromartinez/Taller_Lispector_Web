@@ -18,6 +18,7 @@ public class Publicacion {
     private List<String> generos;
     private String urlDocumento;
     private List<Comentario> comentarios;
+    private List<CodigoPublicaciones> codigosPublicacion;
 
 
     public List<Comentario> getComentarios() {
@@ -90,5 +91,13 @@ public class Publicacion {
 
     public void setUrlDocumento(String urlDocumento) {
         this.urlDocumento = urlDocumento;
+    }
+
+    public List<CodigoPublicaciones> getCodigosPublicaciones() {
+        return codigosPublicacion;
+    }
+
+    public void setCodigosPublicaciones(List<CodigoPublicaciones> codigosPublicaiones) {
+        this.codigosPublicacion = codigosPublicaiones;
     }
 }

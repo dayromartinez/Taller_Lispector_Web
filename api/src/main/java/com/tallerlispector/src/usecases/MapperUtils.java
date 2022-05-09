@@ -42,12 +42,13 @@ public class MapperUtils {
             publicacion.setGeneros(updatePublicacion.getGeneros());
             publicacion.setNumeroPaginas(updatePublicacion.getNumeroPaginas());
             publicacion.setUrlDocumento(updatePublicacion.getUrlDocumento());
+            publicacion.setCodigosPublicaciones(updatePublicacion.getCodigosPublicacion());
             return publicacion;
         };
     }
 
     public Function<Publicacion, PublicacionDTO> mapEntityToPublicacion(){
-        return entity -> new PublicacionDTO(entity.getId(), entity.getNombre(), entity.getDescripcion(), entity.getNumeroPaginas(), entity.getAnoLanzamiento(), entity.getAutores(), entity.getUrlDocumento(), entity.getGeneros());
+        return entity -> new PublicacionDTO(entity.getId(), entity.getNombre(), entity.getDescripcion(), entity.getNumeroPaginas(), entity.getAnoLanzamiento(), entity.getAutores(), entity.getUrlDocumento(), entity.getGeneros(), entity.getCodigosPublicaciones());
     }
 
     public Function<ComentarioDTO, Comentario> mapperToComentario(String id){
