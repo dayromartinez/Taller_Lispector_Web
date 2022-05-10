@@ -1,6 +1,18 @@
 import * as actions from '../actions/userActions';
 import { LOGIN, LOGOUT, LOADING, LOADED_SUCCESS, LOADED_FAILURE } from '../actions/userActions';
-export const initialState = {
+
+export type dataState = {
+    loading: boolean,
+    hasErrors: boolean,
+    usuarios: Array<object>,
+    usuario: object,
+    search: Array<object>,
+    publicaciones: Array<object>,
+    publicacion: object,
+    redirect: string,
+}
+
+export const initialState : dataState = {
 
     loading: true,
     hasErrors: false,
@@ -9,11 +21,11 @@ export const initialState = {
     search: [],
     publicaciones: [],
     publicacion: {},
-    redirect: null,
+    redirect: "",
 
 }
 
-export default function rootReducer(state = initialState, actions) {
+export default function rootReducer(state : dataState = initialState, actions) {
     switch (actions.type) {
 
         case LOADING:
@@ -27,7 +39,7 @@ export default function rootReducer(state = initialState, actions) {
 
         case LOGIN:
             const payload = actions.payload;
-            return { ...state, usuario: payload };
+            return { ...state, usuario: payload, usuarios: [] };
 
         case LOGOUT:
             return initialState;
