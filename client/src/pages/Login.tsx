@@ -8,7 +8,6 @@ import { getAllUsers, login } from '../redux/actions/userActions'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { dataState } from '../redux/reducers'
-import Swal from 'sweetalert2'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 /** recaptcha */
@@ -46,16 +45,6 @@ export const Login = () => {
     type FormData = {
         correo: string;
         contrasena: string;
-    }
-
-    type usuarioData = {
-        id?: string, 
-        nombre?: string, 
-        correo?: string,
-        contrasena?: string, 
-        celular?: string, 
-        rol?: string, 
-        codigoPublicacionPostales?: string
     }
 
     const {
@@ -168,7 +157,7 @@ export const Login = () => {
                         </label>
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="correo@email.com" autoComplete='off'
                         {...register('correo', {
-                            setValueAs: (value: string) => value.toUpperCase().trim(),
+                            setValueAs: (value: string) => value.toLowerCase().trim(),
                             required: {
                                 value: true,
                                 message: 'Este campo es requerido.',

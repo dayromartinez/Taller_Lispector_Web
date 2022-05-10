@@ -5,6 +5,12 @@ export const LOADED_SUCCESS : string = 'LOADED_SUCCESS';
 export const LOADED_FAILURE : string = 'LOADED_FAILURE';
 const URL_BASE : string = 'http://localhost:8080';
 
+export type usuarioData = {
+    nombre: string, 
+    correo: string,
+    contrasena: string, 
+    celular: string,
+}
 
 export const logout = () => ({
     type: LOGOUT
@@ -37,31 +43,33 @@ export const getAllUsers = () => {
     }
 };
 
-export function createUser(correo : string, contrasena : string, nombre : string, celular : string){
+export function createUser(datosUsuario : usuarioData) {
     return async dispatch => {
         dispatch(loading())
         const nuevoUsuario = {
             id: "",
-            nombre,
-            correo,
-            contrasena,
-            celular,
+            nombre: datosUsuario.nombre,
+            correo: datosUsuario.correo,
+            contrasena: datosUsuario.contrasena,
+            celular: datosUsuario.celular,
             codigoPublicacionPostales: "",
-            rol: "usuario"
+            rol: "usuario",
         }
+        console.log("Nuevo usuario: ", nuevoUsuario)
         try {
             await fetch(`${URL_BASE}/crearUsuario`,
                 {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'text/plain',
                     },
-                    body: JSON.stringify(nuevoUsuario)
+                    body: JSON.stringify(nuevoUsuario),
                 }
             )
-            dispatch(success({correo, contrasena, nombre, celular, redirect: `/`}));
+            dispatch(success({usuario: nuevoUsuario, redirect: `/`}));
         } catch (error) {
+            console.log(error.message);
             dispatch(failure())
         }
     }
@@ -90,7 +98,7 @@ export function updateUser(id: string, correo : string, contrasena : string, nom
                     body: JSON.stringify(actualizarUsuario)
                 }
             )
-            dispatch(success({correo, contrasena, nombre, celular, redirect: `/`}));
+            dispatch(success({usuario: actualizarUsuario, redirect: `/`}));
         } catch (error) {
             dispatch(failure())
         }

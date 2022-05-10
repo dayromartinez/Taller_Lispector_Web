@@ -10,6 +10,7 @@ export type dataState = {
     publicaciones: Array<object>,
     publicacion: object,
     redirect: string,
+    message: string,
 }
 
 export const initialState : dataState = {
@@ -22,6 +23,7 @@ export const initialState : dataState = {
     publicaciones: [],
     publicacion: {},
     redirect: "",
+    message: "",
 
 }
 
