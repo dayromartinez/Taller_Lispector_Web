@@ -75,18 +75,17 @@ export const Login = () => {
         }
 
         setIsNotRobot(true)
-        let usuario : usuarioData | undefined;
         let correoInput : string = data.correo;
         let contrasenaInput : string = data.contrasena;
 
-        usuario = usuarios.find((usuario : object) => {
+        let usuario = usuarios.find((usuario : object) => {
             if(usuario["correo"].toLowerCase() === correoInput.toLowerCase().trim() && usuario["contrasena"] === contrasenaInput.trim()){
                 return usuario;
             }
         });
 
         if(usuario){
-            dispatch(login(usuario.id, usuario.nombre, usuario.correo, usuario.celular, usuario.rol, usuario.codigoPublicacionPostales));
+            dispatch(login(usuario["id"], usuario["nombre"], usuario["correo"], usuario["celular"], usuario["rol"], usuario["codigoPublicacionPostales"]));
             navigate('/');
             alert("Bienvenido nuevamente!");
         }else{
