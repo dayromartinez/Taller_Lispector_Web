@@ -8,7 +8,9 @@ import { getAllUsers, login } from '../redux/actions/userActions'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { dataState } from '../redux/reducers'
-
+import Swal from 'sweetalert2'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 /** recaptcha */
 import ReCAPTCHA from 'react-google-recaptcha'
 
@@ -73,7 +75,17 @@ export const Login = () => {
             setIsNotRobot(false)
             return false
         }
+        // const carga = toast.loading('Validando datos...', {
+        //     position: toast.POSITION.TOP_CENTER,
+        //     autoClose: 3000,
+        //     closeButton: false,
+        //     hideProgressBar: true,
+        //     closeOnClick: false,
+        //     pauseOnHover: false,
+        //     draggable: false,
+        //     progress: undefined,
 
+        // })
         setIsNotRobot(true)
         let correoInput : string = data.correo;
         let contrasenaInput : string = data.contrasena;
@@ -86,10 +98,36 @@ export const Login = () => {
 
         if(usuario){
             dispatch(login(usuario["id"], usuario["nombre"], usuario["correo"], usuario["celular"], usuario["rol"], usuario["codigoPublicacionPostales"]));
-            navigate('/');
-            alert("Bienvenido nuevamente!");
+            setValue("correo", "");
+            setValue("contrasena", "");
+            captcha.current.reset();
+            setIsNotRobot(false);
+            toast.success('Sesión iniciada exitosamente. ¡Bienvenid@ de nuevo al parche Taller Lispector!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setTimeout(() => {
+                navigate('/');
+            }, 4000);
         }else{
-            alert("Usuario o contraseña incorrectos");
+            setValue("correo", "");
+            setValue("contrasena", "");
+            captcha.current.reset();
+            setIsNotRobot(false);
+            toast.error('Correo y/o contraseña incorrectos. Inténtelo de nuevo', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     }
 
@@ -102,7 +140,6 @@ export const Login = () => {
     }
 
     useEffect(() => {
-        console.log('Isvalid: ', isValid);
         if(window.location.hostname === "localhost"){
             setSiteKey("6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI")
             localStorage.setItem("siteKey", "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI")
@@ -122,6 +159,7 @@ export const Login = () => {
         <div className='bg-slate-300' >
             <NavBar2 />
             <div className="w-full max-w-sm mx-auto py-10 pt-36 pb-48">
+                <ToastContainer />
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(onSubmit)}>
                     <h5 className='text-2xl my-3 mb-8 text-center font-semibold'>Iniciar Sesión</h5>
                     <div className="mb-4">
