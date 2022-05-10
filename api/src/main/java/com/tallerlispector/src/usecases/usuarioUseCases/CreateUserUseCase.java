@@ -23,11 +23,12 @@ public class CreateUserUseCase implements SaveUser {
 
     @Override
     public Mono<Object> apply(UsuarioDTO usuarioDTO) {
-        return usuarioRepository.findById(usuarioDTO.getId())
-                .flatMap(usuario -> {
-                    return Mono.error(new ResponseStatusException(HttpStatus.CONFLICT));
-                })
+        return usuarioRepository.findUsuarioByCorreo(usuarioDTO.getCorreo())
+                .flatMap(usuario -> Mono.error(new ResponseStatusException(HttpStatus.CONFLICT,
+                        "Ya hay un usuario registrado con el correo: " + usuarioDTO.getCorreo() +
+                        ". ¡Inténtelo nuevamente!")))
                 .switchIfEmpty(usuarioRepository.save(mapperUtils.mapperToUsuario(null)
-                        .apply(usuarioDTO)).thenReturn("Usuario registrado"));
+                        .apply(usuarioDTO)).thenReturn("Usuario registrado exitosamente. " +
+                        "¡Bienvenid@ a la familia Taller Lispector!"));
     }
 }

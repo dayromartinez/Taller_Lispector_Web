@@ -10,6 +10,6 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface UsuarioRepository extends ReactiveCrudRepository<Usuario, String> {
     Flux<Usuario> findUsuarioByNombre(String nombre);
-    Flux<Usuario> findUsuarioByCorreo(String correo);
+    Mono<Usuario> findUsuarioByCorreo(String correo);
     Flux<Usuario> findUsuarioByRol(Rol rol);
 }
