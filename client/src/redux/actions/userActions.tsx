@@ -30,11 +30,19 @@ export const login = (id : string, nombre : string, correo : string, celular: st
     type: LOGIN, payload: {id, nombre, correo, celular, rol, codigoPublicacionPostales} 
 });
 
+// Con Fetch
 export const getAllUsers = () => {
     return async dispatch => {
         dispatch(loading())
         try {
-            const auth = await fetch(`${URL_BASE}/getAllUsers`)
+            const auth = await fetch(`${URL_BASE}/getAllUsers`,{
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+            })
             const data = await auth.json()
             dispatch(success({ usuarios: data, redirect: null}))
         } catch (error) {
