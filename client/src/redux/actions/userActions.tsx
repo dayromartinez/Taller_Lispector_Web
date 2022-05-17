@@ -35,14 +35,7 @@ export const getAllUsers = () => {
     return async dispatch => {
         dispatch(loading())
         try {
-            const auth = await fetch(`${URL_BASE}/getAllUsers`,{
-                method: 'GET',
-                mode: 'cors',
-                headers: {
-                    "access-control-allow-origin" : "*",
-                    "Content-type": "application/json; charset=UTF-8"
-                },
-            })
+            const auth = await fetch(`${URL_BASE}/getAllUsers`)
             const data = await auth.json()
             dispatch(success({ usuarios: data, redirect: null}))
         } catch (error) {
@@ -70,7 +63,8 @@ export function createUser(datosUsuario : usuarioData) {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
-                        'Content-Type': 'text/plain',
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(nuevoUsuario),
                 }
