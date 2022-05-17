@@ -7,6 +7,7 @@ import '.././index.css'
 import { NuestrasPublicaciones } from '../components/NuestrasPublicaciones'
 import { NavBar2 } from '../components/NavBar2'
 import { dataState } from '../redux/reducers'
+import NavBarFinal from '../components/NavBarFinal'
 
 
 export const InicioPage = () => {
@@ -14,6 +15,7 @@ export const InicioPage = () => {
     return (
         <div>
             <NavBar2 />
+            <NavBarFinal />
             <div className='contenedor_frase_lispector'>
                 <img src={imagenClarice} className="imgClarice"/>
                 <div className='nombre_frase_lispector'>

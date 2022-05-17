@@ -7,6 +7,7 @@ import { SesionesPage } from './pages/Sesiones'
 import { PublicacionesPage } from './pages/Publicaciones'
 import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
+import { InicioMUI } from './pages/InicioMUI';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/publicaciones' element={<PublicacionesPage />}/>
         <Route path='/inicio_sesion' element={<Login />}/>
         <Route path='/registrarse' element={<Registro />}/>
+        <Route path='/inicio' element={<InicioMUI />}/>
       </Routes>
     </div>
   )
