@@ -11,13 +11,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { ThemeProvider } from '@emotion/react';
-import { DarkMode } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers';
 import { useState, useEffect } from 'react';
 import logoLispector from '../images/Logo_Lispector_Completo.png';
+import { useNavigate } from 'react-router-dom';
+import LoginIcon from '@mui/icons-material/Login';
 
 const pages = ['Inicio', 'Sesiones', 'Publicaciones', 'Contacto'];
 const settings = ['Perfil', 'Cerrar Sesión'];
@@ -26,6 +25,7 @@ const NavBarFinal = () => {
     const usuario = useSelector((state : dataState) => state.usuario);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const navigate = useNavigate();
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -37,6 +37,38 @@ const NavBarFinal = () => {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
+
+    const onSubmit = (event: React.MouseEvent<HTMLElement>) => {
+
+        event.preventDefault()
+        const nombreBoton = event.currentTarget["name"]
+
+        switch (nombreBoton) {
+
+            case "Inicio":
+                navigate('/');
+                break;
+
+            case "Sesiones":
+                navigate('/sesiones');
+                break;
+
+            case "Publicaciones":
+                navigate('/publicaciones');
+                break;
+            
+            case "Contacto":
+                navigate('/');
+                break;
+            
+            case "Iniciar Sesión":
+                navigate('/inicio_sesion');
+                break;
+            
+            default:
+                break;
+        }
+    }
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
@@ -51,9 +83,12 @@ const NavBarFinal = () => {
                 <Toolbar disableGutters>
                 <Box 
                     component="img"
-                    sx={{ display: { xs: 'none', md: 'flex', width: '15%', height: '15%', padding: 10 } }}
+                    sx={{ display: { xs: 'none', md: 'flex', width: '15%', height: '15%', padding:  10, cursor: 'pointer' } }}
                     alt="logo"
                     src={logoLispector}
+                    onClick={() => {
+                        navigate('/');
+                    }}
                 />
 
                 <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -95,20 +130,33 @@ const NavBarFinal = () => {
 
                 <Box 
                     component="img"
-                    sx={{ display: { xs: 'flex', md: 'none', width: '15%', height: '15%', padding: 10 } }}
+                    sx={{ display: { xs: 'flex', md: 'none', width: '15%', height: '15%', padding: 10, cursor: 'pointer' } }}
                     alt="logo"
                     src={logoLispector}
+                    onClick={() => {
+                        navigate('/');
+                    }}
                 />
-                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', paddingLeft: '10%' }}}>
                     {pages.map((page) => (
                     <Button
-                        key={page}
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'white', display: 'block' }}
+                        name={page}
+                        onClick={onSubmit}
+                        sx={{ my: 2, color: '#F6EEE9', display: 'flex', marginLeft: '5%', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
                     >
                         {page}
                     </Button>
                     ))}
+                    {usuario['nombre'] !== null ? (
+                        <Button
+                        name="Iniciar Sesión"
+                        onClick={onSubmit}
+                        sx={{ my: 2, color: '#F6EEE9', display: 'flex', marginLeft: '5%', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
+                        className="botonesNavBar"
+                    >
+                        <LoginIcon sx={{ mr: '0.5rem' }}/> Iniciar Sesión
+                    </Button>
+                    ):null}
                 </Box>
 
                 {usuario["nombre"] ==! null ? (

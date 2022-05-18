@@ -4,13 +4,14 @@ import ecosDeResistencia from './../images/Ecos_de_resistencia.jpeg'
 import { Footer } from '../components/Footer'
 import { NuestrasPublicaciones } from '../components/NuestrasPublicaciones';
 import { NavBar2 } from '../components/NavBar2';
+import NavBarFinal from '../components/NavBarFinal';
 
 export const PublicacionesPage = () => {
 
   let microrelatos: number[] = [1, 2, 3, 4, 5, 6]; 
   return (
     <div>
-        <NavBar2 />
+        <NavBarFinal />
         <h1 className='text-6xl mt-8 mb-8'>Publicaciones</h1>
         <div className='display: flex bg-slate-500 mb-10'>
           <img src={ecosDeResistencia} className='ml-16 mb-10 mt-11'/>

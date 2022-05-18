@@ -3,12 +3,13 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer'
 import { Calendario } from '../components/Calendario';
 import { NavBar2 } from '../components/NavBar2';
+import NavBarFinal from '../components/NavBarFinal';
 
 
 export const SesionesPage = () => {
   return (
     <div>
-        <NavBar2 />
+        <NavBarFinal />
         <div className='flex justify-between m-10'>
           <Calendario />
           <div className='mx-10'>

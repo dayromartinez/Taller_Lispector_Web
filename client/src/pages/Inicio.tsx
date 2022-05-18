@@ -14,7 +14,6 @@ export const InicioPage = () => {
     const usuario = useSelector((state : dataState) => state.usuario);
     return (
         <div>
-            <NavBar2 />
             <NavBarFinal />
             <div className='contenedor_frase_lispector'>
                 <img src={imagenClarice} className="imgClarice"/>

@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 /** recaptcha */
 import ReCAPTCHA from 'react-google-recaptcha'
+import NavBarFinal from '../components/NavBarFinal'
 
 /* Claves de sitio de google de PRUEBA:
 Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
@@ -146,7 +147,7 @@ export const Login = () => {
 
     return (
         <div className='bg-slate-300' >
-            <NavBar2 />
+            <NavBarFinal />
             <div className="w-full max-w-sm mx-auto py-10 pt-36 pb-48">
                 <ToastContainer />
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(onSubmit)}>

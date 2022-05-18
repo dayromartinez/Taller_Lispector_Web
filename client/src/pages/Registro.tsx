@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 /** recaptcha */
 import ReCAPTCHA from 'react-google-recaptcha'
+import NavBarFinal from '../components/NavBarFinal'
 
 const REGEX_EMAIL = /^[a-zA-Z0-9.ñ!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 const isEmail = (value: string) =>
@@ -114,7 +115,7 @@ export const Registro = () => {
 
     return (
         <div className='bg-gray-100 h-4/5'>
-            <NavBar2 />
+            <NavBarFinal />
             <div className="flex w-full mx-auto">
                 <img className='w-full' src={clarice} height="20%"/>
                 <ToastContainer />
