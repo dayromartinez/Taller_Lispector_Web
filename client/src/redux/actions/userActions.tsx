@@ -3,7 +3,7 @@ export const LOGOUT : string = 'LOGOUT';
 export const LOADING : string = 'LOADING';
 export const LOADED_SUCCESS : string = 'LOADED_SUCCESS';
 export const LOADED_FAILURE : string = 'LOADED_FAILURE';
-const URL_BASE : string = 'http://localhost:8080';
+export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/auth';
 
 export type usuarioData = {
     nombre: string, 
@@ -26,8 +26,8 @@ export const success = (payload) => ({
 export const failure = () => ({ type: LOADED_FAILURE })
 
 //Acciones autenticacion
-export const login = (id : string, nombre : string, correo : string, celular: string, rol: string, codigoPublicacionPostales: string) => ({ 
-    type: LOGIN, payload: {id, nombre, correo, celular, rol, codigoPublicacionPostales} 
+export const login = (uid : string, nombre : string, correo : string, celular: string, rol: string, codigoPublicacionPostales: string) => ({ 
+    type: LOGIN, payload: {uid, nombre, correo, celular, rol, codigoPublicacionPostales} 
 });
 
 // Con Fetch
@@ -48,28 +48,35 @@ export function createUser(datosUsuario : usuarioData) {
     return async dispatch => {
         dispatch(loading())
         const nuevoUsuario = {
-            id: "",
-            nombre: datosUsuario.nombre,
-            correo: datosUsuario.correo,
-            contrasena: datosUsuario.contrasena,
-            celular: datosUsuario.celular,
-            codigoPublicacionPostales: "",
-            rol: "usuario",
+            name: datosUsuario.nombre,
+            email: datosUsuario.correo,
+            password: datosUsuario.contrasena,
+            phone: datosUsuario.celular,
         }
         console.log("Nuevo usuario: ", nuevoUsuario)
         try {
-            await fetch(`${URL_BASE}/crearUsuario`,
+            const fetchTokenUser = await fetch(`${URL_BASE}/register`,
                 {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
-                        'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(nuevoUsuario),
                 }
             )
-            dispatch(success({usuario: nuevoUsuario, redirect: `/`}));
+            const response = await fetchTokenUser.json();
+            localStorage.setItem('tokenUser', response);
+            console.log('RESPONSE: ', response.token)
+            const data = await fetch(`${URL_BASE}/validateToken`, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'x-token': response.token
+                },
+            })
+            console.log('DATA: ', data)
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'] }, redirect: `/`}));
         } catch (error) {
             console.log(error.message);
             dispatch(failure())

@@ -8,9 +8,12 @@ import { PublicacionesPage } from './pages/Publicaciones'
 import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
 import { InicioMUI } from './pages/InicioMUI';
+import { URL_BASE } from './redux/actions/userActions';
 
 
 function App() {
+
+  
 
   return (
     <div className="App">
