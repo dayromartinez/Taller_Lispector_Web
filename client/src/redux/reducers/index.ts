@@ -34,10 +34,10 @@ export default function rootReducer(state : dataState = initialState, actions) {
             return { ...state, loading: true };
 
         case LOADED_SUCCESS:
-            return { ...state, ...actions.payload, loading: false, hasErrors: false };
+            return { ...state, ...actions.payload, loading: false, hasErrors: false, message: "" };
 
         case LOADED_FAILURE:
-            return { ...state, loading: false, hasErrors: true }
+            return { ...state, message: actions.payload, loading: false, hasErrors: true }
 
         case LOGIN:
             const payload = actions.payload;

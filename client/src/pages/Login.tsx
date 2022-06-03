@@ -36,9 +36,11 @@ export const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const redirect = useSelector((state : dataState) => state.redirect);
-    const usuarios = useSelector((state : dataState) => state.usuarios);
+    const usuario = useSelector((state : dataState) => state.usuario);
+    const message = useSelector((state : dataState) => state.message);
     const [isNotRobot, setIsNotRobot] = useState<boolean>(false);
     const [siteKey, setSiteKey] = useState<string>("");
+    const [onClick, setOnClick] = useState<boolean>(false);
 
     /** References */
     const captcha = useRef(null)
@@ -65,60 +67,9 @@ export const Login = () => {
             setIsNotRobot(false)
             return false
         }
-        // const carga = toast.loading('Validando datos...', {
-        //     position: toast.POSITION.TOP_CENTER,
-        //     autoClose: 3000,
-        //     closeButton: false,
-        //     hideProgressBar: true,
-        //     closeOnClick: false,
-        //     pauseOnHover: false,
-        //     draggable: false,
-        //     progress: undefined,
-
-        // })
         setIsNotRobot(true)
-        let correoInput : string = data.correo;
-        let contrasenaInput : string = data.contrasena;
-
-        let usuario = usuarios.find((usuario : object) => {
-            if(usuario["correo"].toLowerCase() === correoInput.toLowerCase().trim() && usuario["contrasena"] === contrasenaInput.trim()){
-                return usuario;
-            }
-        });
-
-        if(usuario){
-            dispatch(login(usuario["id"], usuario["nombre"], usuario["correo"], usuario["celular"], usuario["rol"], usuario["codigoPublicacionPostales"]));
-            setValue("correo", "");
-            setValue("contrasena", "");
-            captcha.current.reset();
-            setIsNotRobot(false);
-            toast.success('Sesión iniciada exitosamente. ¡Bienvenid@ de nuevo al parche Taller Lispector!', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            setTimeout(() => {
-                navigate('/');
-            }, 4000);
-        }else{
-            setValue("correo", "");
-            setValue("contrasena", "");
-            captcha.current.reset();
-            setIsNotRobot(false);
-            toast.error('Correo y/o contraseña incorrectos. Inténtelo de nuevo', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
+        setOnClick(true)
+        dispatch(login(data.correo, data.contrasena))
     }
 
     const onChangeRecapcha = () => {
@@ -141,9 +92,44 @@ export const Login = () => {
         if (redirect) {
             navigate(redirect);
         }
-        dispatch(getAllUsers());
-
     }, [dispatch, redirect, window.location.hostname])
+
+    useEffect(() => {
+        if(usuario["uid"] && onClick){
+            setValue("correo", "");
+            setValue("contrasena", "");
+            captcha.current.reset();
+            setIsNotRobot(false);
+            setOnClick(false);
+            toast.success('Sesión iniciada exitosamente. ¡Bienvenid@ de nuevo al parche Taller Lispector!', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setTimeout(() => {
+                navigate('/');
+            }, 4000);
+        }else if(!usuario["uid"] && onClick){
+            setValue("correo", "");
+            setValue("contrasena", "");
+            captcha.current.reset();
+            setIsNotRobot(false);
+            setOnClick(false);
+            toast.error('Correo y/o contraseña incorrectos. Inténtelo de nuevo', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    } , [usuario, message])
 
     return (
         <div className='bg-slate-300' >
