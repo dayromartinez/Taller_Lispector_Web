@@ -11,7 +11,7 @@ export const Navbar: FC = () => {
                 <img src={logo} width={150} className='py-2 px-2' />
                 <div className='pt-6'>
                     <Link to='/'>
-                        <span className='px-3 py-3 text-slate-200 hover:underline'>Inicio</span>
+                        <span className='px-3 py-3 text-slate-200 hover:underline'>Dayro</span>
                     </Link>
                     <Link to='/sesiones'>
                         <span className='px-3 py-3 text-slate-200 hover:underline'>Sesiones</span>

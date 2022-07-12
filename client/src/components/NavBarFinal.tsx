@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react';
 import logoLispector from '../images/Logo_Lispector_Completo.png';
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
+import photoUser from '../images/image_perfil_defecto.png';
 
 const pages = ['Inicio', 'Sesiones', 'Publicaciones', 'Contacto'];
 const settings = ['Perfil', 'Cerrar Sesión'];
@@ -25,10 +26,13 @@ const NavBarFinal = () => {
     const usuario = useSelector((state : dataState) => state.usuario);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
+        setOpenMenu(true)
+        localStorage.setItem('open_menu', 'true')
     };
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
@@ -36,6 +40,7 @@ const NavBarFinal = () => {
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
+        localStorage.setItem('close_menu', 'false')
     };
 
     const onSubmit = (event: React.MouseEvent<HTMLElement>) => {
@@ -74,7 +79,7 @@ const NavBarFinal = () => {
         setAnchorElUser(null);
     };
 
-    console.log("Usuario: ",usuario)
+    console.log("Usuario: ", usuario)
 
     return (
         
@@ -93,37 +98,41 @@ const NavBarFinal = () => {
 
                 <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit"
+                        size="large"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        onClick={handleOpenNavMenu}
+                        color="inherit"
                     >
                     <MenuIcon />
                     </IconButton>
                     <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                    }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{
-                        display: { xs: 'block', md: 'none' },
-                    }}
+                        id="menu-appbar"
+                        anchorEl={anchorElNav}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        open={Boolean(anchorElNav)}
+                        onClose={handleCloseNavMenu}
+                        sx={{
+                            display: { xs: 'block', md: 'none' },
+                        }}
+                        className={openMenu ? 'open_menu' : 'close_menu'}
                     >
                     {pages.map((page) => (
-                        <MenuItem key={page} onClick={handleCloseNavMenu} >
-                            <Typography textAlign="center">{page}</Typography>
-                        </MenuItem>
+                        // <MenuItem key={page} onClick={handleCloseNavMenu} >
+                        //     <Typography textAlign="center">{page}</Typography>
+                        // </MenuItem>
+                        <>
+                            <li key={page}>{page}</li>
+                        </>
                     ))}
                     </Menu>
                 </Box>
@@ -147,23 +156,55 @@ const NavBarFinal = () => {
                         {page}
                     </Button>
                     ))}
-                    {usuario['nombre'] !== null ? (
+                    {usuario['name'] === undefined ? (
                         <Button
-                        name="Iniciar Sesión"
-                        onClick={onSubmit}
-                        sx={{ my: 2, color: '#F6EEE9', display: 'flex', marginLeft: '5%', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
-                        className="botonesNavBar"
-                    >
-                        <LoginIcon sx={{ mr: '0.5rem' }}/> Iniciar Sesión
-                    </Button>
-                    ):null}
+                            name="Iniciar Sesión"
+                            onClick={onSubmit}
+                            sx={{ my: 2, color: '#F6EEE9', display: 'flex', marginLeft: '5%', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
+                            className="botonesNavBar"
+                        >
+                            <Tooltip title='Iniciar Sesión'>
+                                <LoginIcon sx={{ mr: '0.5rem' }}/>
+                            </Tooltip>
+                        </Button>
+                    ): (
+                        <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <Avatar alt="Remy Sharp" src={photoUser} />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                                >
+                                {settings.map((setting) => (
+                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                    <Typography textAlign="center">{setting}</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
+                    )}
                 </Box>
 
-                {usuario["nombre"] ==! null ? (
+                {/* {usuario["nombre"] ==! null ? (
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Remy Sharp" src={photoUser} />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -189,7 +230,7 @@ const NavBarFinal = () => {
                             ))}
                         </Menu>
                     </Box>
-                ) : null}
+                ) : null} */}
                 </Toolbar>
             </Container>
         </AppBar>

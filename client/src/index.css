@@ -13,7 +13,7 @@
 .contenedor_frase_lispector {
     display: flex;
     text-align: left;
-    
+    margin-top: 7rem;
 }
 
 .nombre_frase_lispector{
@@ -38,4 +38,17 @@
 
 .toast-error {
     background-color: #e74c3c;
+}
+
+.open_menu {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+    margin: 0px;
+    padding: 10px 20px;
+}
+
+.close_menu {
+    margin: -250px;
 }

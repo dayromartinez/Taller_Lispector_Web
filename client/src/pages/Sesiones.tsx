@@ -31,7 +31,6 @@ export const SesionesPage = () => {
           <p className='p-10'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt? Fet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt.</p>
         </div>
         <br/>
-        <Footer />
     </div>
   )
 }
