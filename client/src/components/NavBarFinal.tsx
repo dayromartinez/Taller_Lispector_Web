@@ -18,8 +18,9 @@ import logoLispector from '../images/Logo_Lispector_Completo.png';
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import photoUser from '../images/image_perfil_defecto.png';
+import { CardMedia } from '@mui/material';
 
-const pages = ['Inicio', 'Sesiones', 'Publicaciones', 'Contacto'];
+const pages = ['Sesiones', 'Publicaciones', 'Contacto'];
 const settings = ['Perfil', 'Cerrar Sesión'];
 
 const NavBarFinal = () => {
@@ -49,10 +50,6 @@ const NavBarFinal = () => {
         const nombreBoton = event.currentTarget["name"]
 
         switch (nombreBoton) {
-
-            case "Inicio":
-                navigate('/');
-                break;
 
             case "Sesiones":
                 navigate('/sesiones');
@@ -86,15 +83,17 @@ const NavBarFinal = () => {
         <AppBar style={{'backgroundColor': '#9FD5D1'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                <Box 
-                    component="img"
-                    sx={{ display: { xs: 'none', md: 'flex', width: '15%', height: '15%', padding:  10, cursor: 'pointer' } }}
-                    alt="logo"
-                    src={logoLispector}
-                    onClick={() => {
-                        navigate('/');
-                    }}
-                />
+                <Tooltip title='Inicio'>
+                    <Box 
+                        component="img"
+                        sx={{ display: { xs: 'none', md: 'flex', width: '15%', height: '15%', padding:  10, cursor: 'pointer' } }}
+                        alt="logo"
+                        onClick={() => {
+                            navigate('/');
+                        }}
+                        src={logoLispector}
+                    />
+                </Tooltip>
 
                 <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                     <IconButton
