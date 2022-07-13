@@ -16,13 +16,19 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import logoLispector from '../images/Logo_Lispector_Solo.png';
+import logoLispectorCompleto from '../images/Logo_Lispector_Completo.png';
 import { Tooltip } from '@mui/material';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import Button from '@mui/material/Button';
+import LoginIcon from '@mui/icons-material/Login';
 
 const drawerWidth = 240;
+
+console.log(window.innerWidth)
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
@@ -75,7 +81,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 
-export default function PersistentDrawerLeft() {
+export default function NavbarMobile({ children }) {
   
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -105,22 +111,61 @@ export default function PersistentDrawerLeft() {
     }
   }
 
+  const listIcon = (text) => {
+
+    switch( text ) {
+
+      case 'Sesiones': 
+        return (<AutoStoriesIcon />)
+      case 'Publicaciones': 
+        return (<CalendarMonthIcon />)
+      case 'Contacto':
+        return (<QuestionAnswerIcon />)
+
+    }
+
+  }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
+      
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ml: 1, ...(open && { display: 'none' }) }}
+            sx={{ ml: 1, ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
+
+          <Box 
+            component="img"
+            sx={{ display: { xs: 'flex', md: 'none', width: '100px', height: '50px', padding: 10, cursor: 'pointer' } }}
+            alt="logo"
+            src={logoLispectorCompleto}
+            onClick={() => {
+                navigate('/');
+            }}
+          />
+
+          <Button
+            name="Iniciar Sesión"
+            onClick={() => navigate('/inicio_sesion')}
+            sx={{ color: '#F6EEE9', display: 'flex', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
+            className="botonesNavBar"
+          >
+              <Tooltip title='Iniciar Sesión'>
+                  <LoginIcon sx={{ mr: '0.5rem' }}/>
+              </Tooltip>
+          </Button>
         </Toolbar>
       </AppBar>
+
+
       <Drawer
         sx={{
           width: drawerWidth,
@@ -156,7 +201,7 @@ export default function PersistentDrawerLeft() {
             <ListItem key={text} disablePadding>
               <ListItemButton id={text} onClick={ () => onClickLink(text) }>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {listIcon(text)}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
@@ -167,20 +212,7 @@ export default function PersistentDrawerLeft() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
-        </Typography>
+        { children }
       </Main>
     </Box>
   );

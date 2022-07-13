@@ -9,12 +9,13 @@ import { NavBar2 } from '../components/NavBar2'
 import { dataState } from '../redux/reducers'
 import NavBarFinal from '../components/NavBarFinal'
 import { PublicLayout } from '../layouts/PublicLayout';
+import NavbarMobile from '../components/NavbarMobile'
 
 
 export const InicioPage = () => {
     const usuario = useSelector((state : dataState) => state.usuario);
     return (
-        <PublicLayout>
+        <NavbarMobile>
             <div className='contenedor_frase_lispector'>
                 <img src={imagenClarice} className="imgClarice"/>
                 <div className='nombre_frase_lispector'>
@@ -43,6 +44,6 @@ export const InicioPage = () => {
                     <h1 className='text-2xl font-bold mx-10'>Frase Lispector</h1>
                 </div>
             </div>
-        </PublicLayout>
+        </NavbarMobile>
     )
 }
