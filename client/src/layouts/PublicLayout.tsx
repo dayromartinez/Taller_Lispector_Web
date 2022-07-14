@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer';
-import NavBarFinal from '../components/NavBarFinal';
+import NavBarDesktop from '../components/NavBarDesktop';
 import NavbarMobile from '../components/NavbarMobile';
 import { useState } from 'react';
 
@@ -21,10 +20,10 @@ export const PublicLayout = ({ children }) => {
     }, [window.innerWidth]);
 
     return (
-        <>
+        <div>
             <header>
                 <nav>
-                    { sizeScreen >= 900 ? <NavBarFinal /> : <NavbarMobile children={children} /> }
+                    { sizeScreen >= 900 ? <NavBarDesktop /> : <NavbarMobile children={children} /> }
                 </nav>
             </header>
 
@@ -39,6 +38,6 @@ export const PublicLayout = ({ children }) => {
             <footer>
                 <Footer />
             </footer>
-        </>
+        </div>
     )
 }

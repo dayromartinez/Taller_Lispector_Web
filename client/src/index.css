@@ -52,3 +52,7 @@
 .close_menu {
     margin: -250px;
 }
+
+#contenedor-login {
+    height: 48rem;
+}

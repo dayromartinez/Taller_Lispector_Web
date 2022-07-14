@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Footer } from '../components/Footer'
-import { Navbar } from '../components/Navbar'
 import clarice from '../images/Clarice1.jpg';
 import "../images/Clarice1.jpg";
-import { NavBar2 } from '../components/NavBar2';
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { dataState } from '../redux/reducers'
@@ -14,7 +10,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 /** recaptcha */
 import ReCAPTCHA from 'react-google-recaptcha'
-import NavBarFinal from '../components/NavBarFinal'
+import { PublicLayout } from '../layouts/PublicLayout';
+
 
 const REGEX_EMAIL = /^[a-zA-Z0-9.ñ!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 const isEmail = (value: string) =>
@@ -69,17 +66,7 @@ export const Registro = () => {
             setIsNotRobot(false)
             return false
         }
-        // const carga = toast.loading('Validando datos...', {
-        //     position: toast.POSITION.TOP_CENTER,
-        //     autoClose: 3000,
-        //     closeButton: false,
-        //     hideProgressBar: true,
-        //     closeOnClick: false,
-        //     pauseOnHover: false,
-        //     draggable: false,
-        //     progress: undefined,
-
-        // })
+       
         setIsNotRobot(true)
         let nuevoUsuario: usuarioData = {
             nombre: data.nombres,
@@ -114,125 +101,125 @@ export const Registro = () => {
     }, [dispatch, redirect, usuario, message])
 
     return (
-        <div className='bg-gray-100 h-4/5'>
-            <NavBarFinal />
-            <div className="flex w-full mx-auto">
-                <img className='w-full' src={clarice} height="20%"/>
-                <ToastContainer />
-                <form className="bg-white shadow-md max-w-md mx-auto rounded px-8 pt-6" onSubmit={handleSubmit(onSubmit)}>
-                    <h5 className='text-2xl my-3 mb-5 font-bold mt-22 text-center'>Registrarse</h5>
-                    <p className='text-sm mb-5 italic'>Regístrate en Taller Lispector para acceder a nuestras publicaciones y matenerte al tanto de nuestros ciclos, sesiones y eventos.</p>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="nombre">
-                            Nombres <span className='text-red-500'>*</span>
-                        </label>
-                        <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Clarice Lispector"
-                        {...register('nombres', {
-                            setValueAs: (value: string) => value,
-                            required: {
-                                value: true,
-                                message: 'Este campo es requerido.',
-                            },
-                            minLength: {
-                                value: 5,
-                                message: 'Debe de tener un mínimo de 11 caracteres.',
-                            },
-                            validate: {
-                                isName,
-                            },
-                        })}
-                        />
-                        <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="nombres">
-                            {errors.nombres ? (<span className="text-red-500 text-xs">{errors.nombres.message}</span>) : null}
-                        </label>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="celular">
-                            Celular
-                        </label>
-                        <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="celular" type="text" placeholder="3123158165" 
-                        {...register('celular', {
-                            setValueAs: (value: string) => value.trim(),
-                            minLength: {
-                                value: 10,
-                                message: 'Debe de tener un mínimo de 10 números.',
-                            },
-                            maxLength: {
-                                value: 10,
-                                message: 'Debe de tener un máximo de 10 números.',
-                            },
-                            validate: {
-                                isCellphone,
-                            },
-                        })}
-                        />
-                        <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="celular">
-                            {errors.celular ? (<span className="text-red-500 text-xs">{errors.celular.message}</span>) : null}
-                        </label>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="correo">
-                            Correo Electrónico <span className='text-red-500'>*</span>
-                        </label>
-                        <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="email" placeholder="correo@email.com" 
-                        {...register('correo', {
-                            setValueAs: (value: string) => value.toLowerCase().trim(),
-                            required: {
-                                value: true,
-                                message: 'Este campo es requerido.',
-                            },
-                            minLength: {
-                                value: 5,
-                                message: 'Debe de tener un mínimo de 5 caracteres.',
-                            },
-                            validate: {
-                                isEmail,
-                            },
-                        })}
-                        />
-                        <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="correo">
-                            {errors.correo ? (<span className="text-red-500 text-xs">{errors.correo.message}</span>) : null}
-                        </label>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="password">
-                            Contraseña <span className='text-red-500'>*</span>
-                        </label>
-                        <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="***********" 
-                        {...register('contrasena', {
-                            setValueAs: (value: string) => value.trim(),
-                            required: {
-                                value: true,
-                                message: 'Este campo es requerido.',
-                            },
-                            minLength: {
-                                value: 8,
-                                message: 'Debe de tener un mínimo de 8 caracteres.',
-                            },
-                            validate: {
-                                isPassword,
-                            },
-                        })}
-                        />
-                        <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="contrasena">
-                            {errors.contrasena ? (<span className="text-red-500 text-xs">{errors.contrasena.message}</span>) : ""}
-                        </label>
-                    </div>
-                    <div className="items-center pt-4 pb-4 flex flex-col">
-                        <ReCAPTCHA
-                            className="mb-8"
-                            ref={captcha}
-                            sitekey={siteKey || localStorage.getItem("siteKey")}
-                            onChange={onChangeRecapcha}
-                        />
-                        <button className={isValid && isNotRobot ? ("bg-amber-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer") 
-                        : "bg-slate-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" } type="submit" disabled={!isValid || !isNotRobot} >
-                            Registrarse
-                        </button>
-                    </div>
-                </form>
+        <PublicLayout>
+            <div className='bg-gray-100 pt-24'>
+                <div className="flex w-full mx-auto">
+                    <img className='w-full' src={clarice} height="20%"/>
+                    <ToastContainer />
+                    <form className="bg-white shadow-md max-w-md mx-auto rounded px-8 pt-16" onSubmit={handleSubmit(onSubmit)}>
+                        <h5 className='text-2xl my-3 mb-5 font-bold mt-22 text-center'>Registrarse</h5>
+                        <p className='text-sm mb-5 italic'>Regístrate en Taller Lispector para acceder a nuestras publicaciones y matenerte al tanto de nuestros ciclos, sesiones y eventos.</p>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="nombre">
+                                Nombres <span className='text-red-500'>*</span>
+                            </label>
+                            <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Clarice Lispector"
+                            {...register('nombres', {
+                                setValueAs: (value: string) => value,
+                                required: {
+                                    value: true,
+                                    message: 'Este campo es requerido.',
+                                },
+                                minLength: {
+                                    value: 5,
+                                    message: 'Debe de tener un mínimo de 11 caracteres.',
+                                },
+                                validate: {
+                                    isName,
+                                },
+                            })}
+                            />
+                            <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="nombres">
+                                {errors.nombres ? (<span className="text-red-500 text-xs">{errors.nombres.message}</span>) : null}
+                            </label>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="celular">
+                                Celular
+                            </label>
+                            <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="celular" type="text" placeholder="3123158165" 
+                            {...register('celular', {
+                                setValueAs: (value: string) => value.trim(),
+                                minLength: {
+                                    value: 10,
+                                    message: 'Debe de tener un mínimo de 10 números.',
+                                },
+                                maxLength: {
+                                    value: 10,
+                                    message: 'Debe de tener un máximo de 10 números.',
+                                },
+                                validate: {
+                                    isCellphone,
+                                },
+                            })}
+                            />
+                            <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="celular">
+                                {errors.celular ? (<span className="text-red-500 text-xs">{errors.celular.message}</span>) : null}
+                            </label>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="correo">
+                                Correo Electrónico <span className='text-red-500'>*</span>
+                            </label>
+                            <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="email" placeholder="correo@email.com" 
+                            {...register('correo', {
+                                setValueAs: (value: string) => value.toLowerCase().trim(),
+                                required: {
+                                    value: true,
+                                    message: 'Este campo es requerido.',
+                                },
+                                minLength: {
+                                    value: 5,
+                                    message: 'Debe de tener un mínimo de 5 caracteres.',
+                                },
+                                validate: {
+                                    isEmail,
+                                },
+                            })}
+                            />
+                            <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="correo">
+                                {errors.correo ? (<span className="text-red-500 text-xs">{errors.correo.message}</span>) : null}
+                            </label>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="password">
+                                Contraseña <span className='text-red-500'>*</span>
+                            </label>
+                            <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="***********" 
+                            {...register('contrasena', {
+                                setValueAs: (value: string) => value.trim(),
+                                required: {
+                                    value: true,
+                                    message: 'Este campo es requerido.',
+                                },
+                                minLength: {
+                                    value: 8,
+                                    message: 'Debe de tener un mínimo de 8 caracteres.',
+                                },
+                                validate: {
+                                    isPassword,
+                                },
+                            })}
+                            />
+                            <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="contrasena">
+                                {errors.contrasena ? (<span className="text-red-500 text-xs">{errors.contrasena.message}</span>) : ""}
+                            </label>
+                        </div>
+                        <div className="items-center pt-4 pb-4 flex flex-col">
+                            <ReCAPTCHA
+                                className="mb-8"
+                                ref={captcha}
+                                sitekey={siteKey || localStorage.getItem("siteKey")}
+                                onChange={onChangeRecapcha}
+                            />
+                            <button className={isValid && isNotRobot ? ("bg-amber-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer") 
+                            : "bg-slate-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" } type="submit" disabled={!isValid || !isNotRobot} >
+                                Registrarse
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <Footer />
-        </div>
+        </PublicLayout>
     )
 }

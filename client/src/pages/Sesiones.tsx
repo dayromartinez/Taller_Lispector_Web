@@ -1,16 +1,12 @@
 import React from 'react'
-import { Navbar } from '../components/Navbar';
-import { Footer } from '../components/Footer'
 import { Calendario } from '../components/Calendario';
-import { NavBar2 } from '../components/NavBar2';
-import NavBarFinal from '../components/NavBarFinal';
+import { PublicLayout } from '../layouts/PublicLayout';
 
 
 export const SesionesPage = () => {
   return (
-    <div>
-        <NavBarFinal />
-        <div className='flex justify-between m-10'>
+    <PublicLayout>
+        <div className='flex justify-between mt-32'>
           <Calendario />
           <div className='mx-10'>
             (Acá va el carrusel de imgs)
@@ -31,6 +27,6 @@ export const SesionesPage = () => {
           <p className='p-10'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt? Fet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt.</p>
         </div>
         <br/>
-    </div>
+    </PublicLayout>
   )
 }

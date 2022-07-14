@@ -23,7 +23,7 @@ import { CardMedia } from '@mui/material';
 const pages = ['Sesiones', 'Publicaciones', 'Contacto'];
 const settings = ['Perfil', 'Cerrar Sesión'];
 
-const NavBarFinal = () => {
+const NavBarDesktop = () => {
     const usuario = useSelector((state : dataState) => state.usuario);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -157,4 +157,4 @@ const NavBarFinal = () => {
     );
 };
 
-export default NavBarFinal;
+export default NavBarDesktop;
