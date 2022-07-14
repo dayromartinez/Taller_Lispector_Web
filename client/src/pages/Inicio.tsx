@@ -15,7 +15,7 @@ import NavbarMobile from '../components/NavbarMobile'
 export const InicioPage = () => {
     const usuario = useSelector((state : dataState) => state.usuario);
     return (
-        <NavbarMobile>
+        <PublicLayout>
             <div className='contenedor_frase_lispector'>
                 <img src={imagenClarice} className="imgClarice"/>
                 <div className='nombre_frase_lispector'>
@@ -44,6 +44,6 @@ export const InicioPage = () => {
                     <h1 className='text-2xl font-bold mx-10'>Frase Lispector</h1>
                 </div>
             </div>
-        </NavbarMobile>
+        </PublicLayout>
     )
 }

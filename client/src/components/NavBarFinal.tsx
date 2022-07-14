@@ -83,153 +83,74 @@ const NavBarFinal = () => {
         <AppBar style={{'backgroundColor': '#9FD5D1'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                <Tooltip title='Inicio'>
-                    <Box 
-                        component="img"
-                        sx={{ display: { xs: 'none', md: 'flex', width: '15%', height: '15%', padding:  10, cursor: 'pointer' } }}
-                        alt="logo"
-                        onClick={() => {
-                            navigate('/');
-                        }}
-                        src={logoLispector}
-                    />
-                </Tooltip>
+                    <Tooltip title='Inicio'>
+                        <Box 
+                            component="img"
+                            sx={{ display: { xs: 'flex', md: 'flex', width: '15%', height: '15%', padding:  10, cursor: 'pointer' } }}
+                            alt="logo"
+                            onClick={() => {
+                                navigate('/');
+                            }}
+                            src={logoLispector}
+                        />
+                    </Tooltip>
 
-                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                    <IconButton
-                        size="large"
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleOpenNavMenu}
-                        color="inherit"
-                    >
-                    <MenuIcon />
-                    </IconButton>
-                    <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorElNav}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'left',
-                        }}
-                        open={Boolean(anchorElNav)}
-                        onClose={handleCloseNavMenu}
-                        sx={{
-                            display: { xs: 'block', md: 'none' },
-                        }}
-                        className={openMenu ? 'open_menu' : 'close_menu'}
-                    >
-                    {pages.map((page) => (
-                        // <MenuItem key={page} onClick={handleCloseNavMenu} >
-                        //     <Typography textAlign="center">{page}</Typography>
-                        // </MenuItem>
-                        <>
-                            <li key={page}>{page}</li>
-                        </>
-                    ))}
-                    </Menu>
-                </Box>
-
-                <Box 
-                    component="img"
-                    sx={{ display: { xs: 'flex', md: 'none', width: '15%', height: '15%', padding: 10, cursor: 'pointer' } }}
-                    alt="logo"
-                    src={logoLispector}
-                    onClick={() => {
-                        navigate('/');
-                    }}
-                />
-                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', paddingLeft: '10%' }}}>
-                    {pages.map((page) => (
-                    <Button
-                        name={page}
-                        onClick={onSubmit}
-                        sx={{ my: 2, color: '#F6EEE9', display: 'flex', marginLeft: '5%', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
-                    >
-                        {page}
-                    </Button>
-                    ))}
-                    {usuario['name'] === undefined ? (
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex', }, marginLeft: { md: '10%', lg: '18%' }}}>
+                        {pages.map((page) => (
                         <Button
-                            name="Iniciar Sesión"
+                            name={page}
                             onClick={onSubmit}
                             sx={{ my: 2, color: '#F6EEE9', display: 'flex', marginLeft: '5%', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
-                            className="botonesNavBar"
                         >
-                            <Tooltip title='Iniciar Sesión'>
-                                <LoginIcon sx={{ mr: '0.5rem' }}/>
-                            </Tooltip>
+                            {page}
                         </Button>
-                    ): (
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Remy Sharp" src={photoUser} />
-                                </IconButton>
-                            </Tooltip>
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                                >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </Box>
-                    )}
-                </Box>
-
-                {/* {usuario["nombre"] ==! null ? (
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src={photoUser} />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                            >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                        ))}
                     </Box>
-                ) : null} */}
+
+                    <Box>
+                        {usuario['name'] === undefined ? (
+                            <Button
+                                name="Iniciar Sesión"
+                                onClick={onSubmit}
+                                sx={{ my: 2, color: '#F6EEE9', display: 'flex', marginLeft: '5%', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
+                                className="botonesNavBar"
+                            >
+                                <Tooltip title='Iniciar Sesión'>
+                                    <LoginIcon sx={{ mr: '0.5rem' }}/>
+                                </Tooltip>
+                            </Button>
+                            ) : (
+                            <Box sx={{ flexGrow: 0 }}>
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="Foto de perfil" src={usuario['name']!} />
+                                    </IconButton>
+                                </Tooltip>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                    >
+                                    {settings.map((setting) => (
+                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">{setting}</Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                            </Box>
+                        )}
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>

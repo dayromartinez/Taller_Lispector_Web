@@ -9,7 +9,6 @@ import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
 import { InicioMUI } from './pages/InicioMUI';
 import { URL_BASE } from './redux/actions/userActions';
-import { Test } from './pages/Test';
 
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
         <Route path='/inicio_sesion' element={<Login />}/>
         <Route path='/registrarse' element={<Registro />}/>
         <Route path='/inicio' element={<InicioMUI />}/>
-        <Route path='/test' element={<Test />}/>
       </Routes>
     </div>
   )

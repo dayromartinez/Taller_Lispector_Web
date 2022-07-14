@@ -144,7 +144,7 @@ export default function NavbarMobile({ children }) {
 
           <Box 
             component="img"
-            sx={{ display: { xs: 'flex', md: 'none', width: '100px', height: '50px', padding: 10, cursor: 'pointer' } }}
+            sx={{ display: { xs: 'flex', md: 'flex', width: '100px', height: '50px', padding: 10, cursor: 'pointer' } }}
             alt="logo"
             src={logoLispectorCompleto}
             onClick={() => {
