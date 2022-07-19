@@ -133,6 +133,32 @@ export function createUser(datosUsuario : usuarioData) {
     }
 }
 
+export function validateToken () {
+    return async (dispatch) => {
+
+        dispatch(loading())
+        console.log('DESPUES DEL RETURN')
+
+        try {
+            const token = localStorage.getItem('tokenUser')
+            const res = await fetch(`${URL_BASE}/validateToken`, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'x-token': token
+                },
+            })
+
+            const data = await res.json();
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'] }, redirect: ``}));
+
+        } catch (error) {
+            console.log(error.message);
+            dispatch(failure())
+        }
+    }
+}
+
 export function updateUser(id: string, correo : string, contrasena : string, nombre : string, celular : string, codigoPublicacionPostales : string){
     return async dispatch => {
         dispatch(loading())

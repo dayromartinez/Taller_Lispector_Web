@@ -3,10 +3,16 @@ import { Footer } from '../components/Footer';
 import NavBarDesktop from '../components/NavBarDesktop';
 import NavbarMobile from '../components/NavbarMobile';
 import { useState } from 'react';
+import { validateToken } from '../redux/actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { dataState } from '../redux/reducers/index';
 
 export const PublicLayout = ({ children }) => {
 
     const [ sizeScreen, setSizeScreen ] = useState(0);
+    const usuario = useSelector( ({usuario} : dataState) => usuario )
+    const dispatch = useDispatch();
+    console.log('usuario: ', usuario)
 
     const checkSizeScreen = () => {
         const size = window.innerWidth;
@@ -14,7 +20,15 @@ export const PublicLayout = ({ children }) => {
         setSizeScreen(size);
     }
 
+    const validateUser = () => {
+        (usuario?.['name'] !== null && localStorage.getItem('tokenUser').length > 0) ? dispatch(validateToken()) : console.log('no se ha ejecutado el condicional del validtoken')
+
+        console.log('token: ', localStorage.getItem('tokenUser'))
+    }
+
     useEffect(() => {
+
+        validateUser();
 
         checkSizeScreen();
         console.log('dentro del useEffect: ', window.innerWidth)

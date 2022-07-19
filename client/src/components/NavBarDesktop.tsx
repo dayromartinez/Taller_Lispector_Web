@@ -80,6 +80,10 @@ const NavBarDesktop = () => {
 
     console.log("Usuario: ", usuario)
 
+    const colors = ['#42a5f5', '#ab47bc', '#d32f2f', '#f57c00', '#0288d1', '#388e3c', '#ffa726'];
+    const randomColor = Math.floor(Math.random() * colors.length);
+
+
     return (
         
         <AppBar style={{'backgroundColor': '#9FD5D1'}}>
@@ -125,7 +129,7 @@ const NavBarDesktop = () => {
                             <Box sx={{ flexGrow: 0 }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar alt="Foto de perfil" src={usuario['name']!} />
+                                        <Avatar alt={usuario?.['name'].toUpperCase()} src={usuario?.['name'].toUpperCase()} sx={{ bgcolor: `${colors[randomColor]}` }} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu

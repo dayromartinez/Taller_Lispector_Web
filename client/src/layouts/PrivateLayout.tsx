@@ -11,6 +11,10 @@ export const PrivateLayout = ({ children }) => {
   return (
     <div>
 
+      <nav>
+        
+      </nav>
+
       <main>
         { children }
       </main>
