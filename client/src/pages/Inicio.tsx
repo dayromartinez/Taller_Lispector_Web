@@ -19,7 +19,7 @@ export const InicioPage = () => {
                     <h5 className='libro_frase'>Agua Viva (1975)</h5>
                 </div>
             </div>
-            <h3 className='text-3xl font-bold' id='nombre_clarice_lispector'>Clarice Lispector</h3>
+            {/* <h3 className='text-3xl font-bold' id='nombre_clarice_lispector'>Clarice Lispector</h3>
             <div className='bg-slate-500 my-10 py-7 w-full'>
                 <h2 className='text-3xl font-bold'>Quiénes somos?</h2>
                 <h2 className='text-3xl font-bold'>Qué hacemos?</h2>
@@ -39,7 +39,7 @@ export const InicioPage = () => {
                     <div className='mx-10'>Espacio de CARRUSEL</div>
                     <h1 className='text-2xl font-bold mx-10'>Frase Lispector</h1>
                 </div>
-            </div>
+            </div> */}
         </PublicLayout>
     )
 }

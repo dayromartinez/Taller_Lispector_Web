@@ -8,6 +8,7 @@ import { PublicacionesPage } from './pages/Publicaciones'
 import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
 import { URL_BASE } from './redux/actions/userActions';
+import { PublicLayout } from './layouts/PublicLayout';
 
 
 function App() {

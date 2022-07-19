@@ -15,9 +15,11 @@ export const PublicLayout = ({ children }) => {
     }
 
     useEffect(() => {
+
         checkSizeScreen();
         console.log('dentro del useEffect: ', window.innerWidth)
-    }, [window.innerWidth]);
+        
+    }, []);
 
     return (
         <div>

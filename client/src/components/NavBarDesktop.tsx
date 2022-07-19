@@ -20,7 +20,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import photoUser from '../images/image_perfil_defecto.png';
 import { CardMedia } from '@mui/material';
 
-const pages = ['Sesiones', 'Publicaciones', 'Contacto'];
+const pages = ['Inicio', 'Sesiones', 'Publicaciones'];
 const settings = ['Perfil', 'Cerrar Sesión'];
 
 const NavBarDesktop = () => {
@@ -29,6 +29,8 @@ const NavBarDesktop = () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
+
+    console.log('EN EL NAVBAR DESKTOP: ', window.innerWidth)
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -59,7 +61,7 @@ const NavBarDesktop = () => {
                 navigate('/publicaciones');
                 break;
             
-            case "Contacto":
+            case "Inicio":
                 navigate('/');
                 break;
             

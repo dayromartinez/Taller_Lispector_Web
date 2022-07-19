@@ -22,13 +22,11 @@ import logoLispectorCompleto from '../images/Logo_Lispector_Completo.png';
 import { Tooltip } from '@mui/material';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import HouseIcon from '@mui/icons-material/House';
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
 
 const drawerWidth = 240;
-
-console.log(window.innerWidth)
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
@@ -87,6 +85,8 @@ export default function NavbarMobile({ children }) {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
+  console.log(window.innerWidth)
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -104,7 +104,7 @@ export default function NavbarMobile({ children }) {
       case 'Publicaciones': 
         navigate('/publicaciones')
         break;
-      case 'Contacto':
+      case 'Inicio':
         navigate('/');
         break;
 
@@ -119,8 +119,8 @@ export default function NavbarMobile({ children }) {
         return (<AutoStoriesIcon />)
       case 'Publicaciones': 
         return (<CalendarMonthIcon />)
-      case 'Contacto':
-        return (<QuestionAnswerIcon />)
+      case 'Inicio':
+        return (<HouseIcon />)
 
     }
 
@@ -197,7 +197,7 @@ export default function NavbarMobile({ children }) {
             />
         </Tooltip>
         <List>
-          {['Sesiones', 'Publicaciones', 'Contacto'].map((text, index) => (
+          {['Inicio', 'Sesiones', 'Publicaciones'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton id={text} onClick={ () => onClickLink(text) }>
                 <ListItemIcon>
