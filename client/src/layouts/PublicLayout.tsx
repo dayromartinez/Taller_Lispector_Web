@@ -21,7 +21,7 @@ export const PublicLayout = ({ children }) => {
     }
 
     const validateUser = () => {
-        (usuario?.['name'] !== null && localStorage.getItem('tokenUser').length > 0) ? dispatch(validateToken()) : console.log('no se ha ejecutado el condicional del validtoken')
+        (usuario?.['name'] !== null && localStorage.getItem('tokenUser') !== null) ? dispatch(validateToken()) : console.log('no se ha ejecutado el condicional del validtoken')
 
         console.log('token: ', localStorage.getItem('tokenUser'))
     }
