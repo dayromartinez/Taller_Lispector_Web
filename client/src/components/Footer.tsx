@@ -15,7 +15,7 @@ export const Footer: FC = () => {
         <div className='bg-footer' style={{ height: '300px' }}></div>
         <div className="text-center p-4 pb-1" style={{ backgroundColor: '#9FD5D1', height: '220px', marginTop: '-15px' }}>
 
-          <div className="pt-6 w-full">
+          <div className="w-full">
               <div className="flex place-content-center mb-6">
                 <a href="https://www.facebook.com/pages/category/Writer/Taller-Lispector-110133043831544/" type="button" className="rounded-full border-2 border-neutral-600 text-neutral-600 leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1 md:hover:text-sky-500 md:hover:border-sky-500" target="_blank" >
                   <svg aria-hidden="true"
