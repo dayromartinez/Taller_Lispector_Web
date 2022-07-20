@@ -56,3 +56,14 @@
 #contenedor-login {
     height: 48rem;
 }
+
+.footer-desktop {
+    width: 100vw;
+    height: 15rem;
+}
+
+.bg-footer {
+    background-size: 100vw 40vh;
+    background-repeat: no-repeat;
+    background-image: url(images/Footer_Desktop.png);
+}
