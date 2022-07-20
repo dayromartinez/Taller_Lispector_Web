@@ -66,7 +66,7 @@ export const login = (correo : string, contrasena: string) => {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'] }, redirect: ``}));
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], colorProfile: data['colorProfile'] }, redirect: ``}));
 
         } catch (error) {
             console.log(error.message);
@@ -124,7 +124,7 @@ export function createUser(datosUsuario : usuarioData) {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'] }, redirect: `/`}));
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], colorProfile: data['colorProfile'] }, redirect: `/`}));
 
         } catch (error) {
             console.log(error.message);
@@ -150,7 +150,7 @@ export function validateToken () {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'] }, redirect: ``}));
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], colorProfile: data['colorProfile'] }, redirect: ``}));
 
         } catch (error) {
             console.log(error.message);

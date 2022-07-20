@@ -44,6 +44,8 @@ export default function rootReducer(state : dataState = initialState, actions) {
             return { ...state, usuario: payload, usuarios: [] };
 
         case LOGOUT:
+            localStorage.removeItem("tokenUser");
+            location.reload();
             return initialState;
 
         default:

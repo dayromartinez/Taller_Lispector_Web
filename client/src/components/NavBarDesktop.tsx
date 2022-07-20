@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers';
 import { useState, useEffect } from 'react';
 import logoLispector from '../images/Logo_Lispector_Completo.png';
@@ -19,9 +19,13 @@ import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
 import photoUser from '../images/image_perfil_defecto.png';
 import { CardMedia } from '@mui/material';
+import { logout } from '../redux/actions/userActions';
 
 const pages = ['Inicio', 'Sesiones', 'Publicaciones'];
-const settings = ['Perfil', 'Cerrar Sesión'];
+export const settings = ['Perfil', 'Mis Publicaciones', 'Cerrar Sesión'];
+
+export const colors = ['#42a5f5', '#ab47bc', '#d32f2f', '#f57c00', '#0288d1', '#388e3c', '#ffa726'];
+//const randomColor = Math.floor(Math.random() * colors.length);
 
 const NavBarDesktop = () => {
     const usuario = useSelector((state : dataState) => state.usuario);
@@ -29,6 +33,7 @@ const NavBarDesktop = () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const [openMenu, setOpenMenu] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     console.log('EN EL NAVBAR DESKTOP: ', window.innerWidth)
 
@@ -74,14 +79,32 @@ const NavBarDesktop = () => {
         }
     }
 
-    const handleCloseUserMenu = () => {
+    const onLogout = () => {
+        dispatch(logout());
+    }
+
+    const handleCloseUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(null);
+        const option = event.target?.['id']
+        switch (option) {
+
+            case "Perfil":
+                navigate('/');
+                break;
+
+            case "Mis Publicaciones":
+                navigate('/publicaciones');
+                break;
+
+            case "Cerrar Sesión":
+                navigate('/');
+                onLogout();
+                break;
+            
+            default:
+                break;
+        }
     };
-
-    console.log("Usuario: ", usuario)
-
-    const colors = ['#42a5f5', '#ab47bc', '#d32f2f', '#f57c00', '#0288d1', '#388e3c', '#ffa726'];
-    const randomColor = Math.floor(Math.random() * colors.length);
 
 
     return (
@@ -129,7 +152,7 @@ const NavBarDesktop = () => {
                             <Box sx={{ flexGrow: 0 }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar alt={usuario?.['name'].toUpperCase()} src={usuario?.['name'].toUpperCase()} sx={{ bgcolor: `${colors[randomColor]}` }} />
+                                        <Avatar alt={usuario?.['name'].toUpperCase()} src={usuario?.['name'].toUpperCase()} sx={{ bgcolor: `${colors[usuario?.['colorProfile']]}` }} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
@@ -149,8 +172,8 @@ const NavBarDesktop = () => {
                                     onClose={handleCloseUserMenu}
                                     >
                                     {settings.map((setting) => (
-                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
+                                        <MenuItem key={setting} id={setting} onClick={handleCloseUserMenu}>
+                                            <Typography id={setting} textAlign="center">{setting}</Typography>
                                         </MenuItem>
                                     ))}
                                 </Menu>

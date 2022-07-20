@@ -25,6 +25,13 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HouseIcon from '@mui/icons-material/House';
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
+import { useSelector, useDispatch } from 'react-redux';
+import { dataState } from '../redux/reducers';
+import Menu from '@mui/material/Menu';
+import Avatar from '@mui/material/Avatar';
+import { colors, settings } from './NavBarDesktop';
+import MenuItem from '@mui/material/MenuItem';
+import { logout } from '../redux/actions/userActions';
 
 const drawerWidth = 240;
 
@@ -82,9 +89,29 @@ export default function NavbarMobile({ children }) {
   
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const usuario = useSelector((state : dataState) => state.usuario);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [openMenu, setOpenMenu] = React.useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   console.log(window.innerWidth)
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+    setOpenMenu(true)
+    localStorage.setItem('open_menu', 'true')
+  };
+    
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+      setAnchorElNav(null);
+      localStorage.setItem('close_menu', 'false')
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -92,6 +119,33 @@ export default function NavbarMobile({ children }) {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const onLogout = () => {
+    dispatch(logout());
+  }
+
+  const handleCloseUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorElUser(null);
+      const option = event.target?.['id']
+      switch (option) {
+
+          case "Perfil":
+              navigate('/');
+              break;
+
+          case "Mis Publicaciones":
+              navigate('/publicaciones');
+              break;
+
+          case "Cerrar Sesión":
+              navigate('/');
+              onLogout();
+              break;
+          
+          default:
+              break;
+      }
   };
 
   const onClickLink = (id) => {
@@ -151,16 +205,50 @@ export default function NavbarMobile({ children }) {
             }}
           />
 
-          <Button
-            name="Iniciar Sesión"
-            onClick={() => navigate('/inicio_sesion')}
-            sx={{ color: '#F6EEE9', display: 'flex', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
-            className="botonesNavBar"
-          >
-              <Tooltip title='Iniciar Sesión'>
-                  <LoginIcon sx={{ mr: '0.5rem' }}/>
-              </Tooltip>
-          </Button>
+            <Box>
+              {usuario['name'] === undefined ? (
+                  <Button
+                    name="Iniciar Sesión"
+                    onClick={() => navigate('/inicio_sesion')}
+                    sx={{ color: '#F6EEE9', display: 'flex', fontFamily: 'League Spartan, arial', fontWeight: 'bold', fontSize: '1.1rem', ":hover": { color: '#4D4D4D', backgroundColor: '#9FD5D1' } }}
+                    className="botonesNavBar"
+                  >
+                    <Tooltip title='Iniciar Sesión'>
+                        <LoginIcon sx={{ mr: '0.5rem' }}/>
+                    </Tooltip>
+                  </Button>
+                  ) : (
+                  <Box sx={{ flexGrow: 0 }}>
+                      <Tooltip title="Open settings">
+                          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                              <Avatar alt={usuario?.['name'].toUpperCase()} src={usuario?.['name'].toUpperCase()} sx={{ bgcolor: `${colors[usuario?.['colorProfile']]}` }} />
+                          </IconButton>
+                      </Tooltip>
+                      <Menu
+                          sx={{ mt: '45px' }}
+                          id="menu-appbar"
+                          anchorEl={anchorElUser}
+                          anchorOrigin={{
+                              vertical: 'top',
+                              horizontal: 'right',
+                          }}
+                          keepMounted
+                          transformOrigin={{
+                              vertical: 'top',
+                              horizontal: 'right',
+                          }}
+                          open={Boolean(anchorElUser)}
+                          onClose={handleCloseUserMenu}
+                          >
+                          {settings.map((setting) => (
+                            <MenuItem key={setting} id={setting} onClick={handleCloseUserMenu}>
+                              <Typography id={setting} textAlign="center">{setting}</Typography>
+                            </MenuItem>
+                          ))}
+                      </Menu>
+                  </Box>
+              )}
+          </Box>
         </Toolbar>
       </AppBar>
 
