@@ -12,7 +12,7 @@ export const Footer: FC = () => {
 
   return (
       <footer className="text-center w-full" style={{'color': '#4D4D4D'}}>
-        <div className='bg-footer' style={{ height: '300px' }}></div>
+        <div className='bg-footer' style={{ height: '200px' }}></div>
         <div className="text-center p-4 pb-1" style={{ backgroundColor: '#9FD5D1', height: '220px', margin: 0, padding: 0 }}>
 
           <div className="w-full">
