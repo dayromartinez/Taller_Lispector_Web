@@ -84,9 +84,8 @@ export const Footer: FC = () => {
             y 
             <a href="https://www.instagram.com/_daviddiazh/" target="_blank" className="text-whitehite md:hover:font-bold hover:underline underline-offset-4 hover:decoration-emerald-300"> David Díaz.</a>
             <br /> 
-            <p className='pb-48'>Todos los derechos reservados.</p>
+            <p>Todos los derechos reservados.</p>
           </div>
-        {/* <img className='footer-desktop' style={{ marginBottom: -10 }} src={footerDesktop} alt="Footer Image" /> */}
       </footer>
   )
 }
