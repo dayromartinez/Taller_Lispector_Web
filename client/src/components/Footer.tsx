@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import footerDesktop from '../images/Footer_Desktop.png';
-import { height } from '@mui/system';
+import { height, margin } from '@mui/system';
 //import footerMobile from '../images/Footer_Mobile.png';
 
 export const Footer: FC = () => {
@@ -13,7 +13,7 @@ export const Footer: FC = () => {
   return (
       <footer className="text-center w-full" style={{'color': '#4D4D4D'}}>
         <div className='bg-footer' style={{ height: '300px' }}></div>
-        <div className="text-center p-4 pb-1" style={{ backgroundColor: '#9FD5D1', height: '220px', marginTop: '-15px' }}>
+        <div className="text-center p-4 pb-1" style={{ backgroundColor: '#9FD5D1', height: '220px', margin: 0, padding: 0 }}>
 
           <div className="w-full">
               <div className="flex place-content-center mb-6">
