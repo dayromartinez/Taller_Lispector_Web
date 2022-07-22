@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Footer } from '../components/Footer'
 import imagenClarice from './../images/Clarice1.jpg'
@@ -6,12 +6,43 @@ import '.././index.css'
 import { NuestrasPublicaciones } from '../components/NuestrasPublicaciones'
 import { dataState } from '../redux/reducers'
 import { PublicLayout } from '../layouts/PublicLayout';
+import { Alert, Snackbar } from '@mui/material'
 
 
 export const InicioPage = () => {
     const usuario = useSelector((state : dataState) => state.usuario);
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setTimeout(() => {
+            setOpen(false);
+        }, 4000)
+    };
+
+    const openAlert = () => {
+        if(localStorage.getItem('login') === 'true') {
+            setOpen(true);
+
+            localStorage.removeItem('login');
+        }
+    }
+
+    useEffect(() => {
+        openAlert();
+    })
+
     return (
         <PublicLayout>
+            <Snackbar open={open} anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={3000} onClose={handleClose} >
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    Sesión iniciada exitosamente. ¡Bienvenid@ de nuevo al parche Taller Lispector!
+                </Alert>
+            </Snackbar>
             <div className='contenedor_frase_lispector'>
                 <img src={imagenClarice} className="imgClarice"/>
                 <div className='nombre_frase_lispector'>

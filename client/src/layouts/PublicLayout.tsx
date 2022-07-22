@@ -12,7 +12,6 @@ export const PublicLayout = ({ children }) => {
     const [ sizeScreen, setSizeScreen ] = useState(0);
     const usuario = useSelector( ({usuario} : dataState) => usuario )
     const dispatch = useDispatch();
-    console.log('usuario: ', usuario)
 
     const checkSizeScreen = () => {
         const size = window.innerWidth;

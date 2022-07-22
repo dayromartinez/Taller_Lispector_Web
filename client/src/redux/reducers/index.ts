@@ -15,7 +15,7 @@ export type dataState = {
 
 export const initialState : dataState = {
 
-    loading: true,
+    loading: false,
     hasErrors: false,
     usuarios: [],
     usuario: {},
