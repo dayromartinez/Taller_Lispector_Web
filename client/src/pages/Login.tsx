@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Footer } from '../components/Footer'
-import { getAllUsers, login, loading } from '../redux/actions/userActions';
+import { login } from '../redux/actions/userActions';
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { dataState } from '../redux/reducers'
@@ -10,10 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 /** recaptcha */
 import ReCAPTCHA from 'react-google-recaptcha'
-import NavBarFinal from '../components/NavBarDesktop'
 import { PublicLayout } from '../layouts/PublicLayout';
 import { Loading } from '../components/Loading';
-import { Alert, Snackbar } from '@mui/material';
 
 /* Claves de sitio de google de PRUEBA:
 Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
@@ -38,8 +35,6 @@ export const Login = () => {
     const navigate = useNavigate();
     const redirect = useSelector((state : dataState) => state.redirect);
     const usuario = useSelector((state : dataState) => state.usuario);
-    const message = useSelector((state : dataState) => state.message);
-    const loading = useSelector((state : dataState) => state.loading);
     const [isNotRobot, setIsNotRobot] = useState<boolean>(false);
     const [siteKey, setSiteKey] = useState<string>("");
     const [onClick, setOnClick] = useState<boolean>(false);
@@ -47,8 +42,6 @@ export const Login = () => {
 
     const [open, setOpen] = React.useState(false);
 
-    //console.log('loading: ', loading);
-    console.log('usuario: ', usuario);
 
     /** References */
     const captcha = useRef(null)
@@ -113,16 +106,6 @@ export const Login = () => {
             setIsNotRobot(false);
             setOnClick(false);
             setLoadingPage(false);
-            // toast.success('Sesión iniciada exitosamente. ¡Bienvenid@ de nuevo al parche Taller Lispector!', {
-            //     position: "top-center",
-            //     autoClose: 3000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
-            //setOpen(false)
             localStorage.setItem('login', 'true');
             navigate('/'); 
         }else if(!usuario["uid"] && onClick){
@@ -143,9 +126,6 @@ export const Login = () => {
             });
         }
     } , [usuario])
-
-    //if( loadingPage ) return <Loading />;
-    console.log(loadingPage)
 
 
     return (
