@@ -15,13 +15,13 @@ export const InicioPage = () => {
     const [open, setOpen] = React.useState(false);
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
+        // if (reason === 'clickaway') {
+        //     return;
+        // }
 
-        setTimeout(() => {
-            setOpen(false);
-        }, 4000)
+        setOpen(false);
+        // setTimeout(() => {
+        // }, 4000)
     };
 
     const openAlert = () => {
