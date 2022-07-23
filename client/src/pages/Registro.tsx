@@ -11,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 /** recaptcha */
 import ReCAPTCHA from 'react-google-recaptcha'
 import { PublicLayout } from '../layouts/PublicLayout';
+import { AuthLayout } from '../layouts/AuthLayout';
+import { Alert, Snackbar } from '@mui/material';
 
 
 const REGEX_EMAIL = /^[a-zA-Z0-9.ñ!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
@@ -38,6 +40,13 @@ export const Registro = () => {
     const message = useSelector((state : dataState) => state.message);
     const [isNotRobot, setIsNotRobot] = useState<boolean>(false);
     const [siteKey, setSiteKey] = useState<string>("");
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+
+        setOpen(false);
+    };
 
     /** References */
     const captcha = useRef(null)
@@ -75,6 +84,7 @@ export const Registro = () => {
             celular: data.celular,
         }
         dispatch(createUser(nuevoUsuario))
+        localStorage.setItem('login', 'true')
     }
 
     const onChangeRecapcha = () => {
@@ -94,6 +104,16 @@ export const Registro = () => {
             localStorage.setItem("siteKey", "6Lf4xtgfAAAAAOkhl3q07oVouG44z4fYR5NbWh0R")
         }
 
+        if( message !== '' ){
+            setOpen(true);
+            setValue('nombres', '');
+            setValue('celular', '');
+            setValue('correo', '');
+            setValue('contrasena', '');
+            setValue('nombres', '');
+            //captcha.current.reset();
+        }
+
         if (redirect) {
             navigate(redirect);
         }
@@ -101,11 +121,15 @@ export const Registro = () => {
     }, [dispatch, redirect, usuario, message])
 
     return (
-        <PublicLayout>
+        <AuthLayout>
             <div className='bg-gray-100 pt-24'>
                 <div className="flex w-full mx-auto">
                     <img className='w-full' src={clarice} height="20%"/>
-                    <ToastContainer />
+                    <Snackbar open={open} anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={4000} onClose={handleClose} >
+                        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                            Ya hay una cuenta registrada con este correo. Inténtelo de nuevo
+                        </Alert>
+                    </Snackbar>
                     <form className="bg-white shadow-md max-w-md mx-auto rounded px-8 pt-16" onSubmit={handleSubmit(onSubmit)}>
                         <h5 className='text-2xl my-3 mb-5 font-bold mt-22 text-center'>Registrarse</h5>
                         <p className='text-sm mb-5 italic'>Regístrate en Taller Lispector para acceder a nuestras publicaciones y matenerte al tanto de nuestros ciclos, sesiones y eventos.</p>
@@ -220,6 +244,6 @@ export const Registro = () => {
                     </form>
                 </div>
             </div>
-        </PublicLayout>
+        </AuthLayout>
     )
 }

@@ -1,11 +1,12 @@
 import React from 'react'
 import { Calendario } from '../components/Calendario';
 import { PublicLayout } from '../layouts/PublicLayout';
+import { AuthLayout } from '../layouts/AuthLayout';
 
 
 export const SesionesPage = () => {
   return (
-    <PublicLayout>
+    <AuthLayout>
         <div className='flex justify-between mt-32'>
           <Calendario />
           <div className='mx-10'>
@@ -27,6 +28,6 @@ export const SesionesPage = () => {
           <p className='p-10'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt? Fet consectetur adipisicing elit. Mollitia rerum harum architecto aspernatur quisquam, minus eligendi, consequuntur earum aliquid exercitationem rem optio officiis temporibus nesciunt et molestiae, saepe dolores incidunt.</p>
         </div>
         <br/>
-    </PublicLayout>
+    </AuthLayout>
   )
 }

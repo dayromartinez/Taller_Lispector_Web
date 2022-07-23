@@ -51,6 +51,7 @@ export const login = (correo : string, contrasena: string) => {
 
             const fetchTokenUser = await response.json();
             if(fetchTokenUser.msg){
+                console.log('AUTH FAILED in USER ACTION')
                 dispatch(failure(fetchTokenUser.msg))
                 return
             }
@@ -113,6 +114,13 @@ export function createUser(datosUsuario : usuarioData) {
             )
 
             const fetchTokenUser = await response.json();
+
+            if(fetchTokenUser.msg){
+                console.log('AUTH FAILED in USER ACTION')
+                dispatch(failure(fetchTokenUser.msg))
+                return
+            }
+
             localStorage.setItem('tokenUser', fetchTokenUser.token);
 
             const res = await fetch(`${URL_BASE}/validateToken`, {
@@ -121,7 +129,7 @@ export function createUser(datosUsuario : usuarioData) {
                 headers: {
                     'x-token': fetchTokenUser.token
                 },
-            })
+            });
 
             const data = await res.json();
             dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], colorProfile: data['colorProfile'] }, redirect: `/`}));

@@ -1,12 +1,12 @@
 import React from 'react'
-import { PrivateLayout } from '../layouts/PrivateLayout'
+import { AdminLayout } from '../layouts/AdminLayout'
 
 export const PrivateInicio = () => {
   return (
-    <PrivateLayout>
+    <AdminLayout>
         <div>
             <h1>HOLA RUTA PRIVADA</h1>
         </div>
-    </PrivateLayout>
+    </AdminLayout>
   )
 }

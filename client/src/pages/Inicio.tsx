@@ -5,6 +5,7 @@ import '.././index.css'
 import { dataState } from '../redux/reducers'
 import { PublicLayout } from '../layouts/PublicLayout';
 import { Alert, Snackbar } from '@mui/material'
+import { AuthLayout } from '../layouts/AuthLayout';
 
 
 export const InicioPage = () => {
@@ -30,10 +31,10 @@ export const InicioPage = () => {
     })
 
     return (
-        <PublicLayout>
+        <AuthLayout>
             <Snackbar open={open} anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={3000} onClose={handleClose} >
                 <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                    Sesión iniciada exitosamente. ¡Bienvenid@ de nuevo al parche Taller Lispector!
+                    Sesión iniciada exitosamente. ¡Bienvenid@ al parche Taller Lispector!
                 </Alert>
             </Snackbar>
             <div className='contenedor_frase_lispector'>
@@ -44,6 +45,6 @@ export const InicioPage = () => {
                 </div>
             </div>
             
-        </PublicLayout>
+        </AuthLayout>
     )
 }

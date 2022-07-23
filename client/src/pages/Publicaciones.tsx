@@ -2,12 +2,13 @@ import React from 'react'
 import ecosDeResistencia from './../images/Ecos_de_resistencia.jpeg'
 import { NuestrasPublicaciones } from '../components/NuestrasPublicaciones';
 import { PublicLayout } from '../layouts/PublicLayout';
+import { AuthLayout } from '../layouts/AuthLayout';
 
 export const PublicacionesPage = () => {
 
   let microrelatos: number[] = [1, 2, 3, 4, 5, 6]; 
   return (
-    <PublicLayout>
+    <AuthLayout>
         <h1 className='text-6xl mt-8 mb-8'>Publicaciones</h1>
         <div className='display: flex bg-slate-500 mb-10'>
           <img src={ecosDeResistencia} className='ml-16 mb-10 mt-11'/>
@@ -30,6 +31,6 @@ export const PublicacionesPage = () => {
             )
           })  
         }</div>
-    </PublicLayout>
+    </AuthLayout>
   )
 }

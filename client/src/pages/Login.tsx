@@ -11,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReCAPTCHA from 'react-google-recaptcha'
 import { PublicLayout } from '../layouts/PublicLayout';
 import { Loading } from '../components/Loading';
+import { AuthLayout } from '../layouts/AuthLayout';
+import { Alert, Snackbar } from '@mui/material';
 
 /* Claves de sitio de google de PRUEBA:
 Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
@@ -35,12 +37,18 @@ export const Login = () => {
     const navigate = useNavigate();
     const redirect = useSelector((state : dataState) => state.redirect);
     const usuario = useSelector((state : dataState) => state.usuario);
+    const messageError = useSelector((state : dataState) => state.message);
     const [isNotRobot, setIsNotRobot] = useState<boolean>(false);
     const [siteKey, setSiteKey] = useState<string>("");
     const [onClick, setOnClick] = useState<boolean>(false);
     const [loadingPage, setLoadingPage] = useState<boolean>(false);
 
     const [open, setOpen] = React.useState(false);
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+
+        setOpen(false);
+    };
 
 
     /** References */
@@ -98,6 +106,8 @@ export const Login = () => {
         }
     }, [dispatch, redirect, window.location.hostname])
 
+    console.log('MESSAGE ERROR: ', messageError)
+
     useEffect(() => {
         if(usuario["uid"] && onClick){
             setValue("correo", "");
@@ -108,28 +118,21 @@ export const Login = () => {
             setLoadingPage(false);
             localStorage.setItem('login', 'true');
             navigate('/'); 
-        }else if(!usuario["uid"] && onClick){
+        }else if(!usuario["uid"] && onClick || messageError !== ''){
+            console.log('LOGIN INCORRECTO!!')
+            setOpen(true)
             setValue("correo", "");
             setValue("contrasena", "");
             //captcha.current.reset();
             setLoadingPage(false);
             setIsNotRobot(false);
             setOnClick(false);
-            toast.error('Correo y/o contraseña incorrectos. Inténtelo de nuevo', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
         }
-    } , [usuario])
+    } , [usuario, messageError])
 
 
     return (
-        <PublicLayout>
+        <AuthLayout>
           
             {
                 loadingPage ? (
@@ -137,7 +140,11 @@ export const Login = () => {
                 ) : (
                     <div className='bg-slate-300 pt-72' >
                         <div className="w-full max-w-sm mx-auto pb-96">
-                            <ToastContainer />
+                            <Snackbar open={open} anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={3000} onClose={handleClose} >
+                                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                                    Correo y/o contraseña incorrectos. Inténtelo de nuevo
+                                </Alert>
+                            </Snackbar>
                             <form className="bg-white shadow-md rounded px-8 pt-6 pb-5" onSubmit={handleSubmit(onSubmit)}>
                                 <h5 className='text-2xl my-3 mb-8 text-center font-semibold'>Iniciar Sesión</h5>
                                 <div className="mb-4">
@@ -211,6 +218,6 @@ export const Login = () => {
             }
 
             
-        </PublicLayout>
+        </AuthLayout>
     )
 }
