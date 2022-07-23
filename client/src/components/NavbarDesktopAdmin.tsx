@@ -33,6 +33,7 @@ const NavbarDesktopAdmin = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const [openMenu, setOpenMenu] = useState(false);
+    const [openAlertSession, setOpenAlertSession] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -72,10 +73,10 @@ const NavbarDesktopAdmin = () => {
                 break;
             
             case "Crear Sesión":
-                return <CreateSession />
+                return setOpenAlertSession(true)
             
             case "Crear Publicación":
-                return <CreateSession />
+                return setOpenAlertSession(true)
 
             default:
                 break;
@@ -114,6 +115,11 @@ const NavbarDesktopAdmin = () => {
         
         <AppBar style={{'backgroundColor': '#9FD5D1'}}>
             <Container maxWidth="xl">
+
+                {
+                    openAlertSession ? <CreateSession /> : null
+                }
+
                 <Toolbar disableGutters>
                     <Tooltip title='Inicio'>
                         <Box 

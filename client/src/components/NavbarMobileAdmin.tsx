@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -34,6 +34,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { logout } from '../redux/actions/userActions';
 import PeopleIcon from '@mui/icons-material/People';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
+import CreateSession from './CreateSesion';
 
 const drawerWidth = 240;
 
@@ -95,6 +96,7 @@ export default function NavbarMobileAdmin({ children }) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const [openMenu, setOpenMenu] = React.useState(false);
+  const [openAlertSession, setOpenAlertSession] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -162,6 +164,10 @@ export default function NavbarMobileAdmin({ children }) {
       case 'Inicio':
         navigate('/');
         break;
+      case "Crear Sesión":
+          return setOpenAlertSession(true)
+      case "Crear Publicación":
+          return setOpenAlertSession(true)
 
     }
   }
@@ -187,8 +193,12 @@ export default function NavbarMobileAdmin({ children }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
+      {
+        openAlertSession ? <CreateSession /> : null
+      }
       
       <AppBar position="fixed" open={open}>
+
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <IconButton
             color="inherit"

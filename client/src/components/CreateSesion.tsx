@@ -17,25 +17,24 @@ export default function CreateSession() {
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Crear Sesión</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Rellena los siguientes campos para crear una nueva sesión.
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
+            id="nameOfSession"
+            label="Nombre de la sesión"
+            type="text"
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Cancelar</Button>
+          <Button onClick={handleClose}>Crear</Button>
         </DialogActions>
       </Dialog>
     </div>
