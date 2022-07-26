@@ -80,3 +80,12 @@
     top: 50%;
     left: 50%;
 }
+
+
+.bg-container-home {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 100px;
+    background-repeat: no-repeat;
+    background-image: url(images/Clarice_Pagina_Inicio_Encabezado_Final.png);
+}
