@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react'
-import { useSelector } from 'react-redux'
-import imagenClarice from './../images/Clarice1.jpg'
 import '.././index.css'
-import { dataState } from '../redux/reducers'
-import { PublicLayout } from '../layouts/PublicLayout';
-import { Alert, Box, Container, Snackbar } from '@mui/material'
+import { Alert, Box, Snackbar, Typography } from '@mui/material'
 import { AuthLayout } from '../layouts/AuthLayout';
-import imagenEncabezado from '../images/Clarice_Pagina_Inicio_Encabezado_Final.png';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import lasMilYUnaNoche from '../images/Las-mil-y-una-noche.jpeg';
+import cicloDeCienciaFiccion from '../images/ciclo-de-ciencia-ficcion.jpeg';
+import stanislawLew from '../images/stanislaw-lem.jpeg';
 
 
 export const InicioPage = () => {
@@ -38,17 +40,28 @@ export const InicioPage = () => {
                 </Alert>
             </Snackbar>
             <Box>
-                <Box >
-                    
-                </Box>
+                
+                <div className='bg-container-home'>
 
-                <div className='bg-container-home' />
-                    
+                    <Box className='first-container-home'>
+                        <Box className='texts-first-container'>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}>"Escribir es tratar de entender,</Typography>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}> es tratar de reproducir lo irreproducible".</Typography>
+                            <Typography variant='h3' sx={{color: '#9FD5D1', fontWeight: 700}}>Clarice Lispector</Typography>
+                        </Box>
 
+                        <Box className='card-slider'>
+                            <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+                                <SwiperSlide><img src={lasMilYUnaNoche} alt='Imagen de las mil y una noche.' /></SwiperSlide>
+                                <SwiperSlide><img src={cicloDeCienciaFiccion} alt='Imagen de ciclo de ciencia ficción.' /></SwiperSlide>
+                                <SwiperSlide><img src={stanislawLew} alt='Imagen de ciclo de stanislaw lem.' /></SwiperSlide>
+                            </Swiper>
+                            <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Proximas Sesiones</Typography>
+                        </Box>
+                    </Box>
+                </div>
+                    
             </Box>
-
-            {/* <img src={imagenEncabezado} />  */}
-            
         </AuthLayout>
     )
 }
