@@ -89,3 +89,17 @@
     background-repeat: no-repeat;
     background-image: url(images/Clarice_Pagina_Inicio_Encabezado_Final.png);
 }
+
+.container_titulo_publicaciones {
+    text-align: center;
+    color: #9FD5D1;
+    font-weight: bold;
+    font-size: 4.5rem;
+    box-shadow: -3px 10px 8px rgba(0, 0, 0, 0.603);
+}
+
+.postal_Lispector {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
