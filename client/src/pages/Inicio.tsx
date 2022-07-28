@@ -45,8 +45,8 @@ export const InicioPage = () => {
 
                     <Box className='first-container-home'>
                         <Box className='texts-first-container'>
-                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}>"Escribir es tratar de entender,</Typography>
-                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}> es tratar de reproducir lo irreproducible".</Typography>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 20, fontWeight: 600}}>"Escribir es tratar de entender,</Typography>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 20, fontWeight: 600}}> es tratar de reproducir lo irreproducible".</Typography>
                             <Typography variant='h3' sx={{color: '#9FD5D1', fontWeight: 700}}>Clarice Lispector</Typography>
                         </Box>
 
@@ -58,6 +58,10 @@ export const InicioPage = () => {
                             </Swiper>
                             <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Proximas Sesiones</Typography>
                         </Box>
+                    </Box>
+
+                    <Box>
+                        
                     </Box>
                 </div>
                     
