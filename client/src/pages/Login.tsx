@@ -13,7 +13,7 @@ import { PublicLayout } from '../layouts/PublicLayout';
 import { Loading } from '../components/Loading';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { Alert, Snackbar } from '@mui/material';
-
+import { coloresPaleta } from './Publicaciones';
 /* Claves de sitio de google de PRUEBA:
 Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 Secret key: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
@@ -202,7 +202,7 @@ export const Login = () => {
                                         sitekey={siteKey || localStorage.getItem("siteKey")}
                                         onChange={onChangeRecapcha}
                                     />
-                                    <button className={isValid && isNotRobot ? ("bg-amber-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer") 
+                                    <button className={isValid && isNotRobot ? ("bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer") 
                                     : "bg-slate-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" } type="submit" disabled={!isValid || !isNotRobot}>
                                         Iniciar Sesión
                                     </button>

@@ -236,7 +236,7 @@ export const Registro = () => {
                                 sitekey={siteKey || localStorage.getItem("siteKey")}
                                 onChange={onChangeRecapcha}
                             />
-                            <button className={isValid && isNotRobot ? ("bg-amber-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer") 
+                            <button className={isValid && isNotRobot ? ("bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer") 
                             : "bg-slate-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" } type="submit" disabled={!isValid || !isNotRobot} >
                                 Registrarse
                             </button>
