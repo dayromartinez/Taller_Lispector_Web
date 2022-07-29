@@ -9,6 +9,9 @@ import "swiper/css/pagination";
 import lasMilYUnaNoche from '../images/Las-mil-y-una-noche.jpeg';
 import cicloDeCienciaFiccion from '../images/ciclo-de-ciencia-ficcion.jpeg';
 import stanislawLew from '../images/stanislaw-lem.jpeg';
+import primeraFoto from '../images/primera-foto.jpeg';
+import segundaFoto from '../images/segunda-foto.jpeg';
+import terceraFoto from '../images/tercera-imagen.jpeg';
 
 
 export const InicioPage = () => {
@@ -59,7 +62,39 @@ export const InicioPage = () => {
                             <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Proximas Sesiones</Typography>
                         </Box>
                     </Box>
+
                 </div>
+
+                <Box className='segundo-container-home'>
+                    <Typography variant='h2' sx={{fontWeight: 700, textAlign: 'center', color: '#F6EEE9'}}>¿Quiénes somos?</Typography>
+                    <Typography color='#F6EEE9' sx={{ fontSize: 22, textAlign: 'justify'}}>Somos un proyecto cultural de lectores y escritores emergentes que encontraron un punto de convergencia en su pasión por la literatura y decidieron conjugar sus saberes para construir un espacio de creación literaria alternativo, plural y comunitario, donde la palabra sea una vorágine de historias que resignifiquen nuestro cohabitar y devenir en el mundo.</Typography>
+                </Box>
+
+                <Box className='third-container-home'>
+                    <Box className='third-card-slider'>
+                        <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+                            <SwiperSlide><img src={primeraFoto} alt='Imagen 1.' /></SwiperSlide>
+                            <SwiperSlide><img src={segundaFoto} alt='Imagen 2.' /></SwiperSlide>
+                            <SwiperSlide><img src={terceraFoto} alt='Imagen 3.' /></SwiperSlide>
+                        </Swiper>
+                    </Box>
+
+                    <Box>
+                        <Typography variant='h3' sx={{color: '#4D4D4D', fontWeight: 700, textAlign: 'center'}} className='third-title'>Hemos participado</Typography>
+                        <Typography color='#4D4D4D' sx={{ fontSize: 22, textAlign: 'justify'}}>A lo largo de 3 años en diversas activi- dades culturales, literarias y comuni- tarias, como lo son la FILBO (2019 y 2022), Lectura Bajo los Árboles (2019), así como la Feria Local de las Artes de Suba (2021), El primer Festival del Aguante y Festibaguya (2021). En el transcurso del 2022 participamos en un Picnic Literario en el Jardín Botánico de Bogotá.</Typography>
+                    </Box>
+                </Box>
+
+                <Box className='fourth-container-home'>
+                    <Typography color='#9FD5D1' sx={{fontSize: 22,}} className='fourth-phrase-home'>“No quiero tener la terrible limitación de quien vive sólo
+                    de lo que puede tener un sentido.
+                    Yo no:
+                    lo que quiero es una verdad inventada”.</Typography>
+                </Box>
+
+                <Box>
+                    <Typography variant='h3' sx={{fontWeight: 700, textAlign: 'center'}}>Nuestras publicaciones</Typography>
+                </Box>
                     
             </Box>
         </AuthLayout>

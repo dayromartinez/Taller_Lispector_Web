@@ -87,7 +87,7 @@
 
     .bg-container-home {
         width: 100vw;
-        height: 100vh;
+        height: 55vh; /*100*/
         margin-top: 0px;
         background-repeat: no-repeat;
         background-image: url(images/Clarice_Pagina_Inicio_Encabezado.png);
@@ -96,7 +96,7 @@
 
     .mySwiper {
         width: 250px;
-        height: 290px;
+        height: 295px;
     }
     
     .text-card-slider {
@@ -114,6 +114,45 @@
         margin: 0 auto;
     }
 
+    .segundo-container-home {
+        background-color: #9FD5D1;
+        padding: 50px 40px;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    }
+
+    .third-container-home {
+        display: block;
+        align-items: center;
+        margin: 0 auto;
+        padding: 50px 40px;
+        background-color: #F6EEE9;
+    }
+
+    .third-card-slider {
+        width: 250px;
+        height: 300px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+        margin: 0 auto;
+    }
+
+    .third-title {
+        padding: 15px 0;
+    }
+
+    .fourth-container-home {
+        width: 100vw;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-image: url(images/frase-lispector-home.jpeg);
+    }
+
+    .fourth-phrase-home {
+        padding: 260px 40px;
+        width: 85%;
+    }
+
 }
 
 
@@ -121,7 +160,7 @@
 
     .bg-container-home {
         width: 100vw;
-        height: 110vh;
+        height: 55vh; /*110*/
         margin-top: 0px;
         background-repeat: no-repeat;
         background-image: url(images/Clarice_Pagina_Inicio_Encabezado.png);
@@ -130,7 +169,7 @@
 
     .mySwiper {
         width: 300px;
-        height: 335px;
+        height: 340px;
     }
 
     .card-slider {
@@ -167,6 +206,43 @@
         text-align: center;
     }
 
+    .segundo-container-home {
+        background-color: #9FD5D1;
+        padding: 50px 40px;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    }
+
+    .third-container-home {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        padding: 50px 10px;
+        gap: 10px;
+        background-color: #F6EEE9;
+    }
+
+    .third-card-slider {
+        width: 400px;
+        height: 340px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+        margin: 0 auto;
+    }
+
+    .fourth-container-home {
+        width: 100vw;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-image: url(images/frase-lispector-home.jpeg);
+    }
+
+    .fourth-phrase-home {
+        padding: 260px 70px;
+        width: 80%;
+    }
+
 }
 
 
@@ -174,7 +250,7 @@
 
     .bg-container-home {
         width: 98.7vw;
-        height: 140vh;
+        height: 80vh; /*140*/
         margin-top: 50px;
         background-repeat: no-repeat;
         background-image: url(images/Clarice_Pagina_Inicio_Encabezado_Final.png);
@@ -191,7 +267,7 @@
     
     .mySwiper {
         width: 300px;
-        height: 335px;
+        height: 340px;
     }
     
     .text-card-slider {
@@ -213,6 +289,43 @@
         text-align: right;
         width: 50%;
         padding-top: 480px;
+    }
+
+    .segundo-container-home {
+        background-color: #9FD5D1;
+        padding: 100px 100px;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    }
+
+    .third-container-home {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        padding: 50px 130px;
+        gap: 50px;
+        background-color: #F6EEE9;
+    }
+
+    .third-card-slider {
+        width: 400px;
+        height: 340px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+        margin: 0 auto;
+    }
+
+    .fourth-container-home {
+        width: 100vw;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-image: url(images/frase-lispector-home-1920.png);
+    }
+
+    .fourth-phrase-home {
+        padding: 440px 200px;
+        width: 75%;
     }
 
 }
@@ -262,6 +375,43 @@
         text-align: right;
         width: 50%;
         padding-top: 480px;
+    }
+
+    .segundo-container-home {
+        background-color: #9FD5D1;
+        padding: 100px 400px;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    }
+
+    .third-container-home {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        padding: 50px 180px;
+        gap: 100px;
+        background-color: #F6EEE9;
+    }
+
+    .third-card-slider {
+        width: 400px;
+        height: 450px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+        margin: 0 auto;
+    }
+
+    .fourth-container-home {
+        width: 100vw;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-image: url(images/frase-lispector-home-2560.png);
+    }
+
+    .fourth-phrase-home {
+        padding: 650px 200px;
+        width: 50%;
     }
 
 }
