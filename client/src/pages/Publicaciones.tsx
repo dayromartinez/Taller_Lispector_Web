@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import colombiaADosMiradas from '../images/Colombia_a_dos_miradas.png'
 import ecosDeResistencia from '../images/Ecos_de_resistencia_redimensionado.png'
 import lecturasNoAplicadas1 from '../images/Lecturas_no_aplicadas_1.jpeg'
 import lecturasNoAplicadas2 from '../images/Lecturas_no_aplicadas_2.jpeg'
-import { NuestrasPublicaciones } from '../components/NuestrasPublicaciones';
-import { PublicLayout } from '../layouts/PublicLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
-import { Box, Container, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import selloLispector from '../images/Sello_Lispector.jpg';
 import { makeStyles } from '@material-ui/core';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -78,7 +77,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     fontSize: '1.1rem',
     [theme.breakpoints.down('xs')]: {
-      fontSize: '0.5rem',
+      fontSize: '0.9rem',
+      width: '70%',
     },
   },
   imagen_postal: {
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container_publicaciones: {
     marginTop: '2rem',
-    paddingTop: '3rem',
+    paddingTop: '5rem',
     paddingBottom: '3rem',
     backgroundColor: coloresPaleta.aguaMarina,
   },
@@ -99,19 +99,32 @@ const useStyles = makeStyles((theme) => ({
     width: 250,
   },
   swiper: {
-    width: 300,
-    height: 300,
+    width: 500,
+    height: 500,
+  },
+  imagen_postal_slider: {
+    display: 'flex',
   },
   imagen_ecos_de_resistencia: {
-    maxWidth: '80%',
-    marginLeft: '4rem',
-    right: '2rem',
+    // maxWidth: '80%',
+    // marginLeft: '4rem',
+    // right: '2rem',
+    display: 'flex',
+    justifyContent: 'center',
   },
+  descripcion_publicacion: {
+
+  }
 }));
 
 
 export const PublicacionesPage = () => {
+  
   const classes = useStyles();
+  const [indexSlide, setIndexSlide] = useState(0);
+  const navigate = useNavigate();
+
+
   return (
     <AuthLayout>
         <Box className={classes.container_general}>
@@ -141,7 +154,7 @@ export const PublicacionesPage = () => {
               spaceBetween={100}
               centeredSlides={true}
               autoplay={{
-                delay: 2500,
+                delay: 30000,
                 disableOnInteraction: false,
               }}
               pagination={{
@@ -150,23 +163,30 @@ export const PublicacionesPage = () => {
               navigation={true}
               modules={[Autoplay, Pagination, Navigation]}
               className={classes.swiper}
+              onActiveIndexChange={(swiper) => setIndexSlide(swiper.activeIndex)}
             >
-              <SwiperSlide>
-              <img src={selloLispector} alt="Postal Lispector"/>
+              <SwiperSlide className={classes.imagen_postal_slider} onClick={() => navigate('/')}>
+                <img src={selloLispector} style={{cursor: 'pointer'}} alt="Postal Lispector"/>
               </SwiperSlide>
-              <SwiperSlide className={classes.imagen_ecos_de_resistencia}>
-                <img src={ecosDeResistencia} alt="Ecos de Resistencia"/>
+              <SwiperSlide className={classes.imagen_ecos_de_resistencia} onClick={() => navigate('/')}>
+                <img src={ecosDeResistencia} style={{cursor: 'pointer'}} alt="Ecos de Resistencia"/>
               </SwiperSlide>
               <SwiperSlide> 
-                <img src={colombiaADosMiradas} style={{marginTop: '2rem'}} alt="Colombia a dos miradas"/>
+                <a href='https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas' target='_blank'>
+                  <img src={colombiaADosMiradas} style={{marginTop: '2rem', cursor: 'pointer'}} alt="Colombia a dos miradas"/>
+                </a>
               </SwiperSlide>
-              <SwiperSlide className={classes.imagenes_lecturas_no_aplicadas}>
-                <img src={lecturasNoAplicadas1} alt="Lecturas no aplicadas I"/>
+              <SwiperSlide className={classes.imagenes_lecturas_no_aplicadas} onClick={() => navigate('/')}>
+                <img src={lecturasNoAplicadas1} style={{cursor: 'pointer'}} alt="Lecturas no aplicadas I"/>
               </SwiperSlide>
-              <SwiperSlide className={classes.imagenes_lecturas_no_aplicadas}>
-                <img src={lecturasNoAplicadas2} alt="Lecturas no aplicadas II"/>
+              <SwiperSlide className={classes.imagenes_lecturas_no_aplicadas} onClick={() => navigate('/')}>
+                <img src={lecturasNoAplicadas2} style={{cursor: 'pointer'}} alt="Lecturas no aplicadas II"/>
               </SwiperSlide>
             </Swiper>
+
+            <Box className={classes.descripcion_publicacion}>
+              
+            </Box>
           </Box>
         </Box>
     </AuthLayout>
