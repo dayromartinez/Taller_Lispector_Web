@@ -12,7 +12,10 @@ import stanislawLew from '../images/stanislaw-lem.jpeg';
 import primeraFoto from '../images/primera-foto.jpeg';
 import segundaFoto from '../images/segunda-foto.jpeg';
 import terceraFoto from '../images/tercera-imagen.jpeg';
-
+import ecosDeResistencia from '../images/Ecos_de_resistencia_redimensionado.png';
+import colombiaADosMiradas from '../images/Colombia_a_dos_miradas.png';
+import lecturasNoAplicadas2 from '../images/Lecturas_no_aplicadas_2.jpeg';
+import lecturasNoAplicadas1 from '../images/Lecturas_no_aplicadas_1.jpeg';
 
 export const InicioPage = () => {
 
@@ -94,6 +97,12 @@ export const InicioPage = () => {
 
                 <Box>
                     <Typography variant='h3' sx={{fontWeight: 700, textAlign: 'center'}}>Nuestras publicaciones</Typography>
+                    <Box className='fiveth-container-imgs'>
+                        <img src={ecosDeResistencia} alt="Imagen de ecos de resistencia" />
+                        <img src={colombiaADosMiradas} alt="Imagen Colombia a dos miradas" />
+                        <img src={lecturasNoAplicadas2} alt="Imagen de lecturas no aplicadas 2" />
+                        <img src={lecturasNoAplicadas1} alt="Imagen de lecturas no aplicadas 1" />
+                    </Box>
                 </Box>
                     
             </Box>
