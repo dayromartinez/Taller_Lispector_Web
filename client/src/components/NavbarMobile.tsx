@@ -96,7 +96,6 @@ export default function NavbarMobile({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(window.innerWidth)
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -219,7 +218,7 @@ export default function NavbarMobile({ children }) {
                   </Button>
                   ) : (
                   <Box sx={{ flexGrow: 0 }}>
-                      <Tooltip title="Open settings">
+                      <Tooltip title="Abrir Menú">
                           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                               <Avatar alt={usuario?.['name'].toUpperCase()} src={usuario?.['name'].toUpperCase()} sx={{ bgcolor: `${colors[usuario?.['colorProfile']]}` }} />
                           </IconButton>

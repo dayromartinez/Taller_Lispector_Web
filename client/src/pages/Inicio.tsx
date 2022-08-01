@@ -22,15 +22,14 @@ export const InicioPage = () => {
     const [open, setOpen] = React.useState(false);
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-
         setOpen(false);
+        localStorage.removeItem('login');
+        localStorage.removeItem('logOutUser');
     };
 
     const openAlert = () => {
-        if(localStorage.getItem('login') === 'true') {
+        if(localStorage.getItem('login') === 'true' || localStorage.getItem('logOutUser') === 'true') {
             setOpen(true);
-
-            localStorage.removeItem('login');
         }
     }
 
@@ -42,7 +41,7 @@ export const InicioPage = () => {
         <AuthLayout>
             <Snackbar open={open} anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={3000} onClose={handleClose} >
                 <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                    Sesión iniciada exitosamente. ¡Bienvenid@ al parche Taller Lispector!
+                    {localStorage.getItem('login') === 'true' ? ('Sesión iniciada exitosamente. ¡Bienvenid@ al parche Taller Lispector!') : ('¡Cesión cerrada exitosamente! Clarice espera que vuelvas pronto.')}
                 </Alert>
             </Snackbar>
             <Box>
