@@ -8,10 +8,10 @@ export function Calendario() {
 
   const onClick = (value: Date, event: any) => {
 
-    let fechaSesion1 : Date = new Date(2022, 3, 9);
-    let fechaSesion2 : Date = new Date(2022, 3, 23);
+    let fechaSesion1 : Date = new Date(2022, 7, 6);
+    let fechaSesion2 : Date = new Date(2022, 7, 20);
     if(value.getDate() === fechaSesion1.getDate() || value.getDate() === fechaSesion2.getDate()){
-      alert("buenass");
+      alert("¡Prepárese sumercé que lo que se viene para el cierre del ciclo de Ciencia Ficción es pura candela!");
       /*<div className="max-w-sm rounded overflow-hidden shadow-lg">
         <img className="w-full" src={clarice} alt="Flayer sesión" />
         <div className="px-6 py-4">
@@ -30,6 +30,6 @@ export function Calendario() {
   } 
 
   return (
-    <Calendar onChange={onChange} value={new Date(2022, 3, 9)} next2Label={null} prev2Label={null} onClickDay={onClick}/>
+    <Calendar onChange={onChange} value={new Date(2022, 7, 20)} next2Label={null} prev2Label={null} onClickDay={onClick}/>
   );
 }

@@ -327,7 +327,7 @@ export const PublicacionesPage = () => {
               </p>
             </Box>
           </Box>
-          {sizeScreen > 900 ? (
+          {sizeScreen > 600 ? (
             <Box className={classes.publicaciones}>
               <NavLink to="/">
                 <img src={ecosDeResistencia} width={300} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} alt="Ecos de Resistencia"/>
