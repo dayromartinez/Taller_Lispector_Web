@@ -1,18 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import clarice from '../images/Clarice1.jpg';
-import "../images/Clarice1.jpg";
+import clarice from '../images/Efeméride_Clarice_Lispector_grande.png';
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { dataState } from '../redux/reducers'
 import { usuarioData, createUser } from '../redux/actions/userActions'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-/** recaptcha */
-import ReCAPTCHA from 'react-google-recaptcha'
-import { PublicLayout } from '../layouts/PublicLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { Alert, Snackbar } from '@mui/material';
+
+/** recaptcha */
+import ReCAPTCHA from 'react-google-recaptcha'
 
 
 
@@ -45,7 +43,6 @@ export const Registro = () => {
     const [open, setOpen] = React.useState(false);
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-
         setOpen(false);
     };
 
@@ -129,9 +126,7 @@ export const Registro = () => {
         <AuthLayout>
             <div className='bg-gray-100 pt-24'>
                 <div className="flex w-full mx-auto">
-                    {sizeScreen > 900 ? (
-                        <img className='w-full' src={clarice} height="20%"/>
-                    ) : (null)}
+                    {sizeScreen < 900 ? (null) : sizeScreen < 1536 ? (<img src={clarice} width='70%'/>) : (<img src={clarice} width='80%'/>)}
                     <Snackbar open={open} anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={4000} onClose={handleClose} >
                         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
                             Ya hay una cuenta registrada con este correo. Inténtelo de nuevo
