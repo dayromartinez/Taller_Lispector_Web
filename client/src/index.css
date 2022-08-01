@@ -419,3 +419,12 @@
     }
 
 }
+
+#container_general_pagina_registro {
+    width: 100vw;
+    height: 55vh; /*110*/
+    margin-top: 0px;
+    padding: 15% 60px;
+    background-image: url(images/Clarice1.jpg);
+    background-repeat: no-repeat;
+}

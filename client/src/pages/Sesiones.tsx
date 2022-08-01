@@ -2,7 +2,7 @@ import { Calendario } from '../components/Calendario';
 import React, { useState, useEffect } from 'react'
 import sesionAsimow from '../images/ciclo-de-ciencia-ficcion.jpeg';
 import sesionStanislaw from '../images/stanislaw-lem.jpeg';
-import sesionXCienciaFiccion from '../images/sesionxCienciaFiccion.jpeg';
+import sesionFinalCienciaFiccion from '../images/sesion_final_ciencia_ficcion.jpeg';
 import sesion1MitosYLeyendas from '../images/sesion_2_mitos_y_leyendas.jpeg';
 import sesion2MitosYLeyendas from '../images/sesion_3_mitos_y_leyendas.jpeg';
 import sesion3MitosYLeyendas from '../images/Las-mil-y-una-noche.jpeg';
@@ -27,16 +27,16 @@ interface datosSesiones {
 
 const sesiones : datosSesiones[] = [
   {
+    titulo: 'Ciencia Ficción Latinoamericana',
+    fecha: 'Sábado 6 de agosto'
+  },
+  {
     titulo: 'Stanislaw Lem',
     fecha: 'Sábado 23 de julio',
   },
   {
     titulo: 'Isaac Asimow y Ray Bradbury',
     fecha: 'Sábado 9 de julio'
-  },
-  {
-    titulo: 'Ciencia Ficción Latinoamericana',
-    fecha: 'Sábado 4 de junio'
   },
   {
     titulo: 'Mitos y leyendas latinoamericanas',
@@ -168,6 +168,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     width: '80%',
     alignItems: 'center',
+    marginTop: '3rem',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '1.5rem',
+    },
   },
   imagen_sesion_actual: {
     marginTop: '3rem',
@@ -197,6 +201,7 @@ const useStyles = makeStyles((theme) => ({
 export const SesionesPage = () => {
   
   const classes = useStyles();
+  const [indexSlide, setIndexSlide] = useState(0);
   const [indexSlideCF, setIndexSlideCF] = useState(0);
   const [indexSlideMIT, setIndexSlideMIT] = useState(0);
   const navigate = useNavigate();
@@ -242,16 +247,16 @@ export const SesionesPage = () => {
                   navigation={true}
                   modules={[Autoplay, Pagination, Navigation]}
                   className={classes.swiper}
-                  onActiveIndexChange={(swiper) => setIndexSlideCF(swiper.activeIndex)}
+                  onActiveIndexChange={(swiper) => setIndexSlide(swiper.activeIndex)}
                 >
                   <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}>
-                    <img src={sesionStanislaw} style={{cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
+                    <img src={sesionFinalCienciaFiccion} style={{cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
                   </SwiperSlide>
                   <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}> 
-                    <img src={sesionAsimow} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
+                    <img src={sesionStanislaw} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
                   </SwiperSlide>
                   <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}>
-                    <img src={sesionXCienciaFiccion} style={{cursor: 'pointer'}} alt="Sesión de Las mil y una noches"/>
+                    <img src={sesionAsimow} style={{cursor: 'pointer'}} alt="Sesión de Las mil y una noches"/>
                   </SwiperSlide>
                 </Swiper>
               </Box>
@@ -267,7 +272,7 @@ export const SesionesPage = () => {
               {sizeScreen > 600 ? (
                 <Box className={classes.container_piezas_ciclo}>
                   <Box className={classes.container_pieza}>
-                    <img src={sesionStanislaw} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
+                    <img src={sesionFinalCienciaFiccion} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[0].titulo}
                     </p>
@@ -276,7 +281,7 @@ export const SesionesPage = () => {
                     </p>
                   </Box>
                   <Box className={classes.container_pieza}>
-                    <img src={sesionAsimow} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
+                    <img src={sesionStanislaw} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[1].titulo}
                     </p>
@@ -285,7 +290,7 @@ export const SesionesPage = () => {
                     </p>
                   </Box>
                   <Box className={classes.container_pieza}>
-                    <img src={sesionXCienciaFiccion} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
+                    <img src={sesionAsimow} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[2].titulo}
                     </p>
@@ -312,13 +317,13 @@ export const SesionesPage = () => {
                     onActiveIndexChange={(swiper) => setIndexSlideCF(swiper.activeIndex)}
                   >
                     <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}>
-                      <img src={sesionStanislaw} style={{cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
+                      <img src={sesionFinalCienciaFiccion} style={{cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
                     </SwiperSlide>
                     <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}> 
-                      <img src={sesionAsimow} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
+                      <img src={sesionStanislaw} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
                     </SwiperSlide>
                     <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}>
-                      <img src={sesionXCienciaFiccion} style={{cursor: 'pointer'}} alt="Sesión de Las mil y una noches"/>
+                      <img src={sesionAsimow} style={{cursor: 'pointer'}} alt="Sesión de Las mil y una noches"/>
                     </SwiperSlide>
                   </Swiper>
                   <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
@@ -407,11 +412,15 @@ export const SesionesPage = () => {
             <Box sx={{display: 'flex', justifyContent: 'center'}}>
               <Box className={classes.container_sesion_actual} sx={{backgroundColor: coloresPaleta.aguaMarina}}>
                 <p className={classes.titulo_sesiones}>
-                  Próxima Sesión: {sesiones[0].titulo}
+                  Próxima Sesión 
+                  <br/>
+                  <br/>
+                  <em>{sesiones[0].titulo}</em>
                 </p>
-                <img src={sesionStanislaw} className={classes.imagen_sesion_actual} alt="Sesión actual"/>
+                <img src={sesionFinalCienciaFiccion} className={classes.imagen_sesion_actual} alt="Sesión actual"/>
                 <p className={classes.descripcion_sesion}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quibusdam quia at voluptas vitae asperiores expedita, sed quisquam aliquid, ipsa distinctio harum dolor quis dolorem eius aperiam consectetur repellat voluptatem!
+                <b>El próximo sábado 6 de agosto a las 4 p.m.</b> desde <b>Teatro La Sala</b>, daremos cierre a nuestro ciclo de literatura y ciencia ficción junto al escritor y profesor <b>Rodrigo Bastidas Pérez</b> 🦾. 
+                  Acompáñanos en una tertulia literaria sobre la antología <b><em>El tercer mundo después del sol</em></b>. Hablaremos sobre ciencia ficción y ciberchamanismo en Latinoamérica. 🌎🖲️
                 </p>
               </Box>
             </Box>

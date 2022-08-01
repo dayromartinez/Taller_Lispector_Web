@@ -30,6 +30,6 @@ export function Calendario() {
   } 
 
   return (
-    <Calendar onChange={onChange} value={new Date(2022, 7, 20)} next2Label={null} prev2Label={null} onClickDay={onClick}/>
+    <Calendar onChange={onChange} value={new Date(2022, 7, 6)} next2Label={null} prev2Label={null} onClickDay={onClick}/>
   );
 }

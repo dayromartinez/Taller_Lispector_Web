@@ -15,6 +15,7 @@ import { AuthLayout } from '../layouts/AuthLayout';
 import { Alert, Snackbar } from '@mui/material';
 
 
+
 const REGEX_EMAIL = /^[a-zA-Z0-9.ñ!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 const isEmail = (value: string) =>
     REGEX_EMAIL.test(value) || 'Formato de correo inválido. Ejemplo: correo@email.com'
@@ -40,7 +41,7 @@ export const Registro = () => {
     const message = useSelector((state : dataState) => state.message);
     const [isNotRobot, setIsNotRobot] = useState<boolean>(false);
     const [siteKey, setSiteKey] = useState<string>("");
-
+    const [sizeScreen, setSizeScreen] = useState(window.innerWidth);
     const [open, setOpen] = React.useState(false);
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -71,11 +72,12 @@ export const Registro = () => {
     })
 
     const onSubmit = async (data: FormData) => {
+        
         if (!isNotRobot) {
             setIsNotRobot(false)
             return false
         }
-       
+
         setIsNotRobot(true)
         let nuevoUsuario: usuarioData = {
             nombre: data.nombres,
@@ -96,6 +98,9 @@ export const Registro = () => {
     }
 
     useEffect(() => {
+
+        setSizeScreen(window.innerWidth);
+
         if(window.location.hostname === "localhost"){
             setSiteKey("6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI")
             localStorage.setItem("siteKey", "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI")
@@ -124,7 +129,9 @@ export const Registro = () => {
         <AuthLayout>
             <div className='bg-gray-100 pt-24'>
                 <div className="flex w-full mx-auto">
-                    <img className='w-full' src={clarice} height="20%"/>
+                    {sizeScreen > 900 ? (
+                        <img className='w-full' src={clarice} height="20%"/>
+                    ) : (null)}
                     <Snackbar open={open} anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={4000} onClose={handleClose} >
                         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
                             Ya hay una cuenta registrada con este correo. Inténtelo de nuevo
