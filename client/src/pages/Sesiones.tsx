@@ -212,12 +212,6 @@ export const SesionesPage = () => {
     setSizeScreen(window.innerWidth);
   }, []);
 
-  const onSubmitCF = (e) => {
-    e.preventDefault();
-
-  }
-
-
   
   return (
     <AuthLayout>

@@ -17,6 +17,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { publicationsData } from '../interfaces/publicationsData'
 
 interface Colores {
   gris: string;
@@ -30,12 +31,9 @@ export const coloresPaleta : Colores = {
   aguaMarina: '#9FD5D1',
 }
 
-interface datosPublicaciones {
-  titulo: string;
-  descripcion: string;
-}
 
-const publicaciones : datosPublicaciones[] = [
+
+const publicaciones: publicationsData[] = [
   {
     titulo: 'Postales Abiertas',
     descripcion: "Con el objetivo de encontrar un lugar en el mundo del cual podamos sentirnos parte, con la esperanza de que nuestra voz no sea ese murmullo que apaga el viento y determinados a ser ese fulgor que alumbra así sea por un instante la llana oscuridad de la noche, nacen estas postales, acaso un intento de resistencia a una época, una sociedad, que amenaza con borrar toda huella del individuo.",
