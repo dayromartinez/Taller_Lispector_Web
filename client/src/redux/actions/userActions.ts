@@ -27,7 +27,7 @@ export const failure = (payload = "") =>  ({
     type: LOADED_FAILURE,
     payload
 });
-//Acciones autenticacion
+
 export const login = (correo : string, contrasena: string) => {
     return async dispatch => {
 
@@ -67,7 +67,7 @@ export const login = (correo : string, contrasena: string) => {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], colorProfile: data['colorProfile'] }, redirect: ``}));
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], comments: data['comments'], colorProfile: data['colorProfile'], }, redirect: ``}));
 
         } catch (error) {
             console.log(error.message);
@@ -76,7 +76,48 @@ export const login = (correo : string, contrasena: string) => {
     }
 };
 
-// Con Fetch
+export const getUser = (id : string) => {
+    return async dispatch => {
+
+        dispatch(loading())
+        try {
+            const response = await fetch(`${URL_BASE}/${id}`,
+                {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                }
+            )
+
+            const fetchTokenUser = await response.json();
+            if(fetchTokenUser.msg){
+                console.log(fetchTokenUser.msg)
+                dispatch(failure(fetchTokenUser.msg))
+                return
+            }
+
+            localStorage.setItem('tokenUser', fetchTokenUser.token);
+
+            const res = await fetch(`${URL_BASE}/validateToken`, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'x-token': fetchTokenUser.token
+                },
+            })
+
+            const data = await res.json();
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], comments: data['comments'], colorProfile: data['colorProfile'] }, redirect: ``}));
+
+        } catch (error) {
+            console.log(error.message);
+            dispatch(failure())
+        }
+    }
+};
+
 export const getAllUsers = () => {
     return async dispatch => {
         dispatch(loading())
@@ -132,7 +173,7 @@ export function createUser(datosUsuario : usuarioData) {
             });
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], colorProfile: data['colorProfile'] }, redirect: `/`}));
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], comments: data['comments'], colorProfile: data['colorProfile'] }, redirect: `/`}));
 
         } catch (error) {
             console.log(error.message);
@@ -158,7 +199,7 @@ export function validateToken () {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], colorProfile: data['colorProfile'] }, redirect: ``}));
+            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], comments: data['comments'], colorProfile: data['colorProfile'] }, redirect: ``}));
 
         } catch (error) {
             console.log(error.message);

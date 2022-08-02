@@ -9,6 +9,8 @@ export type dataState = {
     search: Array<object>,
     publicaciones: Array<object>,
     publicacion: object,
+    sesiones: Array<object>,
+    sesion: object,
     redirect: string,
     message: string,
 }
@@ -22,6 +24,8 @@ export const initialState : dataState = {
     search: [],
     publicaciones: [],
     publicacion: {},
+    sesiones: [],
+    sesion: {},
     redirect: "",
     message: "",
 
