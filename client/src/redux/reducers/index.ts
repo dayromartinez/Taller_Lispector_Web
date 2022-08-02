@@ -1,4 +1,7 @@
 import * as actions from '../actions/userActions';
+import * as actionsPublication from '../actions/publicationActions';
+import * as actionsComment from '../actions/commentActions';
+import * as actionsSesion from '../actions/sesionActions';
 import { LOGIN, LOGOUT, LOADING, LOADED_SUCCESS, LOADED_FAILURE } from '../actions/userActions';
 
 export type dataState = {
@@ -12,6 +15,7 @@ export type dataState = {
     comentarios: Array<object>,
     comentario: object,
     sesiones: Array<object>,
+    sesionesCiclo: Array<object>,
     sesion: object,
     redirect: string,
     message: string,
@@ -29,6 +33,7 @@ export const initialState : dataState = {
     comentarios: [],
     comentario: {},
     sesiones: [],
+    sesionesCiclo: [],
     sesion: {},
     redirect: "",
     message: "",
@@ -39,12 +44,15 @@ export default function rootReducer(state : dataState = initialState, actions) {
     switch (actions.type) {
 
         case LOADING:
+            console.log('Action Type LOADING: ', actions.type);
             return { ...state, loading: true };
 
         case LOADED_SUCCESS:
+            console.log('Action Type SUCCESS: ', actions.type);
             return { ...state, ...actions.payload, loading: false, hasErrors: false, message: "" };
 
         case LOADED_FAILURE:
+            console.log('Action Type FAILURE: ', actions.type);
             return { ...state, message: actions.payload, loading: false, hasErrors: true }
 
         case LOGIN:

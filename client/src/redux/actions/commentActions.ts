@@ -1,10 +1,6 @@
-export const LOADING : string = 'LOADING';
-export const LOADED_SUCCESS : string = 'LOADED_SUCCESS';
-export const LOADED_FAILURE : string = 'LOADED_FAILURE';
 export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/comments';
-import { getUser } from "./userActions";
-import { getPublication } from "./publicationActions";
-import { getAllPublications } from "./publicationActions";
+import { loading, success, failure, getUser } from "./userActions";
+import { getPublication, getAllPublications } from "./publicationActions";
 
 export type publicacionData = {
     userId: string,
@@ -13,18 +9,6 @@ export type publicacionData = {
     comentario: string,
     valoracion: Number,
 }
-
-export const loading = () => ({ type: LOADING });
-
-export const success = (payload) => ({
-    type: LOADED_SUCCESS,
-    payload
-});
-
-export const failure = (payload = "") =>  ({
-    type: LOADED_FAILURE,
-    payload
-});
 
 export const getAllCommentsByPublication = (publicationId : string) => {
     return async dispatch => {
