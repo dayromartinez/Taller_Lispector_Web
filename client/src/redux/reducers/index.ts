@@ -44,11 +44,9 @@ export default function rootReducer(state : dataState = initialState, actions) {
     switch (actions.type) {
 
         case LOADING:
-            console.log('Action Type LOADING: ', actions.type);
             return { ...state, loading: true };
 
         case LOADED_SUCCESS:
-            console.log('Action Type SUCCESS: ', actions.type);
             return { ...state, ...actions.payload, loading: false, hasErrors: false, message: "" };
 
         case LOADED_FAILURE:

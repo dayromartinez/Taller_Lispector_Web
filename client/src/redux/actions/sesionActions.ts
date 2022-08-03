@@ -18,7 +18,7 @@ export const getAllSesions = () => {
         try {
             const sesions = await fetch(`${URL_BASE}/`)
             const data = await sesions.json()
-            dispatch(success({ sesiones: data, redirect: null}))
+            dispatch(success({ sesiones: data.sesiones.reverse(), redirect: null}))
         } catch (error) {
             dispatch(failure())
         }
@@ -31,7 +31,7 @@ export const getSesionesCiclo = (ciclo : string) => {
         try {
             const sesions = await fetch(`${URL_BASE}/ciclo/${ciclo}`)
             const data = await sesions.json()
-            dispatch(success({ sesionesCiclo: data, redirect: null}))
+            dispatch(success({ sesionesCiclo: data.sesionesCiclo.reverse(), redirect: null}))
         } catch (error) {
             dispatch(failure())
         }
@@ -166,4 +166,3 @@ export function deleteSesion(id: string) {
         }
     }
 }
-

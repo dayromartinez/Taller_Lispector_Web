@@ -19,7 +19,7 @@ export const getAllPublications = () => {
         try {
             const publications = await fetch(`${URL_BASE}/getAll`)
             const data = await publications.json()
-            dispatch(success({ publicaciones: data, redirect: null}))
+            dispatch(success({ publicaciones: data.publicaciones.reverse(), redirect: null}))
         } catch (error) {
             dispatch(failure())
         }

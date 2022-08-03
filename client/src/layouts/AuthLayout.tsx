@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers/index';
 import { AdminLayout } from './AdminLayout';
 import { PublicLayout } from './PublicLayout';
+import { getAllPublications } from '../redux/actions/publicationActions';
+import { getAllSesions } from '../redux/actions/sesionActions';
 
 export const AuthLayout = ({ children }) => {
 
   const [isAdmin, setIsAdmin] = useState(false);
   const user = useSelector(( state : dataState ) => state.usuario);
+  const dispatch = useDispatch();
 
   const onExistAdmin = () => {
 
@@ -18,10 +21,11 @@ export const AuthLayout = ({ children }) => {
   useEffect(() => {
 
     onExistAdmin();
+    dispatch(getAllPublications());
+    dispatch(getAllSesions());
 
   }, [user])
-
-  console.log('USUARIO: ', user)
+  
 
   return (
     <>
