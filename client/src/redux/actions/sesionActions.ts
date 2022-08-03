@@ -1,4 +1,4 @@
-import { loading, success, failure, getUser } from "./userActions";
+import { loading, success, failure } from "./userActions";
 export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/sesions';
 
 export type sesionData = {

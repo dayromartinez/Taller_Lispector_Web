@@ -9,15 +9,16 @@ import selloLispector from '../images/Sello_Lispector.jpg';
 import { makeStyles } from '@material-ui/core';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { NavLink, useNavigate } from 'react-router-dom'
-
+import { NavLink, useNavigate } from 'react-router-dom';
+import { dataState } from '../redux/reducers/index';
+import { publicationsData } from '../interfaces/publicationsData'
+import { useSelector } from 'react-redux'
 
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { publicationsData } from '../interfaces/publicationsData'
 
 interface Colores {
   gris: string;
@@ -224,6 +225,8 @@ export const PublicacionesPage = () => {
   const [indexSlide, setIndexSlide] = useState(0);
   const navigate = useNavigate();
   const [sizeScreen, setSizeScreen] = useState(window.innerWidth);
+  const publications = useSelector( ({publicaciones} : dataState) => publicaciones);
+  console.log('publications', publications);
 
 
   useEffect(() => {
@@ -276,7 +279,7 @@ export const PublicacionesPage = () => {
               </NavLink>
             </Box>
             <Box className={classes.postal_Lispector} >
-              <img className={classes.imagen_postal} src={selloLispector} alt="Postal Lispector" onClick={() => navigate('/')} style={{cursor: 'pointer'}} />
+              <img className={classes.imagen_postal} src="https://drive.google.com/uc?export=view&id=1dltbvTvB74wyiyWEEiWcGvYVbgRsxbOh" alt="Postal Lispector" onClick={() => navigate('/')} style={{cursor: 'pointer'}} />
             </Box>
             <Box className={classes.container_descripcion_postales}>
               <p className={classes.descripcion_postales}>

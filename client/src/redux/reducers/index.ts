@@ -1,4 +1,4 @@
-import * as actions from '../actions/userActions';
+import * as actionsUser from '../actions/userActions';
 import * as actionsPublication from '../actions/publicationActions';
 import * as actionsComment from '../actions/commentActions';
 import * as actionsSesion from '../actions/sesionActions';
