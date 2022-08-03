@@ -12,7 +12,7 @@ import stanislawLew from '../images/stanislaw-lem.jpeg';
 import primeraFoto from '../images/primera-foto.jpeg';
 import segundaFoto from '../images/segunda-foto.jpeg';
 import terceraFoto from '../images/tercera-imagen.jpeg';
-import { publicationsData } from '../interfaces/publicationsData';
+import { publicacionData } from '../interfaces/publicacionData';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { coloresPaleta } from './Publicaciones';
@@ -24,31 +24,31 @@ import lecturasNoAplicadas2 from '../images/Lecturas_no_aplicadas_2.jpeg'
 import selloLispector from '../images/Sello_Lispector.jpg';
 
 
-const publications: publicationsData[] = [
+const publications: publicacionData[] = [
     {
-      titulo: 'Postales Abiertas',
+      nombre: 'Postales Abiertas',
       descripcion: "Con el objetivo de encontrar un lugar en el mundo del cual podamos sentirnos parte, con la esperanza de que nuestra voz no sea ese murmullo que apaga el viento y determinados a ser ese fulgor que alumbra así sea por un instante la llana oscuridad de la noche, nacen estas postales, acaso un intento de resistencia a una época, una sociedad, que amenaza con borrar toda huella del individuo.",
     },
     {
-      titulo: 'Ecos de Resistencia',
+      nombre: 'Ecos de Resistencia',
       descripcion: "Esta publicación nace en un momento de gran tensión en el país. Caldeaba en Colombia un malestar nada nuevo en el 2021, algunos lo atribuían a la precariedad consecuencia de la pandemia, pero aquella raíz estaba arraigada de manera más profunda; al interior de cada uno de nosotros existía (existe) un deseo de cambio en las bases de un país acostumbrado a la violencia. Y nosotros, igual a quijotes que preparan sus armas, afilamos nuestras plumas como posición política ante una sociedad violenta y acorralada."
     },
     {
-      titulo: 'Colombia a dos Miradas',
+      nombre: 'Colombia a dos Miradas',
       descripcion: "Este era un lugar en blanco, un espacio que necesitaba ser colmado de vida como las calles de Colombia el 21 de noviembre de 2019. Las consignas que aún claman «¡Viva el Paro Nacional!» Son la razón primordial para hablar de una Colombia donde existen más de dos miradas, partiendo desde la nefasta gestión presidencial hasta el asesinato sistemático de líderes sociales en los territorios. A continuación, usted podrá descubrir una selección de relatos, poemas y piezas gráficas que aún convocan al gobierno a un diálogo nacional sin violencia, abusos, que incluya a todos los sectores sociales y la esperanza que nos han arrebatado."
     },
     {
-      titulo: 'Lecturas no aplicadas I',
+      nombre: 'Lecturas no aplicadas I',
       descripcion: "Esta publicación nace en un momento de gran tensión en el país. Caldeaba en Colombia un malestar nada nuevo en el 2021, algunos lo atribuían a la precariedad consecuencia de la pandemia, pero aquella raíz estaba arraigada de manera más profunda; al interior de cada uno de nosotros existía (existe) un deseo de cambio en las bases de un país acostumbrado a la violencia. Y nosotros, igual a quijotes que preparan sus armas, afilamos nuestras plumas como posición política ante una sociedad violenta y acorralada."
     },
     {
-      titulo: 'Lecturas no aplicadas II',
+      nombre: 'Lecturas no aplicadas II',
       descripcion: "Esta publicación nace en un momento de gran tensión en el país. Caldeaba en Colombia un malestar nada nuevo en el 2021, algunos lo atribuían a la precariedad consecuencia de la pandemia, pero aquella raíz estaba arraigada de manera más profunda; al interior de cada uno de nosotros existía (existe) un deseo de cambio en las bases de un país acostumbrado a la violencia. Y nosotros, igual a quijotes que preparan sus armas, afilamos nuestras plumas como posición política ante una sociedad violenta y acorralada."
     },
     {
-        titulo: 'Postales Abiertas',
-        descripcion: "Con el objetivo de encontrar un lugar en el mundo del cual podamos sentirnos parte, con la esperanza de que nuestra voz no sea ese murmullo que apaga el viento y determinados a ser ese fulgor que alumbra así sea por un instante la llana oscuridad de la noche, nacen estas postales, acaso un intento de resistencia a una época, una sociedad, que amenaza con borrar toda huella del individuo."
-      },
+      nombre: 'Postales Abiertas',
+      descripcion: "Con el objetivo de encontrar un lugar en el mundo del cual podamos sentirnos parte, con la esperanza de que nuestra voz no sea ese murmullo que apaga el viento y determinados a ser ese fulgor que alumbra así sea por un instante la llana oscuridad de la noche, nacen estas postales, acaso un intento de resistencia a una época, una sociedad, que amenaza con borrar toda huella del individuo."
+    },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -397,7 +397,7 @@ export const InicioPage = () => {
 
                     <Box className={classes.datos_publicacion}>
                         <p className={classes.titulo_publicacion} onClick={onSubmit}>
-                            {publications[indexSlide + 1].titulo}
+                            {publications[indexSlide + 1].nombre}
                         </p>
                         <p className={classes.descripcion_publicacion}>
                             {publications[indexSlide + 1].descripcion}
