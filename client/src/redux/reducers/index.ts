@@ -3,6 +3,9 @@ import * as actionsPublication from '../actions/publicationActions';
 import * as actionsComment from '../actions/commentActions';
 import * as actionsSesion from '../actions/sesionActions';
 import { LOGIN, LOGOUT, LOADING, LOADED_SUCCESS, LOADED_FAILURE } from '../actions/userActions';
+import { publicacionData } from '../../interfaces/publicacionData';
+import { sesionData } from '../../interfaces/sesionData';
+import { commentData } from '../../interfaces/commentData';
 
 export type dataState = {
     loading: boolean,
@@ -10,13 +13,13 @@ export type dataState = {
     usuarios: Array<object>,
     usuario: object,
     search: Array<object>,
-    publicaciones: Array<object>,
-    publicacion: object,
-    comentarios: Array<object>,
-    comentario: object,
-    sesiones: Array<object>,
-    sesionesCiclo: Array<object>,
-    sesion: object,
+    publicaciones: Array<publicacionData>,
+    publicacion: publicacionData,
+    comentarios: Array<commentData>,
+    comentario: commentData,
+    sesiones: Array<sesionData>,
+    sesionesCiclo: Array<sesionData>,
+    sesion: sesionData,
     redirect: string,
     message: string,
 }

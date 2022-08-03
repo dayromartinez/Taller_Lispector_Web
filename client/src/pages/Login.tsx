@@ -106,8 +106,6 @@ export const Login = () => {
         }
     }, [dispatch, redirect, window.location.hostname])
 
-    console.log('MESSAGE ERROR: ', messageError)
-
     useEffect(() => {
         if(usuario["uid"] && onClick){
             setValue("correo", "");

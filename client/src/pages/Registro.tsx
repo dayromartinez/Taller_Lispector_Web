@@ -4,7 +4,8 @@ import clarice from '../images/Efeméride_Clarice_Lispector_grande.png';
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { dataState } from '../redux/reducers'
-import { usuarioData, createUser } from '../redux/actions/userActions'
+import { createUser } from '../redux/actions/userActions'
+import { userData } from '../interfaces/userData';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { Alert, Snackbar } from '@mui/material';
@@ -76,7 +77,7 @@ export const Registro = () => {
         }
 
         setIsNotRobot(true)
-        let nuevoUsuario: usuarioData = {
+        let nuevoUsuario: userData = {
             nombre: data.nombres,
             correo: data.correo,
             contrasena: data.contrasena,

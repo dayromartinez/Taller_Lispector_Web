@@ -13,6 +13,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { NavLink, useNavigate } from 'react-router-dom'
 import { coloresPaleta } from './Publicaciones';
+import { sesionData } from '../interfaces/sesionData';
+import { useDispatch, useSelector } from 'react-redux';
+import { dataState } from '../redux/reducers';
+import { getSesionesCiclo } from '../redux/actions/sesionActions';
 
 
 // Import Swiper styles
@@ -206,10 +210,14 @@ export const SesionesPage = () => {
   const [indexSlideMIT, setIndexSlideMIT] = useState(0);
   const navigate = useNavigate();
   const [sizeScreen, setSizeScreen] = useState(window.innerWidth);
+  const sesionsAll = useSelector( ({sesiones} : dataState) => sesiones);
+  const sesionesCiclo = useSelector( ({sesionesCiclo} : dataState) => sesionesCiclo);
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
     setSizeScreen(window.innerWidth);
+    dispatch(getSesionesCiclo("Ciencia Ficción"));
   }, []);
 
   
@@ -243,18 +251,15 @@ export const SesionesPage = () => {
                   className={classes.swiper}
                   onActiveIndexChange={(swiper) => setIndexSlide(swiper.activeIndex)}
                 >
-                  <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}>
-                    <img src={sesionFinalCienciaFiccion} style={{cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
-                  </SwiperSlide>
-                  <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}> 
-                    <img src={sesionStanislaw} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
-                  </SwiperSlide>
-                  <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}>
-                    <img src={sesionAsimow} style={{cursor: 'pointer'}} alt="Sesión de Las mil y una noches"/>
-                  </SwiperSlide>
+                  {sesionesCiclo.map((sesion) => (
+                    <SwiperSlide onClick={() => alert('Gonorrea ome gonorrea')}>
+                      <img src={sesion?.imagenSesion} style={{cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
               </Box>
             </Box>
+            {/*LOGICA NUEVA*/}
             <Box className={classes.container_ciclo} sx={{ backgroundColor: coloresPaleta.aguaMarina }}>
               <Box className={classes.titulo_sesiones}>
                 Ciclo de Ciencia Ficción
@@ -266,7 +271,7 @@ export const SesionesPage = () => {
               {sizeScreen > 600 ? (
                 <Box className={classes.container_piezas_ciclo}>
                   <Box className={classes.container_pieza}>
-                    <img src={sesionFinalCienciaFiccion} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
+                    <img src='https://drive.google.com/uc?export=view&id=1VrxPpAMhkX5VmZWMnc5thP7LcuxMvDW5' className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[0].titulo}
                     </p>
@@ -275,7 +280,7 @@ export const SesionesPage = () => {
                     </p>
                   </Box>
                   <Box className={classes.container_pieza}>
-                    <img src={sesionStanislaw} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
+                    <img src='https://drive.google.com/uc?export=view&id=1OSieUKNMj_Yf9j9pgqYLMwRFEHp4TnSE' className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[1].titulo}
                     </p>
@@ -284,7 +289,7 @@ export const SesionesPage = () => {
                     </p>
                   </Box>
                   <Box className={classes.container_pieza}>
-                    <img src={sesionAsimow} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
+                    <img src='https://drive.google.com/uc?export=view&id=1_LzmFfnGBZ2Q7_nGN2T1jGmSjX5_AgOb' className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Isaac Asimow y Ray Bradbury"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[2].titulo}
                     </p>
@@ -340,7 +345,7 @@ export const SesionesPage = () => {
               {sizeScreen > 600 ? (
                 <Box className={classes.container_piezas_ciclo}>
                   <Box className={classes.container_pieza}>
-                    <img src={sesion2MitosYLeyendas} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Mitos y leyendas latinoamericanas"/>
+                    <img src='https://drive.google.com/uc?export=view&id=13GdwOqEHhUh8aN7AzKanJHv8RxU8bZTB' className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Mitos y leyendas latinoamericanas"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[3].titulo}
                     </p>
@@ -349,7 +354,7 @@ export const SesionesPage = () => {
                     </p>
                   </Box>
                   <Box className={classes.container_pieza}>
-                    <img src={sesion1MitosYLeyendas} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Mitos y leyendas europeas"/>
+                    <img src='https://drive.google.com/uc?export=view&id=1BgXQZSBWShY5DsRQBDvxCYk-YuPi0Im6' className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Mitos y leyendas europeas"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[4].titulo}
                     </p>
@@ -358,7 +363,7 @@ export const SesionesPage = () => {
                     </p>
                   </Box>
                   <Box className={classes.container_pieza}>
-                    <img src={sesion3MitosYLeyendas} className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Las mil y una noches: un acercamiento al infinito"/>
+                    <img src='https://drive.google.com/uc?export=view&id=1-jYx0SCeAPH1r5njD6zgE_4RU1eej3SN' className={classes.imagen_sesion} onClick={() => alert('Gonorrea ome gonorrea')} style={{ cursor: 'pointer'}} alt="Sesión Las mil y una noches: un acercamiento al infinito"/>
                     <p onClick={() => alert('Gonorrea ome gonorrea')} className={classes.titulo_sesion}>
                       {sesiones[5].titulo}
                     </p>

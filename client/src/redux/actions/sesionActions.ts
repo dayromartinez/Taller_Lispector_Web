@@ -1,16 +1,7 @@
 import { loading, success, failure } from "./userActions";
 export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/sesions';
+import { sesionData } from "../../interfaces/sesionData";
 
-export type sesionData = {
-    titulo: string,
-    descripcion: string,
-    fecha: string,
-    hora: string,
-    direccionSesion: string,
-    gestores: string,
-    ciclo: string,
-    imagenSesion: string
-}
 
 export const getAllSesions = () => {
     return async dispatch => {
@@ -18,7 +9,7 @@ export const getAllSesions = () => {
         try {
             const sesions = await fetch(`${URL_BASE}/`)
             const data = await sesions.json()
-            dispatch(success({ sesiones: data.sesiones.reverse(), redirect: null}))
+            dispatch(success({ sesiones: data.sesiones, redirect: null}))
         } catch (error) {
             dispatch(failure())
         }
@@ -31,7 +22,7 @@ export const getSesionesCiclo = (ciclo : string) => {
         try {
             const sesions = await fetch(`${URL_BASE}/ciclo/${ciclo}`)
             const data = await sesions.json()
-            dispatch(success({ sesionesCiclo: data.sesionesCiclo.reverse(), redirect: null}))
+            dispatch(success({ sesionesCiclo: data.sesionesCiclo, redirect: null}))
         } catch (error) {
             dispatch(failure())
         }

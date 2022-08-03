@@ -1,14 +1,7 @@
 export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/comments';
 import { loading, success, failure, getUser } from "./userActions";
 import { getPublication, getAllPublications } from "./publicationActions";
-
-export type publicacionData = {
-    userId: string,
-    publicacionId: string,
-    comentarioId?: string,
-    comentario: string,
-    valoracion: Number,
-}
+import { commentData } from "../../interfaces/commentData";
 
 export const getAllCommentsByPublication = (publicationId : string) => {
     return async dispatch => {
@@ -36,7 +29,7 @@ export const getAllCommentsByUser = (userId : string) => {
     }
 };
 
-export function createComment(datosPublicacion : publicacionData) {
+export function createComment(datosPublicacion : commentData) {
     return async dispatch => {
 
         dispatch(loading())

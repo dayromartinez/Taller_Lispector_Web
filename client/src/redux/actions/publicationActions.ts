@@ -1,17 +1,6 @@
 export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/publications';
 import { loading, success, failure, getUser } from "./userActions";
-
-export type publicacionData = {
-    nombre: string, 
-    descripcion: string,
-    numeroPaginas: string, 
-    anoLanzamiento: string,
-    autores: Array<string>,
-    urlDocumento: string,
-    generos: Array<string>,
-    comentarios: Array<Object>,
-    codigosPublicacion: Array<Object>,
-}
+import { publicacionData } from "../../interfaces/publicacionData";
 
 export const getAllPublications = () => {
     return async dispatch => {
@@ -19,7 +8,7 @@ export const getAllPublications = () => {
         try {
             const publications = await fetch(`${URL_BASE}/getAll`)
             const data = await publications.json()
-            dispatch(success({ publicaciones: data.publicaciones.reverse(), redirect: null}))
+            dispatch(success({ publicaciones: data.publicaciones, redirect: null}))
         } catch (error) {
             dispatch(failure())
         }

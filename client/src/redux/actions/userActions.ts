@@ -4,13 +4,8 @@ export const LOADING : string = 'LOADING';
 export const LOADED_SUCCESS : string = 'LOADED_SUCCESS';
 export const LOADED_FAILURE : string = 'LOADED_FAILURE';
 export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/auth';
+import { userData } from "../../interfaces/userData";
 
-export type usuarioData = {
-    nombre: string, 
-    correo: string,
-    contrasena: string, 
-    celular: string,
-}
 
 export const logout = () => ({
     type: LOGOUT
@@ -67,7 +62,7 @@ export const login = (correo : string, contrasena: string) => {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], comments: data['comments'], colorProfile: data['colorProfile'], }, redirect: ``}));
+            dispatch(success({usuario: data, redirect: ``}));
 
         } catch (error) {
             console.log(error.message);
@@ -109,7 +104,7 @@ export const getUser = (id : string) => {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], comments: data['comments'], colorProfile: data['colorProfile'] }, redirect: ``}));
+            dispatch(success({usuario: data, redirect: ``}));
 
         } catch (error) {
             console.log(error.message);
@@ -118,20 +113,7 @@ export const getUser = (id : string) => {
     }
 };
 
-export const getAllUsers = () => {
-    return async dispatch => {
-        dispatch(loading())
-        try {
-            const auth = await fetch(`${URL_BASE}/getAllUsers`)
-            const data = await auth.json()
-            dispatch(success({ usuarios: data, redirect: null}))
-        } catch (error) {
-            dispatch(failure())
-        }
-    }
-};
-
-export function createUser(datosUsuario : usuarioData) {
+export function createUser(datosUsuario : userData) {
     return async dispatch => {
 
         dispatch(loading())
@@ -173,7 +155,7 @@ export function createUser(datosUsuario : usuarioData) {
             });
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], comments: data['comments'], colorProfile: data['colorProfile'] }, redirect: `/`}));
+            dispatch(success({usuario: data, redirect: `/`}));
 
         } catch (error) {
             console.log(error.message);
@@ -186,7 +168,6 @@ export function validateToken () {
     return async (dispatch) => {
 
         dispatch(loading())
-        console.log('DESPUES DEL RETURN')
 
         try {
             const token = localStorage.getItem('tokenUser')
@@ -199,7 +180,7 @@ export function validateToken () {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: { uid: data['uid'], name: data['name'], role: data['role'], email: data['email'], postalPublicationCode: data['postalPublicationCode'], comments: data['comments'], colorProfile: data['colorProfile'] }, redirect: ``}));
+            dispatch(success({usuario: data, redirect: ``}));
 
         } catch (error) {
             console.log(error.message);
@@ -251,7 +232,7 @@ export function deleteUser(id: string) {
                     }
                 }
             )
-            dispatch(success({redirect: `/`}));
+            dispatch(success({redirect: ``}));
         } catch (error) {
             dispatch(failure())
         }
