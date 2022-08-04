@@ -5,6 +5,7 @@ import { AdminLayout } from './AdminLayout';
 import { PublicLayout } from './PublicLayout';
 import { getAllPublications } from '../redux/actions/publicationActions';
 import { getAllSesions } from '../redux/actions/sesionActions';
+import { getAllCicles } from '../redux/actions/ciclesActions';
 
 export const AuthLayout = ({ children }) => {
 
@@ -23,6 +24,7 @@ export const AuthLayout = ({ children }) => {
     onExistAdmin();
     dispatch(getAllPublications());
     dispatch(getAllSesions());
+    dispatch(getAllCicles());
 
   }, [user])
   

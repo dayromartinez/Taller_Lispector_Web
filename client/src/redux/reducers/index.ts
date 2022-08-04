@@ -6,6 +6,7 @@ import { LOGIN, LOGOUT, LOADING, LOADED_SUCCESS, LOADED_FAILURE } from '../actio
 import { publicacionData } from '../../interfaces/publicacionData';
 import { sesionData } from '../../interfaces/sesionData';
 import { commentData } from '../../interfaces/commentData';
+import { ciclesData } from '../../interfaces/ciclesData';
 
 export type dataState = {
     loading: boolean,
@@ -17,6 +18,8 @@ export type dataState = {
     publicacion: publicacionData,
     comentarios: Array<commentData>,
     comentario: commentData,
+    ciclos: Array<ciclesData>,
+    ciclo: ciclesData,
     sesiones: Array<sesionData>,
     sesionesCiclo: Array<sesionData>,
     sesion: sesionData,
@@ -35,6 +38,8 @@ export const initialState : dataState = {
     publicacion: {},
     comentarios: [],
     comentario: {},
+    ciclos: [],
+    ciclo: {},
     sesiones: [],
     sesionesCiclo: [],
     sesion: {},

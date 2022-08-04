@@ -3,31 +3,31 @@ import { loading, success, failure, getUser } from "./userActions";
 import { getPublication, getAllPublications } from "./publicationActions";
 import { commentData } from "../../interfaces/commentData";
 
-export const getAllCommentsByPublication = (publicationId : string) => {
-    return async dispatch => {
-        dispatch(loading())
-        try {
-            const comments = await fetch(`${URL_BASE}/getAllCommentsOfPublication/${publicationId}`)
-            const data = await comments.json()
-            dispatch(success({ comentarios: data, redirect: null}))
-        } catch (error) {
-            dispatch(failure())
-        }
-    }
-};
+// export const getAllCommentsByPublication = (publicationId : string) => {
+//     return async dispatch => {
+//         dispatch(loading())
+//         try {
+//             const comments = await fetch(`${URL_BASE}/getAllCommentsOfPublication/${publicationId}`)
+//             const data = await comments.json()
+//             dispatch(success({ comentarios: data, redirect: null}))
+//         } catch (error) {
+//             dispatch(failure())
+//         }
+//     }
+// };
 
-export const getAllCommentsByUser = (userId : string) => {
-    return async dispatch => {
-        dispatch(loading())
-        try {
-            const comments = await fetch(`${URL_BASE}/getAllCommentsByUser/${userId}`)
-            const data = await comments.json()
-            dispatch(success({ comentarios: data, redirect: null}))
-        } catch (error) {
-            dispatch(failure())
-        }
-    }
-};
+// export const getAllCommentsByUser = (userId : string) => {
+//     return async dispatch => {
+//         dispatch(loading())
+//         try {
+//             const comments = await fetch(`${URL_BASE}/getAllCommentsByUser/${userId}`)
+//             const data = await comments.json()
+//             dispatch(success({ comentarios: data, redirect: null}))
+//         } catch (error) {
+//             dispatch(failure())
+//         }
+//     }
+// };
 
 export function createComment(datosPublicacion : commentData) {
     return async dispatch => {
@@ -55,8 +55,6 @@ export function createComment(datosPublicacion : commentData) {
             const data = await response.json();
             if(data['commentCreated'] !== undefined){
                 console.log("Se ha hecho bien la creación del comentario")
-                dispatch(getUser(datosPublicacion.userId));
-                dispatch(getAllPublications());
                 dispatch(getPublication(datosPublicacion.publicacionId));
                 dispatch(success({ comentario: data.commentCreated, redirect: ``}));
                 console.log('Funcionó bien esta mondá de crear comentarios');
@@ -97,8 +95,6 @@ export function updateComment(userId: string, publicacionId : string, comentario
             const data = await response.json();
             if(data['commentUpdated'] !== undefined){
                 console.log("Se ha hecho bien la actualización del comentario")
-                dispatch(getUser(userId));
-                dispatch(getAllPublications());
                 dispatch(getPublication(publicacionId));
                 dispatch(success({comentario: actualizarComentario, redirect: ``}));
                 console.log('Funcionó bien esta mondá de actualizar comentarios');
@@ -130,8 +126,6 @@ export function deleteComment(id: string, userId : string, publicacionId : strin
             const data = await response.json();
             if(data === "Comentario eliminado"){
                 console.log("Se ha hecho bien la eliminación del comentario")
-                dispatch(getUser(userId));
-                dispatch(getAllPublications());
                 dispatch(getPublication(publicacionId));
                 dispatch(success({redirect: ``}));
                 console.log('Funcionó bien esta mondá de eliminar comentarios');

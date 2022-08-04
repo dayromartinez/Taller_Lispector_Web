@@ -5,6 +5,6 @@ export type sesionData = {
     hora?: string,
     direccionSesion?: string,
     gestores?: string,
-    ciclo?: string,
+    cicloId?: string,
     imagenSesion?: string
 }

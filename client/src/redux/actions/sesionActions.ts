@@ -1,6 +1,7 @@
 import { loading, success, failure } from "./userActions";
 export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/sesions';
 import { sesionData } from "../../interfaces/sesionData";
+import { getAllCicles } from "./ciclesActions";
 
 
 export const getAllSesions = () => {
@@ -53,7 +54,7 @@ export function createSesion(datosSesion : sesionData) {
             hora: datosSesion.hora,
             direccionSesion: datosSesion.direccionSesion,
             gestores: datosSesion.gestores,
-            ciclo: datosSesion.ciclo,
+            cicloId: datosSesion.cicloId,
             imagenSesion: ""
         }
 
@@ -72,7 +73,7 @@ export function createSesion(datosSesion : sesionData) {
             const data = await response.json();
             if(data['sesion'] !== undefined){
                 dispatch(getAllSesions());
-                dispatch(getSesionesCiclo(datosSesion.ciclo));
+                dispatch(getAllCicles());
                 dispatch(success({ sesion: data, redirect: ``}));
             }else{
                 console.log('No se ha podido crear la sesión');
@@ -86,7 +87,7 @@ export function createSesion(datosSesion : sesionData) {
     }
 }
 
-export function updateSesion(id: string, titulo : string, descripcion : string, fecha : string, hora : string, direccionSesion : string, gestores : string, ciclo : string, imagenSesion : string) {
+export function updateSesion(id: string, titulo : string, descripcion : string, fecha : string, hora : string, direccionSesion : string, gestores : string, cicloId : string, imagenSesion : string) {
     return async dispatch => {
         dispatch(loading())
         const actualizarSesion = {
@@ -97,7 +98,7 @@ export function updateSesion(id: string, titulo : string, descripcion : string, 
             hora: hora,
             direccionSesion: direccionSesion,
             gestores: gestores,
-            ciclo: ciclo,
+            cicloId: cicloId,
             imagenSesion: imagenSesion
         }
         try {
@@ -115,7 +116,7 @@ export function updateSesion(id: string, titulo : string, descripcion : string, 
             const data = await response.json();
             if(data['sesionActualizada'] !== undefined){
                 dispatch(getAllSesions());
-                dispatch(getSesionesCiclo(ciclo));
+                dispatch(getAllCicles());
                 dispatch(success({ sesion: data, redirect: ``}));
             }else{
                 console.log('No se ha podido actualizar la sesión');
@@ -146,6 +147,7 @@ export function deleteSesion(id: string) {
             if(data === "La sesión ha sido eliminada"){
                 console.log("Se ha hecho bien la eliminación de la sesión")
                 dispatch(getAllSesions());
+                dispatch(getAllCicles());
                 dispatch(success({redirect: ``}));
                 console.log('Funcionó bien esta mondá de eliminar sesiones');
             } else {

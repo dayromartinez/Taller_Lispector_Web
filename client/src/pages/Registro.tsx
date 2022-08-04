@@ -55,6 +55,7 @@ export const Registro = () => {
         celular: string;
         correo: string;
         contrasena: string;
+        verificar: string;
     }
 
     const {
@@ -68,6 +69,11 @@ export const Registro = () => {
         mode: 'onChange',
         reValidateMode: 'onChange',
     })
+
+    const isPasswordConfirm = (value: string) => 
+        getValues('contrasena') === value || 'Las contraseñas no coinciden.'
+    
+    
 
     const onSubmit = async (data: FormData) => {
         
@@ -113,7 +119,7 @@ export const Registro = () => {
             setValue('celular', '');
             setValue('correo', '');
             setValue('contrasena', '');
-            setValue('nombres', '');
+            setValue('verificar', '');
             //captcha.current.reset();
         }
 
@@ -125,9 +131,9 @@ export const Registro = () => {
 
     return (
         <AuthLayout>
-            <div className='bg-gray-100 pt-24'>
+            <div className='bg-gray-100 pt-10'>
                 <div className="flex w-full mx-auto">
-                    {sizeScreen < 900 ? (null) : sizeScreen < 1536 ? (<img src={clarice} width='70%'/>) : (<img src={clarice} width='80%'/>)}
+                    {sizeScreen < 900 ? (null) : sizeScreen < 1536 ? (<img src={clarice} width='70%' style={{marginTop: '3rem'}}/>) : (<img src={clarice} width='80%' style={{marginTop: '4rem'}}/>)}
                     <Snackbar open={open} anchorOrigin={{vertical: 'top', horizontal: 'right'}} autoHideDuration={4000} onClose={handleClose} >
                         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
                             Ya hay una cuenta registrada con este correo. Inténtelo de nuevo
@@ -232,6 +238,30 @@ export const Registro = () => {
                                 {errors.contrasena ? (<span className="text-red-500 text-xs">{errors.contrasena.message}</span>) : ""}
                             </label>
                         </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="verificar">
+                                Confirmar Contraseña <span className='text-red-500'>*</span>
+                            </label>
+                            <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="verificar" type="password" placeholder="***********" 
+                            {...register('verificar', {
+                                setValueAs: (value: string) => value.trim(),
+                                required: {
+                                    value: true,
+                                    message: 'Este campo es requerido.',
+                                },
+                                minLength: {
+                                    value: 8,
+                                    message: 'Debe de tener un mínimo de 8 caracteres.',
+                                },
+                                validate: {
+                                    isPasswordConfirm,
+                                },
+                            })}
+                            />
+                            <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="verificar">
+                                {errors.verificar ? (<span className="text-red-500 text-xs">{errors.verificar.message}</span>) : ""}
+                            </label>
+                        </div>
                         <div className="items-center pt-4 pb-4 flex flex-col">
                             <ReCAPTCHA
                                 className="mb-8"
@@ -239,7 +269,7 @@ export const Registro = () => {
                                 sitekey={siteKey || localStorage.getItem("siteKey")}
                                 onChange={onChangeRecapcha}
                             />
-                            <button className={isValid && isNotRobot ? ("bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer") 
+                            <button className={ isValid && isNotRobot ? ("bg-teal-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer") 
                             : "bg-slate-500 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" } type="submit" disabled={!isValid || !isNotRobot} >
                                 Registrarse
                             </button>

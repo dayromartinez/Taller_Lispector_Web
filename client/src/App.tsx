@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import { InicioPage } from './pages/Inicio';
 import { Route, Routes } from 'react-router-dom'
@@ -7,9 +5,6 @@ import { SesionesPage } from './pages/Sesiones'
 import { PublicacionesPage } from './pages/Publicaciones'
 import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
-import { URL_BASE } from './redux/actions/userActions';
-import { PublicLayout } from './layouts/PublicLayout';
-import { PrivateInicio } from './pages/PrivateInicio';
 
 
 function App() {
@@ -24,7 +19,6 @@ function App() {
         <Route path='/publicaciones' element={<PublicacionesPage />}/>
         <Route path='/inicio_sesion' element={<Login />}/>
         <Route path='/registrarse' element={<Registro />}/>
-        <Route path='/test' element={<PrivateInicio />}/>
       </Routes>
     </div>
   )

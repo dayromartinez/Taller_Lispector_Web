@@ -5,15 +5,14 @@ import { login } from '../redux/actions/userActions';
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { dataState } from '../redux/reducers'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 /** recaptcha */
 import ReCAPTCHA from 'react-google-recaptcha'
-import { PublicLayout } from '../layouts/PublicLayout';
 import { Loading } from '../components/Loading';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { Alert, Snackbar } from '@mui/material';
-import { coloresPaleta } from './Publicaciones';
+
+
 /* Claves de sitio de google de PRUEBA:
 Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 Secret key: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
