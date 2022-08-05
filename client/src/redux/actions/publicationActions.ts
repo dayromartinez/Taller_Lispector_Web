@@ -21,7 +21,7 @@ export const getPublication = (id : string) => {
         try {
             const publication = await fetch(`${URL_BASE}/${id}`)
             const data = await publication.json()
-            dispatch(success({ publicacion: data, redirect: null}))
+            dispatch(success({ publicacion: data.publicacion, redirect: null}))
         } catch (error) {
             dispatch(failure())
         }

@@ -6,8 +6,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { dataState } from '../redux/reducers/index';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useStyles } from '../styles/stylesPagePublicaciones';
+import { getPublication } from '../redux/actions/publicationActions';
+import { Markup } from 'interweave';
 
 // Import Swiper styles
 import "swiper/css";
@@ -22,11 +24,17 @@ export const PublicacionesPage = () => {
   const navigate = useNavigate();
   const [sizeScreen, setSizeScreen] = useState(window.innerWidth);
   const publicaciones = useSelector( ({publicaciones} : dataState) => publicaciones);
+  const publicacion = useSelector( ({publicacion} : dataState) => publicacion);
+  const dispatch = useDispatch();
+  //const stringToHTML = publicacion?.contenido[6]?.texto
 
 
   useEffect(() => {
     setSizeScreen(window.innerWidth);
-  }, []);
+    if(publicaciones){
+      dispatch(getPublication(publicaciones[0]['_id']));
+    }
+  }, [publicacion]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -66,6 +74,9 @@ export const PublicacionesPage = () => {
         <Box className={classes.container_general}>
           <Box className={classes.container_titulo_publicaciones}>
             Nuestras Publicaciones
+          </Box>
+          <Box>
+            <Markup content={null} />
           </Box>
           <Box>
             <Box className={classes.tituloPostales}>

@@ -21,6 +21,9 @@ import lecturasNoAplicadas1 from '../images/Lecturas_no_aplicadas_1.jpeg'
 import lecturasNoAplicadas2 from '../images/Lecturas_no_aplicadas_2.jpeg'
 import selloLispector from '../images/Sello_Lispector.jpg';
 import { useStyles } from '../styles/stylesPageInicio';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPublication } from '../redux/actions/publicationActions';
+import { dataState } from '../redux/reducers';
 
 const publications: publicacionData[] = [
     {
@@ -58,6 +61,9 @@ export const InicioPage = () => {
     const [open, setOpen] = React.useState(false);
     const [indexSlide, setIndexSlide] = useState(0);
     const navigate = useNavigate();
+    const publicacion = useSelector( ({publicacion} : dataState) => publicacion);
+    const publicaciones = useSelector( ({publicaciones} : dataState) => publicaciones);
+    const dispatch = useDispatch();
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         setOpen(false);
@@ -108,6 +114,7 @@ export const InicioPage = () => {
 
     useEffect(() => {
         openAlert();
+        dispatch(getPublication(publicaciones[0]?._id));
     })
 
     return (
@@ -118,7 +125,6 @@ export const InicioPage = () => {
                 </Alert>
             </Snackbar>
             <Box>
-                
                 <div className='bg-container-home'>
 
                     <Box className='first-container-home'>
@@ -127,7 +133,6 @@ export const InicioPage = () => {
                             <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}> es tratar de reproducir lo irreproducible".</Typography>
                             <Typography variant='h3' sx={{color: '#9FD5D1', fontWeight: 700}}>Clarice Lispector</Typography>
                         </Box>
-
                         <Box className='card-slider'>
                             <Link to='/sesiones'>
                               <Swiper 
