@@ -1,4 +1,5 @@
 export type publicacionData = {
+    _id?: string;
     nombre?: string, 
     descripcion?: string,
     numeroPaginas?: string, 

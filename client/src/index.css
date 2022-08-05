@@ -94,6 +94,10 @@
         padding: 10% 60px;
     }
 
+    .texts-first-container {
+        margin-top: 30px;
+    }
+
     .mySwiper {
         width: 250px;
         height: 295px;
@@ -152,6 +156,15 @@
         padding: 100px 40px 38px 40px;
         width: 85%;
     }
+
+    .first-container-home-mobile {
+        display: block;
+    }
+
+    .first-container-home {
+        display: none;
+    } 
+
 
 }
 
@@ -241,6 +254,10 @@
     .fourth-phrase-home {
         padding: 250px 70px;
         width: 80%;
+    }
+
+    .first-container-home-mobile {
+        display: none;
     }
 
 }

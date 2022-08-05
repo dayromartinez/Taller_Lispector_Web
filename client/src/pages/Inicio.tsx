@@ -6,13 +6,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import lasMilYUnaNoche from '../images/Las-mil-y-una-noche.jpeg';
-import cicloDeCienciaFiccion from '../images/ciclo-de-ciencia-ficcion.jpeg';
-import stanislawLew from '../images/stanislaw-lem.jpeg';
 import primeraFoto from '../images/primera-foto.jpeg';
 import segundaFoto from '../images/segunda-foto.jpeg';
 import terceraFoto from '../images/tercera-imagen.jpeg';
-import { publicacionData } from '../interfaces/publicacionData';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import colombiaADosMiradas from '../images/Colombia_a_dos_miradas.png'
@@ -22,37 +18,7 @@ import lecturasNoAplicadas2 from '../images/Lecturas_no_aplicadas_2.jpeg'
 import selloLispector from '../images/Sello_Lispector.jpg';
 import { useStyles } from '../styles/stylesPageInicio';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPublication } from '../redux/actions/publicationActions';
 import { dataState } from '../redux/reducers';
-
-const publications: publicacionData[] = [
-    {
-      nombre: 'Postales Abiertas',
-      descripcion: "Con el objetivo de encontrar un lugar en el mundo del cual podamos sentirnos parte, con la esperanza de que nuestra voz no sea ese murmullo que apaga el viento y determinados a ser ese fulgor que alumbra así sea por un instante la llana oscuridad de la noche, nacen estas postales, acaso un intento de resistencia a una época, una sociedad, que amenaza con borrar toda huella del individuo.",
-    },
-    {
-      nombre: 'Ecos de Resistencia',
-      descripcion: "Esta publicación nace en un momento de gran tensión en el país. Caldeaba en Colombia un malestar nada nuevo en el 2021, algunos lo atribuían a la precariedad consecuencia de la pandemia, pero aquella raíz estaba arraigada de manera más profunda; al interior de cada uno de nosotros existía (existe) un deseo de cambio en las bases de un país acostumbrado a la violencia. Y nosotros, igual a quijotes que preparan sus armas, afilamos nuestras plumas como posición política ante una sociedad violenta y acorralada."
-    },
-    {
-      nombre: 'Colombia a dos Miradas',
-      descripcion: "Este era un lugar en blanco, un espacio que necesitaba ser colmado de vida como las calles de Colombia el 21 de noviembre de 2019. Las consignas que aún claman «¡Viva el Paro Nacional!» Son la razón primordial para hablar de una Colombia donde existen más de dos miradas, partiendo desde la nefasta gestión presidencial hasta el asesinato sistemático de líderes sociales en los territorios. A continuación, usted podrá descubrir una selección de relatos, poemas y piezas gráficas que aún convocan al gobierno a un diálogo nacional sin violencia, abusos, que incluya a todos los sectores sociales y la esperanza que nos han arrebatado."
-    },
-    {
-      nombre: 'Lecturas no aplicadas I',
-      descripcion: "Esta publicación nace en un momento de gran tensión en el país. Caldeaba en Colombia un malestar nada nuevo en el 2021, algunos lo atribuían a la precariedad consecuencia de la pandemia, pero aquella raíz estaba arraigada de manera más profunda; al interior de cada uno de nosotros existía (existe) un deseo de cambio en las bases de un país acostumbrado a la violencia. Y nosotros, igual a quijotes que preparan sus armas, afilamos nuestras plumas como posición política ante una sociedad violenta y acorralada."
-    },
-    {
-      nombre: 'Lecturas no aplicadas II',
-      descripcion: "Esta publicación nace en un momento de gran tensión en el país. Caldeaba en Colombia un malestar nada nuevo en el 2021, algunos lo atribuían a la precariedad consecuencia de la pandemia, pero aquella raíz estaba arraigada de manera más profunda; al interior de cada uno de nosotros existía (existe) un deseo de cambio en las bases de un país acostumbrado a la violencia. Y nosotros, igual a quijotes que preparan sus armas, afilamos nuestras plumas como posición política ante una sociedad violenta y acorralada."
-    },
-    {
-      nombre: 'Postales Abiertas',
-      descripcion: "Con el objetivo de encontrar un lugar en el mundo del cual podamos sentirnos parte, con la esperanza de que nuestra voz no sea ese murmullo que apaga el viento y determinados a ser ese fulgor que alumbra así sea por un instante la llana oscuridad de la noche, nacen estas postales, acaso un intento de resistencia a una época, una sociedad, que amenaza con borrar toda huella del individuo."
-    },
-];
-
-
 
 
 export const InicioPage = () => {
@@ -61,9 +27,8 @@ export const InicioPage = () => {
     const [open, setOpen] = React.useState(false);
     const [indexSlide, setIndexSlide] = useState(0);
     const navigate = useNavigate();
-    const publicacion = useSelector( ({publicacion} : dataState) => publicacion);
     const publicaciones = useSelector( ({publicaciones} : dataState) => publicaciones);
-    const dispatch = useDispatch();
+    const ciclos = useSelector(({ciclos} : dataState) => ciclos);
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         setOpen(false);
@@ -114,8 +79,9 @@ export const InicioPage = () => {
 
     useEffect(() => {
         openAlert();
-        dispatch(getPublication(publicaciones[0]?._id));
-    })
+        //dispatch(getPublication(publicaciones[0]?._id));
+    }, [])
+
 
     return (
         <AuthLayout>
@@ -127,6 +93,7 @@ export const InicioPage = () => {
             <Box>
                 <div className='bg-container-home'>
 
+                    {/* THIS IS ONLY TABLETS - DESKTOP */}
                     <Box className='first-container-home'>
                         <Box className='texts-first-container'>
                             <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}>"Escribir es tratar de entender,</Typography>
@@ -150,12 +117,50 @@ export const InicioPage = () => {
                                   modules={[Autoplay, Pagination, Navigation]}
                                   onActiveIndexChange={(swiper) => setIndexSlide(swiper.activeIndex)}
                               >
-                                  <SwiperSlide><img src={lasMilYUnaNoche} alt='Imagen de las mil y una noche.' /></SwiperSlide>
-                                  <SwiperSlide><img src={cicloDeCienciaFiccion} alt='Imagen de ciclo de ciencia ficción.' /></SwiperSlide>
-                                  <SwiperSlide><img src={stanislawLew} alt='Imagen de ciclo de stanislaw lem.' /></SwiperSlide>
+                                {
+                                    ciclos[0]?.sesiones?.map(sesion => (
+                                        <SwiperSlide key={sesion?._id}><img src={sesion?.imagenSesion} alt='Imagen del carrusel.' /></SwiperSlide>
+                                    ))
+                                }
                               </Swiper>
                               <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Proximas Sesiones</Typography>
                             </Link>
+                        </Box>                 
+                    </Box>
+
+
+                    {/* THIS IS ONLY MOBILE */}
+                    <Box className='first-container-home-mobile'>
+                        <Box className='card-slider'>
+                            <Link to='/sesiones'>
+                              <Swiper 
+                                  className="mySwiper" 
+                                  spaceBetween={100}
+                                  centeredSlides={true}
+                                  autoplay={{
+                                      delay: 30000,
+                                      disableOnInteraction: false,
+                                  }}
+                                  pagination={{
+                                      clickable: true,
+                                  }}
+                                  navigation={true}
+                                  modules={[Autoplay, Pagination, Navigation]}
+                                  onActiveIndexChange={(swiper) => setIndexSlide(swiper.activeIndex)}
+                              >
+                                {
+                                    ciclos[0]?.sesiones?.map(sesion => (
+                                        <SwiperSlide key={sesion?._id}><img src={sesion?.imagenSesion} alt='Imagen del carrusel.' /></SwiperSlide>
+                                    ))
+                                }
+                              </Swiper>
+                              <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Proximas Sesiones</Typography>
+                            </Link>
+                        </Box>
+                        <Box className='texts-first-container'>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}>"Escribir es tratar de entender,</Typography>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}> es tratar de reproducir lo irreproducible".</Typography>
+                            <Typography variant='h3' sx={{color: '#9FD5D1', fontWeight: 700, fontSize: 35, marginTop: 2}}>Clarice Lispector</Typography>
                         </Box>
                     </Box>
 
@@ -163,7 +168,7 @@ export const InicioPage = () => {
 
                 <Box className='segundo-container-home'>
                     <Typography variant='h2' sx={{fontWeight: 700, textAlign: 'center', color: '#F6EEE9'}}>¿Quiénes somos?</Typography>
-                    <Typography color='#F6EEE9' sx={{ fontSize: 22, textAlign: 'justify'}}>Somos un proyecto cultural de lectores y escritores emergentes que encontraron un punto de convergencia en su pasión por la literatura y decidieron conjugar sus saberes para construir un espacio de creación literaria alternativo, plural y comunitario, donde la palabra sea una vorágine de historias que resignifiquen nuestro cohabitar y devenir en el mundo.</Typography>
+                    <Typography color='#F6EEE9' sx={{ fontSize: 22, textAlign: 'justify', marginTop: 3}}>Somos un proyecto cultural de lectores y escritores emergentes que encontraron un punto de convergencia en su pasión por la literatura y decidieron conjugar sus saberes para construir un espacio de creación literaria alternativo, plural y comunitario, donde la palabra sea una vorágine de historias que resignifiquen nuestro cohabitar y devenir en el mundo.</Typography>
                 </Box>
 
                 <Box className='third-container-home'>
@@ -190,13 +195,13 @@ export const InicioPage = () => {
                     </Box>
 
                     <Box>
-                        <Typography variant='h3' sx={{color: '#4D4D4D', fontWeight: 700, textAlign: 'center', marginTop: 3}} className='third-title'>Hemos participado</Typography>
-                        <Typography color='#4D4D4D' sx={{ fontSize: 22, textAlign: 'justify'}}>A lo largo de 3 años en diversas activi- dades culturales, literarias y comuni- tarias, como lo son la FILBO (2019 y 2022), Lectura Bajo los Árboles (2019), así como la Feria Local de las Artes de Suba (2021), El primer Festival del Aguante y Festibaguya (2021). En el transcurso del 2022 participamos en un Picnic Literario en el Jardín Botánico de Bogotá.</Typography>
+                        <Typography variant='h3' sx={{color: '#4D4D4D', fontWeight: 700, textAlign: 'center', marginTop: 4}} className='third-title'>Hemos participado</Typography>
+                        <Typography color='#4D4D4D' sx={{ fontSize: 22, textAlign: 'justify', marginTop: 2}}>A lo largo de 3 años en diversas activi- dades culturales, literarias y comuni- tarias, como lo son la FILBO (2019 y 2022), Lectura Bajo los Árboles (2019), así como la Feria Local de las Artes de Suba (2021), El primer Festival del Aguante y Festibaguya (2021). En el transcurso del 2022 participamos en un Picnic Literario en el Jardín Botánico de Bogotá.</Typography>
                     </Box>
                 </Box>
 
                 <Box className='fourth-container-home'>
-                    <Typography color='#9FD5D1' sx={{fontSize: 22,}} className='fourth-phrase-home'>“No quiero tener la terrible limitación de quien vive sólo
+                    <Typography color='#9FD5D1' sx={{fontSize: 22, fontWeight: 'bold'}} className='fourth-phrase-home'>“No quiero tener la terrible limitación de quien vive sólo
                     de lo que puede tener un sentido.
                     Yo no:
                     lo que quiero es una verdad inventada”.</Typography>
@@ -218,7 +223,35 @@ export const InicioPage = () => {
                         className='mySwiper'
                         onActiveIndexChange={(swiper) => setIndexSlide(swiper.activeIndex)}
                     >
-                        <SwiperSlide className={classes.imagen_ecos_de_resistencia} onClick={() => navigate('/')}>
+                        {
+                            publicaciones.map((publicacion) => (
+                                publicacion?.nombre === 'Colombia a Dos Miradas' ? (
+                                  <SwiperSlide key={publicacion?.nombre}> 
+                                    <a href={publicacion?.urlDocumento} target='_blank'>
+                                      <img src={publicacion?.urlImagen} style={{marginTop: '2rem', cursor: 'pointer'}} alt="Colombia a dos miradas"/>
+                                    </a>
+                                  </SwiperSlide>
+                                )
+                                : publicacion?.nombre !== 'Postales' ? (
+                                  <SwiperSlide 
+                                    className={publicacion?.nombre === 'Ecos de Resistencia' ? (classes.imagen_ecos_de_resistencia):(classes.imagenes_lecturas_no_aplicadas)} 
+                                    onClick={() => navigate('/')}
+                                    key={publicacion?.nombre}
+                                  >
+                                    <img src={publicacion?.urlImagen} style={{cursor: 'pointer'}}/>
+                                  </SwiperSlide>
+                                ):(
+                                    <SwiperSlide 
+                                    className={classes.imagen_postal_slider} 
+                                    onClick={() => navigate('/publicaciones')}
+                                    key={publicacion?.nombre}
+                                    >
+                                        <img src={publicacion?.urlImagen} style={{cursor: 'pointer'}}/>
+                                    </SwiperSlide>
+                                )
+                            ))
+                        }
+                        {/* <SwiperSlide className={classes.imagen_ecos_de_resistencia} onClick={() => navigate('/')}>
                             <img src={ecosDeResistencia} style={{cursor: 'pointer'}} alt="Ecos de Resistencia"/>
                         </SwiperSlide>
                         <SwiperSlide> 
@@ -234,15 +267,15 @@ export const InicioPage = () => {
                         </SwiperSlide>
                         <SwiperSlide className={classes.imagenes_lecturas_no_aplicadas} onClick={() => navigate('/')}>
                             <img src={selloLispector} style={{cursor: 'pointer'}} alt="Sello Lispector"/>
-                        </SwiperSlide>
+                        </SwiperSlide> */}
                     </Swiper>
 
                     <Box className={classes.datos_publicacion}>
                         <p className={classes.titulo_publicacion} onClick={onSubmit}>
-                            {publications[indexSlide + 1].nombre}
+                            {publicaciones[indexSlide]?.nombre}
                         </p>
                         <p className={classes.descripcion_publicacion}>
-                            {publications[indexSlide + 1].descripcion}
+                            {publicaciones[indexSlide]?.descripcion}
                         </p>
                     </Box>
                 </Box>

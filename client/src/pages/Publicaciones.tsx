@@ -32,7 +32,7 @@ export const PublicacionesPage = () => {
   useEffect(() => {
     setSizeScreen(window.innerWidth);
     if(publicaciones){
-      dispatch(getPublication(publicaciones[0]['_id']));
+      //dispatch(getPublication(publicaciones[0]['_id']));
     }
   }, [publicacion]);
 
