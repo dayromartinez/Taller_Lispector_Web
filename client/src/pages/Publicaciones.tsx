@@ -80,12 +80,12 @@ export const PublicacionesPage = () => {
           </Box>
           <Box>
             <Box className={classes.tituloPostales}>
-              <NavLink to="/">
+              <NavLink to="/postales">
                 {publicaciones[0]?.nombre}
               </NavLink>
             </Box>
             <Box className={classes.postal_Lispector} >
-              <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" onClick={() => navigate('/')} style={{cursor: 'pointer'}} />
+              <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" onClick={() => navigate('/postales')} style={{cursor: 'pointer'}} />
             </Box>
             <Box className={classes.container_descripcion_postales}>
               <p className={classes.descripcion_postales}>
@@ -119,9 +119,9 @@ export const PublicacionesPage = () => {
                 )
                 : publicacion?.nombre !== 'Postales' ? (
                   <SwiperSlide 
-                  className={publicacion?.nombre === 'Ecos de Resistencia' ? (classes.imagen_ecos_de_resistencia):(classes.imagenes_lecturas_no_aplicadas)} 
-                  onClick={() => navigate('/')}
-                  key={publicacion?.nombre}
+                    className={publicacion?.nombre === 'Ecos de Resistencia' ? (classes.imagen_ecos_de_resistencia):(classes.imagenes_lecturas_no_aplicadas)} 
+                    onClick={() => navigate('/')}
+                    key={publicacion?.nombre}
                   >
                     <img src={publicacion?.urlImagen} style={{cursor: 'pointer'}}/>
                   </SwiperSlide>

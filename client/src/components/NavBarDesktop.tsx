@@ -35,8 +35,6 @@ const NavBarDesktop = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    console.log('EN EL NAVBAR DESKTOP: ', window.innerWidth)
-
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
         setOpenMenu(true)

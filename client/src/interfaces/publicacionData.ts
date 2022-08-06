@@ -10,4 +10,5 @@ export type publicacionData = {
     generos?: Array<string>,
     comentarios?: Array<Object>,
     codigosPublicacion?: Array<Object>,
+    contenido?: Array<Object>,
 }

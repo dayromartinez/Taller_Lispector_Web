@@ -11,11 +11,6 @@ import segundaFoto from '../images/segunda-foto.jpeg';
 import terceraFoto from '../images/tercera-imagen.jpeg';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import colombiaADosMiradas from '../images/Colombia_a_dos_miradas.png'
-import ecosDeResistencia from '../images/Ecos_de_resistencia_redimensionado.png'
-import lecturasNoAplicadas1 from '../images/Lecturas_no_aplicadas_1.jpeg'
-import lecturasNoAplicadas2 from '../images/Lecturas_no_aplicadas_2.jpeg'
-import selloLispector from '../images/Sello_Lispector.jpg';
 import { useStyles } from '../styles/stylesPageInicio';
 import { useDispatch, useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers';
@@ -48,7 +43,7 @@ export const InicioPage = () => {
         switch(indexSlide) {
     
           case (0):
-            navigate('/');
+            navigate('/postales');
             break;
     
           case (1):
@@ -243,7 +238,7 @@ export const InicioPage = () => {
                                 ):(
                                     <SwiperSlide 
                                     className={classes.imagen_postal_slider} 
-                                    onClick={() => navigate('/publicaciones')}
+                                    onClick={() => navigate('/postales')}
                                     key={publicacion?.nombre}
                                     >
                                         <img src={publicacion?.urlImagen} style={{cursor: 'pointer'}}/>
