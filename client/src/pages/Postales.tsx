@@ -96,19 +96,16 @@ export const PostalesPage = () => {
                         publicacion?.contenido?.map(postal => (
                             ( postal['nombre'] === 'El Galto' ) ? (
                                 <SwiperSlide 
-                                    className='' 
                                     key={postal['nombre']}
                                 >
-                                    {/* <img src={listImages?.[0]} style={{cursor: 'pointer'}}/> */}
-                                    <img src="https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH" alt="" />
+                                    <img className='imgs-carrusel' src="https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH" alt="" />
                                 </SwiperSlide>
                             ) : (
                                 <SwiperSlide 
-                                className='' 
-                                key={postal['nombre']}
-                            >
-                                <img src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
-                            </SwiperSlide>
+                                    key={postal['nombre']}
+                                >
+                                    <img className='imgs-carrusel' src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
+                                </SwiperSlide>
                             ) 
                         ))
                     }

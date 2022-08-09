@@ -23,6 +23,7 @@ import Typography from '@mui/material/Typography';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { datosAlerta } from '../interfaces/datosAlerta';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -56,15 +57,6 @@ const BootstrapDialogTitle = (props) => {
     </DialogTitle>
   );
 };
-
-interface datosAlerta {
-  title?: string, 
-  description?: string, 
-  date?: string, 
-  time?: string, 
-  address?: string,
-  imagen?: string,
-}
 
 export const SesionesPage = () => {
   
