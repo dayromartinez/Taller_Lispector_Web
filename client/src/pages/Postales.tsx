@@ -21,6 +21,8 @@ export const PostalesPage = () => {
     const publicaciones = useSelector(({publicaciones} : dataState) => publicaciones);
     const publicacion = useSelector( ({publicacion} : dataState) => publicacion);
     const dispatch = useDispatch();
+    //var listImages = [];
+    const [listImages, setListImages] = useState([]); 
 
     //console.log('publicacion', publicacion);
 
@@ -33,11 +35,13 @@ export const PostalesPage = () => {
 
     useEffect(() => {
         if(publicaciones.length > 0){
-            dispatch(getPublication(publicaciones[0]?._id))
+            dispatch(getPublication(publicaciones[0]?._id));
         }
 
         if(publicacion?.contenido?.length > 0 && textPostal === ''){
-            setTextPostal(publicacion.contenido[0]['texto'])
+            setTextPostal(publicacion.contenido[0]['texto']);
+            setListImages(publicacion?.contenido[7]['urlImagen'].split(' '));
+            console.log(listImages[0]);
         }
     }, [publicaciones, publicacion])
 
@@ -78,7 +82,7 @@ export const PostalesPage = () => {
                         spaceBetween={100}
                         centeredSlides={true}
                         autoplay={{
-                            delay: 30000,
+                            delay: 120000,
                             disableOnInteraction: false,
                         }}
                         pagination={{
@@ -90,12 +94,22 @@ export const PostalesPage = () => {
                     >
                     {
                         publicacion?.contenido?.map(postal => (
-                            <SwiperSlide 
+                            ( postal['nombre'] === 'El Galto' ) ? (
+                                <SwiperSlide 
+                                    className='' 
+                                    key={postal['nombre']}
+                                >
+                                    {/* <img src={listImages?.[0]} style={{cursor: 'pointer'}}/> */}
+                                    <img src="https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH" alt="" />
+                                </SwiperSlide>
+                            ) : (
+                                <SwiperSlide 
                                 className='' 
                                 key={postal['nombre']}
                             >
                                 <img src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
                             </SwiperSlide>
+                            ) 
                         ))
                     }
                     </Swiper>
@@ -103,10 +117,22 @@ export const PostalesPage = () => {
                         publicacion?.contenido?.length > 0 
                         ? (<Box className={classes.container_texto_postales}>
                             <Markup className={ classes.textos_postales } content={textPostal} />
+                            {
+                                ( indexSlide === 7 ) ? (
+                                    <Box className='grid-imgs-postales-galto'>
+                                        {
+                                            listImages.map(imagen => (
+                                                <img src={imagen} alt='Imagen del Galto' />
+                                            ))
+                                        }
+                                    </Box>
+                                ) : (
+                                    null
+                                )
+                            }
                         </Box>) 
                         : null
                     }
-                    
                 </Box>
             </Box>
             

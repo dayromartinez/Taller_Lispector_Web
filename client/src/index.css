@@ -81,6 +81,13 @@
     left: 50%;
 }
 
+.grid-imgs-postales-galto {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 1.5rem;
+}
+
 
 @media only screen and (max-width: 600px) {
 
