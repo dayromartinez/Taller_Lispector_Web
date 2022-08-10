@@ -129,7 +129,7 @@ export const useStylesPostales = makeStyles((theme) => ({
             color: coloresPaleta.aguaMarina
         },
         [theme.breakpoints.down('xs')]: {
-            fontSize: '1rem',
+            fontSize: '1.2rem',
         }
     },
 
@@ -140,7 +140,7 @@ export const useStylesPostales = makeStyles((theme) => ({
         fontSize: '1rem',
         marginTop: '0.3rem',
         [theme.breakpoints.down('xs')]: {
-            fontSize: '0.5rem',
+            fontSize: '0.8rem',
         }
     }
 
