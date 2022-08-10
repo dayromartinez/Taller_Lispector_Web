@@ -21,16 +21,21 @@ export const PostalesPage = () => {
     const publicaciones = useSelector(({publicaciones} : dataState) => publicaciones);
     const publicacion = useSelector( ({publicacion} : dataState) => publicacion);
     const dispatch = useDispatch();
-    //var listImages = [];
     const [listImages, setListImages] = useState([]); 
-
-    //console.log('publicacion', publicacion);
 
     const onChangeSlide = (swiper) => {
         setIndexSlide(swiper.activeIndex);
-        console.log('swiper active index', swiper.activeIndex)
         setTextPostal(publicacion?.contenido?.[swiper.activeIndex]['texto']);
         console.log('indexSlide', indexSlide)
+    }
+
+    const onClickImage = (index) => {
+        const swiper_postales = document.querySelector('#swiper_postales')['swiper'];
+        setIndexSlide(index);
+        swiper_postales.slideTo(index);
+        setTextPostal(publicacion?.contenido?.[index]['texto']);
+        document.getElementById('container_catalogo_postales').scrollIntoView();
+        console.log('index image', index)
     }
 
     useEffect(() => {
@@ -49,67 +54,58 @@ export const PostalesPage = () => {
         <AuthLayout>
             <Box className={classes.container_general}>
                 <Box className={classes.container_titulo_postales}>
-                    Postales Abiertas 📚
+                    El tiempo en que no nos vimos 📚
                 </Box>
-                {/* <Box className={ classes.first_container_postales }>
-                    <Typography variant='h4' fontWeight='bold' color={coloresPaleta.gris} textAlign='center'>Postales Abiertas</Typography>
-                    <img className={ classes.img_first_container } src={publicacion?.urlImagen} />
-                    <p className={ classes.description_first_container_postales }>
-                        {publicacion?.descripcion}
-                    </p>
-                </Box> */}
+                
                 <Box>
-                {/* <Box className={classes.tituloPostales}>
-                    {publicaciones[0]?.nombre}
-                </Box> */}
-                <Box className={classes.postal_Lispector} >
-                <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" />
+                    <Box className={classes.postal_Lispector} >
+                        <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" />
+                    </Box>
+                    <div id='container_catalogo_postales'>
+                        <Box className={classes.container_descripcion_postales}>
+                            <p className={classes.descripcion_postales}>
+                                {publicaciones[0]?.descripcion}
+                            </p>
+                        </Box>
+                    </div>
                 </Box>
-                <Box className={classes.container_descripcion_postales}>
-                <p className={classes.descripcion_postales}>
-                    {publicaciones[0]?.descripcion}
-                </p>
-                </Box>
-            </Box>
-                <Box bgcolor={coloresPaleta.aguaMarina} padding='50px 0'>
-                    {
-
-                    }
+                <Box bgcolor={coloresPaleta.aguaMarina} padding='50px 0' className='container_postales'>
                     <Box className={ classes.titulo_postales }>{ publicacion?.contenido?.[indexSlide]['nombre'] }</Box> {/*TODO: Revisar si es un objeto o arreglo.*/}
-                    <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por, { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>
-                    <Swiper 
-                        className="mySwiper" 
-                        spaceBetween={100}
-                        centeredSlides={true}
-                        autoplay={{
-                            delay: 120000,
-                            disableOnInteraction: false,
-                        }}
-                        pagination={{
-                            clickable: true,
-                        }}
-                        navigation={true}
-                        modules={[Autoplay, Pagination, Navigation]}
-                        onActiveIndexChange={(swiper) => onChangeSlide(swiper)}
-                    >
-                    {
-                        publicacion?.contenido?.map(postal => (
-                            ( postal['nombre'] === 'El Galto' ) ? (
-                                <SwiperSlide 
-                                    key={postal['nombre']}
-                                >
-                                    <img className='imgs-carrusel' src="https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH" alt="" />
-                                </SwiperSlide>
-                            ) : (
-                                <SwiperSlide 
-                                    key={postal['nombre']}
-                                >
-                                    <img className='imgs-carrusel' src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
-                                </SwiperSlide>
-                            ) 
-                        ))
-                    }
-                    </Swiper>
+                        <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por, { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>
+                        <Swiper 
+                            className="mySwiper" 
+                            spaceBetween={100}
+                            centeredSlides={true}
+                            autoplay={{
+                                delay: 120000,
+                                disableOnInteraction: false,
+                            }}
+                            pagination={{
+                                clickable: true,
+                            }}
+                            navigation={true}
+                            modules={[Autoplay, Pagination, Navigation]}
+                            onActiveIndexChange={(swiper) => onChangeSlide(swiper)}
+                            id='swiper_postales'
+                        >
+                        {
+                            publicacion?.contenido?.map(postal => (
+                                ( postal['nombre'] === 'El Galto' ) ? (
+                                    <SwiperSlide 
+                                        key={postal['nombre']}
+                                    >
+                                        <img className='imgs-carrusel' src="https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH" alt="" />
+                                    </SwiperSlide>
+                                ) : (
+                                    <SwiperSlide 
+                                        key={postal['nombre']}
+                                    >
+                                        <img className='imgs-carrusel' src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
+                                    </SwiperSlide>
+                                ) 
+                            ))
+                        }
+                        </Swiper>
                     {
                         publicacion?.contenido?.length > 0 
                         ? (<Box className={classes.container_texto_postales}>
@@ -130,6 +126,26 @@ export const PostalesPage = () => {
                         </Box>) 
                         : null
                     }
+                </Box>
+                <Box>
+                    <Box className={classes.titulo_otras_postales}>Otras Postales</Box>
+                    <Box className='container_catalogo_postales'>
+                        {publicacion?.contenido?.map((postal, index) => (
+                            postal?.['nombre'] !== 'El Galto' ? (
+                                <Box>
+                                    <img onClick={() => onClickImage(index)} className={classes.imagenes_catalogo} src={postal['urlImagen']} alt="Catalogo postales"/>
+                                    <p onClick={() => onClickImage(index)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
+                                    <p className={classes.nombre_autor_postal_catalogo}>Por, {postal['autores'][0]}</p>
+                                </Box>
+                            ):(
+                                <Box>
+                                    <img onClick={() => onClickImage(7)} className={classes.imagenes_catalogo} src='https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH' alt="Catalogo postales"/>
+                                    <p onClick={() => onClickImage(7)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
+                                    <p className={classes.nombre_autor_postal_catalogo}>Por, {postal['autores'][0]}</p>
+                                </Box>
+                            )
+                        ))}
+                    </Box>
                 </Box>
             </Box>
             

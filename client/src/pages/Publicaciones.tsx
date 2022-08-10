@@ -117,7 +117,7 @@ export const PublicacionesPage = () => {
                     </a>
                   </SwiperSlide>
                 )
-                : publicacion?.nombre !== 'Postales' ? (
+                : publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
                   <SwiperSlide 
                     className={publicacion?.nombre === 'Ecos de Resistencia' ? (classes.imagen_ecos_de_resistencia):(classes.imagenes_lecturas_no_aplicadas)} 
                     onClick={() => navigate('/')}
@@ -152,7 +152,7 @@ export const PublicacionesPage = () => {
                       {publicacion?.nombre}
                     </a>
                   </Box>
-                ): publicacion?.nombre !== 'Postales' ? (
+                ): publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
                   <NavLink to="/">
                     <img src={publicacion?.urlImagen} width={publicacion?.nombre === 'Ecos de Resistencia' ? 300 : 250} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} alt="Ecos de Resistencia"/>
                     <p className={classes.titulos_publicaciones_finales}>{publicacion?.nombre}</p>

@@ -227,7 +227,7 @@ export const InicioPage = () => {
                                     </a>
                                   </SwiperSlide>
                                 )
-                                : publicacion?.nombre !== 'Postales' ? (
+                                : publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
                                   <SwiperSlide 
                                     className={publicacion?.nombre === 'Ecos de Resistencia' ? (classes.imagen_ecos_de_resistencia):(classes.imagenes_lecturas_no_aplicadas)} 
                                     onClick={() => navigate('/')}

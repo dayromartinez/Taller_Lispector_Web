@@ -6,7 +6,7 @@ export const useStylesPostales = makeStyles((theme) => ({
 
     container_general: {
         marginTop: '6rem',
-        width: '99.7vw',
+        width: '98.7vw',
         [theme.breakpoints.down('xs')]: {
             marginTop: '0rem',
             width: '100vw',
@@ -97,6 +97,51 @@ export const useStylesPostales = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             fontSize: '1rem',
         },
+    },
+
+    titulo_otras_postales : {
+        textAlign: 'center',
+        color: coloresPaleta.aguaMarina,
+        fontWeight: 'bold',
+        fontSize: '2.5rem',
+        marginTop: '3rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1.7rem',
+        }
+    },
+
+    imagenes_catalogo: {
+        width: 300,
+        height: 300,
+        alignSelf: 'center',
+        cursor: 'pointer',
+    },
+
+    nombre_postal_catalogo: {
+        width: 300,
+        textAlign: 'center',
+        color: coloresPaleta.gris,
+        fontWeight: 'bold',
+        fontSize: '1.5rem',
+        marginTop: '0.7rem',
+        cursor: 'pointer',
+        '&:hover': {
+            color: coloresPaleta.aguaMarina
+        },
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1rem',
+        }
+    },
+
+    nombre_autor_postal_catalogo: {
+        width: 300,
+        textAlign: 'center',
+        color: coloresPaleta.gris,
+        fontSize: '1rem',
+        marginTop: '0.3rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '0.5rem',
+        }
     }
 
 }));
