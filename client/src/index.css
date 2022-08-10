@@ -93,17 +93,17 @@
     height: 500px;
 }
 
-.container_catalogo_postales {
-    /* margin: 0 auto; */
-    /* background-color: #000; */
-    padding: 0 0rem 0 6rem;
+/* .container_catalogo_postales {
+    margin: 0 auto;
+    background-color: #000;
+    padding: 0 1rem;
     justify-content: center;
     align-items: center;
     margin-top: 3rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-gap: 1.5rem;
-}
+} */
 
 @media only screen and (max-width: 600px) {
 

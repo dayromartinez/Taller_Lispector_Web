@@ -129,7 +129,7 @@ export const PostalesPage = () => {
                 </Box>
                 <Box>
                     <Box className={classes.titulo_otras_postales}>Otras Postales</Box>
-                    <Box className='container_catalogo_postales'>
+                    <Box className={classes.container_catalogo_postales}>
                         {publicacion?.contenido?.map((postal, index) => (
                             postal?.['nombre'] !== 'El Galto' ? (
                                 <Box>

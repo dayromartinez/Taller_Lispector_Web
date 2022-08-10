@@ -142,6 +142,22 @@ export const useStylesPostales = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             fontSize: '0.8rem',
         }
+    },
+
+    container_catalogo_postales: {
+        margin: '0 auto',
+        /* background-color: #000; */
+        padding: '0 0rem 0 6rem',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '3rem',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+        gridGap: '1.5rem',
+        [theme.breakpoints.down('xs')]: {
+            padding: '0 0',
+            marginLeft: '0rem',
+        }
     }
 
 }));
