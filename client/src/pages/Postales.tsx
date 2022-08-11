@@ -61,14 +61,16 @@ export const PostalesPage = () => {
                     <Box className={classes.postal_Lispector} >
                         <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" />
                     </Box>
-                    <div id='container_catalogo_postales'>
-                        <Box className={classes.container_descripcion_postales}>
-                            <p className={classes.descripcion_postales}>
-                                {publicaciones[0]?.descripcion}
-                            </p>
-                        </Box>
-                    </div>
+                    
+                    <Box className={classes.container_descripcion_postales}>
+                        <p className={classes.descripcion_postales}>
+                            {publicaciones[0]?.descripcion}
+                        </p>
+                    </Box>
                 </Box>
+                <div id='container_catalogo_postales'>
+                    {/*NO BORRAR, ES PARA EL TOTOP*/}
+                </div>
                 <Box bgcolor={coloresPaleta.aguaMarina} padding='50px 0' className='container_postales'>
                     <Box className={ classes.titulo_postales }>{ publicacion?.contenido?.[indexSlide]['nombre'] }</Box> {/*TODO: Revisar si es un objeto o arreglo.*/}
                         <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por, { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>

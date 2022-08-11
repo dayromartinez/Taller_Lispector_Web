@@ -156,7 +156,12 @@ export const useStylesPostales = makeStyles((theme) => ({
         gridGap: '1.5rem',
         [theme.breakpoints.down('xs')]: {
             padding: '0 0',
-            marginLeft: '0rem',
+            //margin: '0 50px ',
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            // marginLeft: 'auto',
+            // marginRight: 'auto',
         }
     }
 
