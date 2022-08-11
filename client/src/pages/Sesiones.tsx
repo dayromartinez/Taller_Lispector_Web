@@ -38,7 +38,7 @@ const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
-    <DialogTitle sx={{ m: 0, pl: 2 }} {...other}>
+    <DialogTitle sx={{ mt: 1, fontWeight: 800, fontSize: '1.5rem', lineHeight: 1.1, textAlign: 'center' }} {...other}>
       {children}
       {onClose ? (
         <IconButton
@@ -47,7 +47,7 @@ const BootstrapDialogTitle = (props) => {
           sx={{
             position: 'absolute',
             right: 8,
-            top: 8,
+            top: 5,
             color: (theme) => theme.palette.grey[500],
           }}
         >
@@ -119,16 +119,17 @@ export const SesionesPage = () => {
               onClose={handleClose}
               aria-labelledby="customized-dialog-title"
               open={open}
+              sx={{bgcolor: 'rgba(0,0,0, 0.7)'}}
           >
               <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
                   {datosAlerta.title}
               </BootstrapDialogTitle>
-              <Typography sx={{ ml: 2, mt: -3, color: '#757575', fontSize: '1rem' }}>{datosAlerta.date} de {datosAlerta.time} en la dirección {datosAlerta.address}</Typography>
               <DialogContent dividers>
-                  <img src={datosAlerta.imagen} alt="Sesion" />
-              <Typography gutterBottom>
-                  {datosAlerta.description}
-              </Typography>
+                <img src={datosAlerta.imagen} alt="Sesion" />
+                <Typography sx={{ mt: 1.5, mb: 2, color: '#5c5b5b', fontSize: '1rem', textDecoration: 'underline', textAlign: 'center', textUnderlineOffset: 2 }}>{datosAlerta.date} de {datosAlerta.time} en la dirección {datosAlerta.address}</Typography>
+                <Typography gutterBottom sx={{textAlign: 'justify', mb: 1}}>
+                    {datosAlerta.description}
+                </Typography>
               </DialogContent>
           </BootstrapDialog>
           <Box className={classes.container_titulo_sesiones}>
