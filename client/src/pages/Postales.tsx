@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { getPublication } from '../redux/actions/publicationActions';
 import { Markup } from 'interweave';
+import { Commentaries } from '../components/Commentaries';
 
 
 export const PostalesPage = () => {
@@ -72,7 +73,7 @@ export const PostalesPage = () => {
                     {/*NO BORRAR, ES PARA EL TOTOP*/}
                 </div>
                 <Box bgcolor={coloresPaleta.aguaMarina} padding='50px 0' className='container_postales'>
-                    <Box className={ classes.titulo_postales }>{ publicacion?.contenido?.[indexSlide]['nombre'] }</Box> {/*TODO: Revisar si es un objeto o arreglo.*/}
+                    <Box className={ classes.titulo_postales }>{ publicacion?.contenido?.[indexSlide]['nombre'] }</Box>
                         <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por, { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>
                         <Swiper 
                             className="mySwiper" 
@@ -128,6 +129,7 @@ export const PostalesPage = () => {
                         </Box>) 
                         : null
                     }
+                    <Commentaries comentarios={publicacion?.contenido?.[indexSlide]?.['comentarios']} publicacion={publicacion?.contenido?.[indexSlide]}/>
                 </Box>
                 <Box>
                     <Box className={classes.titulo_otras_postales}>Otras Postales</Box>
@@ -137,13 +139,13 @@ export const PostalesPage = () => {
                                 <Box>
                                     <img onClick={() => onClickImage(index)} className={classes.imagenes_catalogo} src={postal['urlImagen']} alt="Catalogo postales"/>
                                     <p onClick={() => onClickImage(index)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
-                                    <p className={classes.nombre_autor_postal_catalogo}>Por, {postal['autores'][0]}</p>
+                                    <p className={classes.nombre_autor_postal_catalogo}>Por {postal['autores'][0]}</p>
                                 </Box>
                             ):(
                                 <Box>
                                     <img onClick={() => onClickImage(7)} className={classes.imagenes_catalogo} src='https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH' alt="Catalogo postales"/>
                                     <p onClick={() => onClickImage(7)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
-                                    <p className={classes.nombre_autor_postal_catalogo}>Por, {postal['autores'][0]}</p>
+                                    <p className={classes.nombre_autor_postal_catalogo}>Por {postal['autores'][0]}</p>
                                 </Box>
                             )
                         ))}

@@ -3,31 +3,6 @@ import { loading, success, failure, getUser } from "./userActions";
 import { getPublication, getAllPublications } from "./publicationActions";
 import { commentData } from "../../interfaces/commentData";
 
-// export const getAllCommentsByPublication = (publicationId : string) => {
-//     return async dispatch => {
-//         dispatch(loading())
-//         try {
-//             const comments = await fetch(`${URL_BASE}/getAllCommentsOfPublication/${publicationId}`)
-//             const data = await comments.json()
-//             dispatch(success({ comentarios: data, redirect: null}))
-//         } catch (error) {
-//             dispatch(failure())
-//         }
-//     }
-// };
-
-// export const getAllCommentsByUser = (userId : string) => {
-//     return async dispatch => {
-//         dispatch(loading())
-//         try {
-//             const comments = await fetch(`${URL_BASE}/getAllCommentsByUser/${userId}`)
-//             const data = await comments.json()
-//             dispatch(success({ comentarios: data, redirect: null}))
-//         } catch (error) {
-//             dispatch(failure())
-//         }
-//     }
-// };
 
 export function createComment(datosPublicacion : commentData) {
     return async dispatch => {

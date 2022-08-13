@@ -3,6 +3,7 @@
 ```
 - refactorizar y limpiar al maximo el código
 - Funcionalidad para reservar el código (MAIN)
+- Funcionalidad para hacer comentarios
 - Proteger las rutas (MAIN)
 - Crear las sesiones (MAIN)
 - Arreglar margin del footer
