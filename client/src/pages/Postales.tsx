@@ -129,7 +129,7 @@ export const PostalesPage = () => {
                         </Box>) 
                         : null
                     }
-                    <Commentaries comentarios={publicacion?.contenido?.[indexSlide]?.['comentarios']} publicacion={publicacion?.contenido?.[indexSlide]}/>
+                    <Commentaries comentarios={publicacion?.contenido?.[indexSlide]?.['comentarios'].reverse()} publicacion={publicacion?.contenido?.[indexSlide]}/>
                 </Box>
                 <Box>
                     <Box className={classes.titulo_otras_postales}>Otras Postales</Box>

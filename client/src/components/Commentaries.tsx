@@ -1,6 +1,5 @@
 import { Avatar, Box, Button, IconButton, InputLabel, Rating, TextareaAutosize, Tooltip } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core';
 import { coloresPaleta } from '../styles/coloresPaleta';
 import { colors } from './NavBarDesktop';
 import { commentData } from '../interfaces/commentData';
@@ -8,126 +7,12 @@ import { color } from '@mui/system';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers';
-import { createComment } from '../redux/actions/commentActions';
+import { createComment, updateComment } from '../redux/actions/commentActions';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useStyles } from '../styles/stylesComponentCommentaries';
+import UpdateComment from './UpdateComment';
 
-export const useStyles = makeStyles((theme) => ({
-    titulo_textArea: {
-        color: coloresPaleta.gris,
-        fontWeight: 'bold', 
-        fontSize: '1.7rem',
-        [theme.breakpoints.down("xs")]: {
-            margin: '1rem 2rem',
-            fontSize: '1.3rem',
-        }
-    },
-    textArea: {
-        width: '50vw', 
-        borderRadius: 10, 
-        margin: '1rem 0rem 0rem 6rem',
-        [theme.breakpoints.down("xs")]: {
-            margin: '0rem 2rem',
-            width: '85vw',
-            heigth: '20rem',
-            fontSize: '.9rem',
-        }
-    },
-    container_comentarios: {
-        margin: '3rem 0rem 0rem 6rem',
-        [theme.breakpoints.down("xs")]: {
-            margin: '1rem 2rem',
-        } 
-    },
-    nombre_usuario: {
-        fontWeight: 'bold',
-        margin: '0rem 1rem',
-        fontSize: '1.3rem',
-        [theme.breakpoints.down("xs")]: {
-            fontSize: '1rem',
-            lineHeight: '3rem',
-        }
-    },
-    info_usuario : {
-        display: 'flex',
-        lineHeight: '3rem',
-    },
-    container_info_raiting: {
-        display: 'flex', 
-        justifyContent: 'space-between',
-        width: '50vw',
-        [theme.breakpoints.down("xs")]: {
-            width: '85vw',
-        }
-    },
-    fecha_comentario: {
-        color: coloresPaleta.gris,
-        fontSize: '1rem',
-        margin: '.5rem 0rem',
-        fontStyle: 'italic',
-    },
-    comentario: {
-        margin: '1rem 0rem',
-    },
-    container_comentario: {
-        marginBottom: 5, 
-        borderBottom: `1px solid ${coloresPaleta.gris}`, 
-        width: '50vw',
-        [theme.breakpoints.down("xs")]: {
-            width: '85vw',
-            marginTop: '1.5rem',
-        }
-    },
-    raiting: {
-        marginTop: '.8rem',
-        [theme.breakpoints.down("xs")]: {
-            marginTop: '.6rem',
-        }
-    },
-    contenedor_nuevo_comentario: {
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        width: '50vw',
-        margin: '3rem 0rem 0rem 6rem',
-        [theme.breakpoints.down("xs")]: {
-            margin: '1rem 0rem 0rem 0rem',
-            width: '93vw',
-        } 
-    },
-    raiting_nuevo_comentario: {
-        [theme.breakpoints.down("xs")]: {
-            margin: '1.2rem 0rem 0rem 0rem',
-        } 
-    },
-    sin_comentarios: {
-        color: coloresPaleta.gris,
-        fontWeight: 'bold',
-        margin: '3rem 6rem',
-        fontSize: '1.3rem',
-        [theme.breakpoints.down("xs")]: {
-            margin: '3rem 1rem 2rem 3rem',
-            fontSize: '.9rem',
-        } 
-    },
-    mensaje_error: {
-        color: 'rgb(239 68 68)',
-        fontSize: '1rem',
-        fontWeight: 600,
-        margin: '.5rem 3rem',
-        [theme.breakpoints.down("xs")]: {
-            margin: '.5rem 0rem 2rem 1rem',
-            fontSize: '.8rem',
-        } 
-    },
-    container_boton: {
-        display: 'flex', 
-        justifyContent: 'right',
-        width: '50vw',
-        margin: '0rem 6rem',
-        [theme.breakpoints.down("xs")]: {
-            width: '93vw',
-            margin: '-1rem 0rem 3rem 0rem',
-        } 
-    }
-}));
 
 export const Commentaries = ({ comentarios, publicacion }) => {
 
@@ -136,6 +21,14 @@ export const Commentaries = ({ comentarios, publicacion }) => {
     const [raiting, setRaiting] = useState(0);
     const usuario = useSelector((state : dataState) => state.usuario);
     const dispatch = useDispatch();
+    const [openAlert, setOpenAlert] = useState(false);
+    const [updateComment, setUpdateComment] = useState({
+        userId: '',
+        publicacionId: '',
+        idComment: '',
+        comment: '',
+        raiting: 0
+    });
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     type FormData = {
@@ -168,16 +61,36 @@ export const Commentaries = ({ comentarios, publicacion }) => {
         setValue('comentario', '');
     }
 
+    const editCommentary = (userId : string, publicacionId : string, idComment : string, comment : string, raiting: number) => {
+        setUpdateComment({
+            userId: userId,
+            publicacionId: publicacionId,
+            idComment: idComment,
+            comment: comment,
+            raiting: raiting,
+        });
+        
+        setOpenAlert(true);
+    }
+
     useEffect(() => {
         setSizeScreen(window.innerWidth);
     }, []);
 
     return (
         <Box>
+            {
+                openAlert ? (
+                    <UpdateComment 
+                    userId={updateComment.userId} publicacionId={updateComment.publicacionId} idCommentary={updateComment.idComment} 
+                    comment={updateComment.comment} raiting={updateComment.raiting} setOpen={setOpenAlert} open={openAlert}
+                    />
+                ):(null)
+            }
             <Box className={classes.contenedor_nuevo_comentario}>
                 <Box className={classes.titulo_textArea}>Comentarios</Box>
                 <Tooltip title="¡Puntúa esta publicación!">
-                    <Rating className={classes.raiting_nuevo_comentario} value={raiting} onChange={(event, newValue) => setRaiting(newValue)} />
+                    <Rating className={classes.raiting_nuevo_comentario} value={raiting} onChange={(event, newValue) => setRaiting(newValue)} readOnly={!usuario?.['name']}/>
                 </Tooltip>
             </Box>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -225,8 +138,21 @@ export const Commentaries = ({ comentarios, publicacion }) => {
                                     <IconButton sx={{ p: 0 }}>
                                         <Avatar alt={comentario?.nombreUsuario.toUpperCase()} src={comentario?.nombreUsuario} sx={{ bgcolor: `${colors[ index % 7 ]}` }} />
                                     </IconButton>
-                                    <p className={classes.nombre_usuario}>{comentario?.['nombreUsuario']}</p>   
+                                    <p className={classes.nombre_usuario}>{comentario?.['nombreUsuario']}</p>
+                                    <Box>
+                                        <Tooltip title="Editar Comentario">
+                                            <IconButton onClick={() => editCommentary(comentario?.userId, comentario?.publicacionId, comentario?._id, comentario?.comentario, comentario?.valoracion)}>
+                                                <EditIcon/>
+                                            </IconButton>
+                                        </Tooltip>
+                                        <Tooltip title="Eliminar Comentario">
+                                            <IconButton>
+                                                <DeleteIcon/>
+                                            </IconButton>
+                                        </Tooltip>
+                                    </Box>
                                 </Box>
+
                                 <Rating className={classes.raiting} name="read-only" value={comentario?.valoracion} readOnly />
                             </Box>
                             <p className={classes.fecha_comentario}>{new Date(comentario?.updatedAt).toLocaleDateString('en-GB')} a las {new Date(comentario?.updatedAt).toLocaleTimeString('en-US')}</p>

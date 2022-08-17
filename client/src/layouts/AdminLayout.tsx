@@ -23,13 +23,8 @@ export const AdminLayout = ({ children }) => {
 
     
     useEffect(() => {
-
         checkSizeScreen();
-        console.log('dentro del useEffect: ', window.innerWidth)
-        
     }, []);
-
-    console.log('Usuario admin: ', usuario)
 
     return (
         <div>

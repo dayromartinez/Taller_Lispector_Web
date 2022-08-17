@@ -100,8 +100,6 @@ export default function NavbarMobileAdmin({ children }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(window.innerWidth)
-
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
     setOpenMenu(true)
