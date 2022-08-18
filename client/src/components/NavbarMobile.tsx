@@ -33,8 +33,9 @@ import { colors, settings } from './NavBarDesktop';
 import MenuItem from '@mui/material/MenuItem';
 import { logout } from '../redux/actions/userActions';
 
-const drawerWidth = 240;
 
+
+const drawerWidth = 240;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme, open }) => ({
@@ -175,13 +176,11 @@ export default function NavbarMobile({ children }) {
         return (<HouseIcon />)
 
     }
-
   }
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      
       <AppBar position="fixed" open={open}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <IconButton
@@ -250,7 +249,6 @@ export default function NavbarMobile({ children }) {
           </Box>
         </Toolbar>
       </AppBar>
-
 
       <Drawer
         sx={{

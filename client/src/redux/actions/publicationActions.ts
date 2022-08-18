@@ -124,12 +124,9 @@ export function reserveCodePublication(idPublicacion : string, idUsuario : strin
 
             const data = await response.json();
             if(data === "La reserva del código de la publicación ha sido realizada con éxito"){
-                console.log("Se ha hecho bien la reserva del código y el if funciona bien")
                 dispatch(getUser(idUsuario));
                 dispatch(success({}));
-                console.log('Funcionó bien esta mondá de reservar códigos de publicación');
             } else {
-                console.log('Algo ha salido mal revalidando el token del usuario y no sé más');
                 dispatch(failure('Algo ha salido mal revalidando el token del usuario y no sé más'))
             }
 

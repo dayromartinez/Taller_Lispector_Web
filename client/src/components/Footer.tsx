@@ -2,9 +2,6 @@ import React from 'react'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import footerDesktop from '../images/Footer_Desktop.png';
-import { height, margin } from '@mui/system';
-//import footerMobile from '../images/Footer_Mobile.png';
 
 export const Footer: FC = () => {
 

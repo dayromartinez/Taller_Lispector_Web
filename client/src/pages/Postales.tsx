@@ -27,7 +27,6 @@ export const PostalesPage = () => {
     const onChangeSlide = (swiper) => {
         setIndexSlide(swiper.activeIndex);
         setTextPostal(publicacion?.contenido?.[swiper.activeIndex]['texto']);
-        console.log('indexSlide', indexSlide)
     }
 
     const onClickImage = (index) => {
@@ -36,7 +35,6 @@ export const PostalesPage = () => {
         swiper_postales.slideTo(index);
         setTextPostal(publicacion?.contenido?.[index]['texto']);
         document.getElementById('container_catalogo_postales').scrollIntoView();
-        console.log('index image', index)
     }
 
     useEffect(() => {
@@ -47,9 +45,8 @@ export const PostalesPage = () => {
         if(publicacion?.contenido?.length > 0 && textPostal === ''){
             setTextPostal(publicacion.contenido[0]['texto']);
             setListImages(publicacion?.contenido[7]['urlImagen'].split(' '));
-            console.log(listImages[0]);
         }
-    }, [publicaciones, publicacion])
+    }, [publicaciones])
 
     return (
         <AuthLayout>
@@ -129,7 +126,7 @@ export const PostalesPage = () => {
                         </Box>) 
                         : null
                     }
-                    <Commentaries comentarios={publicacion?.contenido?.[indexSlide]?.['comentarios'].reverse()} publicacion={publicacion?.contenido?.[indexSlide]}/>
+                    <Commentaries comentarios={publicacion?.contenido?.[indexSlide]?.['comentarios'].reverse()} contenido={publicacion?.contenido?.[indexSlide]} publicacion={publicacion} />
                 </Box>
                 <Box>
                     <Box className={classes.titulo_otras_postales}>Otras Postales</Box>

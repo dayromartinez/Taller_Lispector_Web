@@ -60,9 +60,6 @@ export const Modal = (props : Props) => {
     const handleClose = () => {
         props.open = false;
     };
-    
-    console.log(props);
-    console.log('Abrite ome', props.open);
 
     return (
         <BootstrapDialog

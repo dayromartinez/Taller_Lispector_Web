@@ -7,28 +7,36 @@ import { color } from '@mui/system';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers';
-import { createComment, updateComment } from '../redux/actions/commentActions';
+import { createComment, updateComment, deleteComment } from '../redux/actions/commentActions';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useStyles } from '../styles/stylesComponentCommentaries';
 import UpdateComment from './UpdateComment';
+import DeleteComment from './DeleteComment';
 
 
-export const Commentaries = ({ comentarios, publicacion }) => {
+export const Commentaries = ({ comentarios, publicacion, contenido }) => {
 
     const classes = useStyles();
     const [sizeScreen, setSizeScreen] = useState(window.innerWidth);
     const [raiting, setRaiting] = useState(0);
     const usuario = useSelector((state : dataState) => state.usuario);
     const dispatch = useDispatch();
-    const [openAlert, setOpenAlert] = useState(false);
+    const [openAlertUpdate, setOpenAlertUpdate] = useState(false);
+    const [openAlertDelete, setOpenAlertDelete] = useState(false);
     const [updateComment, setUpdateComment] = useState({
         userId: '',
         publicacionId: '',
+        contenidoId: '',
         idComment: '',
         comment: '',
         raiting: 0
     });
+    const [deleteComment, setDeleteComment] = useState({
+        comentarioId: '',
+        publicacionId: '',
+    });
+
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     type FormData = {
@@ -53,6 +61,7 @@ export const Commentaries = ({ comentarios, publicacion }) => {
             userId: usuario?.['uid'],
             comentario: data.comentario,
             publicacionId: publicacion?.['_id'],
+            contenidoId: contenido?.['_id'],
             valoracion: raiting,
         }
 
@@ -61,29 +70,45 @@ export const Commentaries = ({ comentarios, publicacion }) => {
         setValue('comentario', '');
     }
 
-    const editCommentary = (userId : string, publicacionId : string, idComment : string, comment : string, raiting: number) => {
+    const editCommentary = (userId : string, publicacionId : string, contenidoId: string, idComment : string, comment : string, raiting: number) => {
         setUpdateComment({
             userId: userId,
             publicacionId: publicacionId,
+            contenidoId: contenidoId,
             idComment: idComment,
             comment: comment,
             raiting: raiting,
         });
-        
-        setOpenAlert(true);
+        setOpenAlertUpdate(true);
+    }
+
+    const deleteCommentary = (comentarioId, idPublicacion) => {
+        setDeleteComment({
+            comentarioId: comentarioId,
+            publicacionId: idPublicacion,
+        });
+        setOpenAlertDelete(true);
     }
 
     useEffect(() => {
         setSizeScreen(window.innerWidth);
     }, []);
 
+
     return (
         <Box>
             {
-                openAlert ? (
+                openAlertUpdate ? (
                     <UpdateComment 
-                    userId={updateComment.userId} publicacionId={updateComment.publicacionId} idCommentary={updateComment.idComment} 
-                    comment={updateComment.comment} raiting={updateComment.raiting} setOpen={setOpenAlert} open={openAlert}
+                    userId={updateComment.userId} publicacionId={updateComment.publicacionId} contenidoId={updateComment.contenidoId} idCommentary={updateComment.idComment} 
+                    comment={updateComment.comment} raiting={updateComment.raiting} setOpen={setOpenAlertUpdate} open={openAlertUpdate}
+                    />
+                ):(null)
+            }
+            {
+                openAlertDelete ? (
+                    <DeleteComment
+                    idPublicacion={deleteComment.publicacionId} idCommentary={deleteComment.comentarioId} setOpen={setOpenAlertDelete} open={openAlertDelete}
                     />
                 ):(null)
             }
@@ -139,23 +164,28 @@ export const Commentaries = ({ comentarios, publicacion }) => {
                                         <Avatar alt={comentario?.nombreUsuario.toUpperCase()} src={comentario?.nombreUsuario} sx={{ bgcolor: `${colors[ index % 7 ]}` }} />
                                     </IconButton>
                                     <p className={classes.nombre_usuario}>{comentario?.['nombreUsuario']}</p>
-                                    <Box>
-                                        <Tooltip title="Editar Comentario">
-                                            <IconButton onClick={() => editCommentary(comentario?.userId, comentario?.publicacionId, comentario?._id, comentario?.comentario, comentario?.valoracion)}>
-                                                <EditIcon/>
-                                            </IconButton>
-                                        </Tooltip>
-                                        <Tooltip title="Eliminar Comentario">
-                                            <IconButton>
-                                                <DeleteIcon/>
-                                            </IconButton>
-                                        </Tooltip>
-                                    </Box>
                                 </Box>
-
                                 <Rating className={classes.raiting} name="read-only" value={comentario?.valoracion} readOnly />
                             </Box>
-                            <p className={classes.fecha_comentario}>{new Date(comentario?.updatedAt).toLocaleDateString('en-GB')} a las {new Date(comentario?.updatedAt).toLocaleTimeString('en-US')}</p>
+                            <Box className={classes.container_fecha_opciones_comentario}>
+                                <p className={classes.fecha_comentario}>{new Date(comentario?.updatedAt).toLocaleDateString('en-GB')} a las {new Date(comentario?.updatedAt).toLocaleTimeString('en-US')}</p>
+                                {
+                                    comentario?.userId === usuario?.['uid'] || usuario?.['role'] === 'admin' ? (
+                                        <Box>
+                                            <Tooltip title="Editar Comentario">
+                                                <IconButton onClick={() => editCommentary(comentario?.userId, publicacion._id, comentario?.publicacionId, comentario?._id, comentario?.comentario, comentario?.valoracion)}>
+                                                    <EditIcon color='primary'/>
+                                                </IconButton>
+                                            </Tooltip>
+                                            <Tooltip title="Eliminar Comentario">
+                                                <IconButton>
+                                                    <DeleteIcon color='error' onClick={() => deleteCommentary(comentario?._id, publicacion?._id)}/>
+                                                </IconButton>
+                                            </Tooltip>
+                                        </Box>
+                                    ):(null)
+                                }
+                            </Box>
                             <p className={classes.comentario}>"{comentario?.comentario}"</p>
                         </Box> 
                     ))}

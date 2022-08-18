@@ -4,15 +4,15 @@ import { getPublication, getAllPublications } from "./publicationActions";
 import { commentData } from "../../interfaces/commentData";
 
 
-export function createComment(datosPublicacion : commentData) {
+export function createComment(datosComentario : commentData) {
     return async dispatch => {
 
         dispatch(loading())
         const nuevoComentario = {
-            userId: datosPublicacion.userId,
-            publicacionId: datosPublicacion.publicacionId,
-            comentario: datosPublicacion.comentario,
-            valoracion: datosPublicacion.valoracion,
+            userId: datosComentario.userId,
+            publicacionId: datosComentario.contenidoId,
+            comentario: datosComentario.comentario,
+            valoracion: datosComentario.valoracion,
         }
 
         try {
@@ -29,12 +29,9 @@ export function createComment(datosPublicacion : commentData) {
 
             const data = await response.json();
             if(data['commentCreated'] !== undefined){
-                console.log("Se ha hecho bien la creación del comentario")
-                dispatch(getPublication(datosPublicacion.publicacionId));
+                dispatch(getPublication(datosComentario.publicacionId));
                 dispatch(success({ comentario: data.commentCreated, redirect: ``}));
-                console.log('Funcionó bien esta mondá de crear comentarios');
             } else {
-                console.log('Algo ha salido mal revalidando el token del usuario o actualizando las publicaciones o la publicación en específico');
                 dispatch(failure('Algo ha salido mal revalidando el token del usuario o actualizando las publicaciones o la publicación en específico'))
             }
 
@@ -45,15 +42,15 @@ export function createComment(datosPublicacion : commentData) {
     }
 }
 
-export function updateComment(userId: string, publicacionId : string, comentarioId : string, comentario : string, valoracion : Number) {
+export function updateComment(datosComentario : commentData) {
     return async dispatch => {
         dispatch(loading())
         const actualizarComentario = {
-            userId: userId,
-            publicacionId: publicacionId,
-            comentarioId: comentarioId,
-            comentario: comentario,
-            valoracion: valoracion,
+            userId: datosComentario.userId,
+            publicacionId: datosComentario.contenidoId,
+            comentarioId: datosComentario.comentarioId,
+            comentario: datosComentario.comentario,
+            valoracion: datosComentario.valoracion,
         }
         try {
             const response = await fetch(`${URL_BASE}/updateComment`,
@@ -69,12 +66,9 @@ export function updateComment(userId: string, publicacionId : string, comentario
 
             const data = await response.json();
             if(data['commentUpdated'] !== undefined){
-                console.log("Se ha hecho bien la actualización del comentario")
-                dispatch(getPublication(publicacionId));
+                dispatch(getPublication(datosComentario.publicacionId));
                 dispatch(success({comentario: actualizarComentario, redirect: ``}));
-                console.log('Funcionó bien esta mondá de actualizar comentarios');
             } else {
-                console.log('Algo ha salido mal revalidando el token del usuario o actualizando las publicaciones o la publicación en específico');
                 dispatch(failure('Algo ha salido mal revalidando el token del usuario o actualizando las publicaciones o la publicación en específico'))
             }
             
@@ -84,7 +78,7 @@ export function updateComment(userId: string, publicacionId : string, comentario
     }
 }
 
-export function deleteComment(id: string, userId : string, publicacionId : string) {
+export function deleteComment(id: string, publicacionId: string) {
     return async dispatch => {
         dispatch(loading())
         try {
@@ -99,17 +93,15 @@ export function deleteComment(id: string, userId : string, publicacionId : strin
             )
 
             const data = await response.json();
-            if(data === "Comentario eliminado"){
-                console.log("Se ha hecho bien la eliminación del comentario")
+            if(data?.['msg'] !== "El comentario no existe"){
                 dispatch(getPublication(publicacionId));
                 dispatch(success({redirect: ``}));
-                console.log('Funcionó bien esta mondá de eliminar comentarios');
             } else {
-                console.log('Algo ha salido mal revalidando el token del usuario o actualizando las publicaciones o la publicación en específico');
                 dispatch(failure('Algo ha salido mal revalidando el token del usuario o actualizando las publicaciones o la publicación en específico'))
             }
 
         } catch (error) {
+            console.log(error);
             dispatch(failure())
         }
     }

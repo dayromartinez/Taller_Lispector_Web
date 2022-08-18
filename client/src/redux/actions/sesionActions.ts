@@ -76,7 +76,6 @@ export function createSesion(datosSesion : sesionData) {
                 dispatch(getAllCicles());
                 dispatch(success({ sesion: data, redirect: ``}));
             }else{
-                console.log('No se ha podido crear la sesión');
                 dispatch(failure('No se ha podido crear la sesión'))
             }
 
@@ -119,7 +118,6 @@ export function updateSesion(id: string, titulo : string, descripcion : string, 
                 dispatch(getAllCicles());
                 dispatch(success({ sesion: data, redirect: ``}));
             }else{
-                console.log('No se ha podido actualizar la sesión');
                 dispatch(failure('No se ha podido actualizar la sesión'))
             }
 
@@ -145,11 +143,9 @@ export function deleteSesion(id: string) {
 
             const data = await response.json();
             if(data === "La sesión ha sido eliminada"){
-                console.log("Se ha hecho bien la eliminación de la sesión")
                 dispatch(getAllSesions());
                 dispatch(getAllCicles());
                 dispatch(success({redirect: ``}));
-                console.log('Funcionó bien esta mondá de eliminar sesiones');
             } else {
                 dispatch(failure('Algo ha salido mal eliminando la sesión'))
             }

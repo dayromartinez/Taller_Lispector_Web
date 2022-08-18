@@ -13,12 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import logoLispector from '../images/Logo_Lispector_Completo.png';
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
-import photoUser from '../images/image_perfil_defecto.png';
-import { CardMedia } from '@mui/material';
 import { logout } from '../redux/actions/userActions';
 
 const pages = ['Inicio', 'Sesiones', 'Publicaciones'];
@@ -28,6 +26,7 @@ export const colors = ['#42a5f5', '#ab47bc', '#d32f2f', '#f57c00', '#0288d1', '#
 //const randomColor = Math.floor(Math.random() * colors.length);
 
 const NavBarDesktop = () => {
+    
     const usuario = useSelector((state : dataState) => state.usuario);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);

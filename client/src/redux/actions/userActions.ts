@@ -46,7 +46,6 @@ export const login = (correo : string, contrasena: string) => {
 
             const fetchTokenUser = await response.json();
             if(fetchTokenUser.msg){
-                console.log('AUTH FAILED in USER ACTION')
                 dispatch(failure(fetchTokenUser.msg))
                 return
             }
@@ -139,7 +138,6 @@ export function createUser(datosUsuario : userData) {
             const fetchTokenUser = await response.json();
 
             if(fetchTokenUser.msg){
-                console.log('AUTH FAILED in USER ACTION')
                 dispatch(failure(fetchTokenUser.msg))
                 return
             }

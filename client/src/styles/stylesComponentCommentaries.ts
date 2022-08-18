@@ -118,5 +118,9 @@ export const useStyles = makeStyles((theme) => ({
             width: '93vw',
             margin: '-1rem 0rem 3rem 0rem',
         } 
+    },
+    container_fecha_opciones_comentario: {
+        display: 'flex', 
+        justifyContent: 'space-between'
     }
 }));

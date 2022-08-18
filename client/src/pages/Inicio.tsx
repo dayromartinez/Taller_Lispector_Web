@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import '.././index.css'
 import { Alert, Box, Snackbar, Typography } from '@mui/material'
 import { AuthLayout } from '../layouts/AuthLayout';
@@ -74,7 +74,6 @@ export const InicioPage = () => {
 
     useEffect(() => {
         openAlert();
-        //dispatch(getPublication(publicaciones[0]?._id));
     }, [])
 
 

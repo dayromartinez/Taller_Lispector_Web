@@ -116,7 +116,6 @@ export const Login = () => {
             localStorage.setItem('login', 'true');
             navigate('/'); 
         }else if(!usuario["uid"] && onClick || messageError !== ''){
-            console.log('LOGIN INCORRECTO!!')
             setOpen(true)
             setValue("correo", "");
             setValue("contrasena", "");

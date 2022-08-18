@@ -27,7 +27,6 @@ export const AuthLayout = ({ children }) => {
     dispatch(getAllCicles());
 
   }, [user])
-  
 
   return (
     <>

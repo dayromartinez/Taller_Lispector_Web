@@ -23,8 +23,6 @@ import { Tooltip } from '@mui/material';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import HouseIcon from '@mui/icons-material/House';
-import Button from '@mui/material/Button';
-import LoginIcon from '@mui/icons-material/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { dataState } from '../redux/reducers';
 import Menu from '@mui/material/Menu';
@@ -36,8 +34,9 @@ import PeopleIcon from '@mui/icons-material/People';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import CreateSession from './CreateSesion';
 
-const drawerWidth = 240;
 
+
+const drawerWidth = 240;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
   open?: boolean;
 }>(({ theme, open }) => ({
@@ -185,8 +184,8 @@ export default function NavbarMobileAdmin({ children }) {
       case 'Crear Publicación': 
         return (<CollectionsBookmarkIcon   />)
     }
-
   }
+  
 
   return (
     <Box sx={{ display: 'flex' }}>

@@ -9,8 +9,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Box, Rating, Tooltip } from '@mui/material';
 import { updateComment } from '../redux/actions/commentActions';
 import { useDispatch } from 'react-redux';
+import { commentData } from '../interfaces/commentData';
 
-export default function UpdateComment({userId, publicacionId, idCommentary, comment, raiting, open, setOpen}) {
+export default function UpdateComment({userId, publicacionId, contenidoId, idCommentary, comment, raiting, open, setOpen}) {
 
     const [commentary, setCommentary] = useState(comment);
     const [raitingComment, setRaitingComment] = useState(raiting);
@@ -24,10 +25,22 @@ export default function UpdateComment({userId, publicacionId, idCommentary, comm
         setCommentary(e.target.value);
     }
 
-    const updateComment = (userId, publicacionId, idCommentary, commentary, raitingComment) => {
-        console.log(userId, publicacionId, idCommentary, commentary, raitingComment);
-        //dispatch(updateComment(userId, publicacionId, idCommentary, commentary, raitingComment));
-        setOpen(false);
+    const setRaiting = (e) => {
+        setRaitingComment(parseInt(e.target.value));
+    }
+
+    const actualizarComentario = (userId, publicacionId, contenidoId, idCommentary, commentary, raitingComment) => {
+
+        const datosComentario : commentData = {
+            userId, 
+            publicacionId, 
+            contenidoId, 
+            comentarioId: idCommentary, 
+            comentario: commentary, 
+            valoracion: raitingComment
+        }
+        dispatch(updateComment(datosComentario));
+        handleClose();
     }   
 
 
@@ -41,7 +54,7 @@ export default function UpdateComment({userId, publicacionId, idCommentary, comm
                 </DialogContentText>
                 <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2, marginBottom: 2}}>
                     <Tooltip title="Editar Valoración">
-                        <Rating name="update-valoration" value={raitingComment} onChange={(e) => setRaitingComment(0)}/>
+                        <Rating name="update-valoration" value={raitingComment} onChange={(e) => setRaiting(e)}/>
                     </Tooltip>
                 </Box>
                 <TextField
@@ -52,13 +65,13 @@ export default function UpdateComment({userId, publicacionId, idCommentary, comm
                     type="text"
                     fullWidth
                     variant="standard"
-                    onChange={(e) => setComment(e.target.value)}
+                    onChange={(e) => setComment(e)}
                     value={commentary}
                 />
                 </DialogContent>
                 <DialogActions>
-                <Button onClick={handleClose}>Cancelar</Button>
-                <Button onClick={() => updateComment(userId, publicacionId, idCommentary, commentary, raitingComment)}>Actualizar</Button>
+                    <Button onClick={handleClose} color="primary">Cancelar</Button>
+                    <Button onClick={() => actualizarComentario(userId, publicacionId, contenidoId, idCommentary, commentary, raitingComment)} color="warning">Editar</Button>
                 </DialogActions>
             </Dialog>
         </div>

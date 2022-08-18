@@ -15,23 +15,16 @@ export const PublicLayout = ({ children }) => {
 
     const checkSizeScreen = () => {
         const size = window.innerWidth;
-        
         setSizeScreen(size);
     }
 
     const validateUser = () => {
         (usuario?.['name'] !== null && localStorage.getItem('tokenUser') !== null) ? dispatch(validateToken()) : console.log('no se ha ejecutado el condicional del validtoken')
-
-        console.log('token: ', localStorage.getItem('tokenUser'))
     }
 
     useEffect(() => {
-
         validateUser();
-
         checkSizeScreen();
-        console.log('dentro del useEffect: ', window.innerWidth)
-        
     }, []);
 
     return (

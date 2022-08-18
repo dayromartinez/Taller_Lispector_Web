@@ -56,7 +56,6 @@ export function createCicle(datosCiclo : ciclesData) {
                 dispatch(getAllCicles());
                 dispatch(success({ ciclo: data.ciclo, redirect: ``}));
             }else{
-                console.log('No se ha podido crear el ciclo');
                 dispatch(failure('No se ha podido crear el ciclo'))
             }
 
@@ -83,10 +82,8 @@ export function deleteCicle(id: string) {
 
             const data = await response.json();
             if(data.msg === "El ciclo y sus sesiones han sido eliminados"){
-                console.log("Se ha hecho bien la eliminación del ciclo")
                 dispatch(getAllCicles());
                 dispatch(success({redirect: ``}));
-                console.log('Funcionó bien esta mondá de eliminar ciclos');
             } else {
                 dispatch(failure('Algo ha salido mal eliminando ciclos'))
             }
