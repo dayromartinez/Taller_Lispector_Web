@@ -35,12 +35,15 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '1.3rem',
         [theme.breakpoints.down("xs")]: {
             fontSize: '1rem',
-            lineHeight: '3rem',
+            lineHeight: '1.5rem',
         }
     },
     info_usuario : {
         display: 'flex',
         lineHeight: '3rem',
+        [theme.breakpoints.down("xs")]: {
+            lineHeight: '0rem',
+        }
     },
     container_info_raiting: {
         display: 'flex', 
@@ -71,7 +74,7 @@ export const useStyles = makeStyles((theme) => ({
     raiting: {
         marginTop: '.8rem',
         [theme.breakpoints.down("xs")]: {
-            marginTop: '.6rem',
+            marginTop: '0rem',
         }
     },
     contenedor_nuevo_comentario: {
