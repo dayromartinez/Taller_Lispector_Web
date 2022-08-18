@@ -71,7 +71,7 @@ export const PostalesPage = () => {
                 </div>
                 <Box bgcolor={coloresPaleta.aguaMarina} padding='50px 0' className='container_postales'>
                     <Box className={ classes.titulo_postales }>{ publicacion?.contenido?.[indexSlide]['nombre'] }</Box>
-                        <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por, { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>
+                        <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>
                         <Swiper 
                             className="mySwiper" 
                             spaceBetween={100}
