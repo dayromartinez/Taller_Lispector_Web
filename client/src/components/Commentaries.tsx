@@ -127,7 +127,7 @@ export const Commentaries = ({ comentarios, publicacion, contenido }) => {
                     className={classes.textArea}
                     disabled={!usuario?.['name']}
                     {...register('comentario', {
-                        setValueAs: (value: string) => value.toLowerCase().trim(),
+                        setValueAs: (value: string) => value.trim(),
                         required: {
                             value: true,
                             message: 'Este campo es requerido.',
@@ -186,7 +186,7 @@ export const Commentaries = ({ comentarios, publicacion, contenido }) => {
                                     ):(null)
                                 }
                             </Box>
-                            <p className={classes.comentario}>"{comentario?.comentario}"</p>
+                            <p className={classes.comentario}>{comentario?.comentario}</p>
                         </Box> 
                     ))}
                 </Box>
