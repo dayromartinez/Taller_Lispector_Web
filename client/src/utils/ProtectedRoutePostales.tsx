@@ -7,24 +7,18 @@ export const ProtectedRoutePostales = ({ children }) => {
 
     // const [match, setMatch] = useState(false)
     const user = useSelector(( state : dataState ) => state.usuario);
+    const token = localStorage.getItem('tokenUser');
 
-    if( user?.['uid'] !== undefined ){
-        // user?.['publicationsCode']?.forEach(({publicacion}) => {
-        //     if( publicacion.includes('El tiempo en que no nos vimos' )){
-        //         setMatch(true);
-        //     }
-        // });
-
-        if( user?.['publicationsCode']?.[0]?.['publicacion'] !== 'El tiempo en que no nos vimos' && user?.['role'] !== 'admin' ){
-            return <Navigate to='/' />
+    if( token !== null ){        
+        if( user?.['uid'] !== undefined ){
+            if( user?.['publicationsCode']?.[0]?.['publicacion'] !== 'El tiempo en que no nos vimos' && user?.['role'] !== 'admin' ){
+                return <Navigate to='/' />
+            }
         }
+    } else {
+        return <Navigate to='/' />
     }
 
-
-
-    // if( user?.['publicationsCode']?.[0]?.['publicacion'] !== 'El tiempo en que no nos vimos' && user?.['role'] !== 'admin' ){
-    //     return <Navigate to='/' />
-    // }
 
     return children;
 }
