@@ -8,7 +8,7 @@ export const ProtectedRoutePostales = ({ children }) => {
     // const [match, setMatch] = useState(false)
     const user = useSelector(( state : dataState ) => state.usuario);
 
-    if( user?.['uid'] !== undefined ){
+    //if( user?.['uid'] !== undefined ){
         // user?.['publicationsCode']?.forEach(({publicacion}) => {
         //     if( publicacion.includes('El tiempo en que no nos vimos' )){
         //         setMatch(true);
@@ -16,9 +16,9 @@ export const ProtectedRoutePostales = ({ children }) => {
         // });
 
         // user?.['publicationsCode']?.[0]?.['publicacion'] === 'El tiempo en que no nos vimos' ? setMatch(true) : setMatch(false)
-    }
+    //}
 
-    if( user?.['publicationsCode']?.[0]?.['publicacion'] !== 'El tiempo en que no nos vimos' ){
+    if( user?.['publicationsCode']?.[0]?.['publicacion'] !== 'El tiempo en que no nos vimos' || user?.['role'] !== 'admin' ){
         return <Navigate to='/' />
     }
 
