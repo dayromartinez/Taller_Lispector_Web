@@ -158,5 +158,50 @@ export const useStyles = makeStyles((theme) => ({
         '&:hover': {
         color: coloresPaleta.gris
         },
+    },
+    container_alerta: {
+        position: 'absolute' as 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        backgroundColor: coloresPaleta.blanco,
+        boxShadow: '24',
+        padding: 25,
+        borderRadius: '7px',
+        [theme.breakpoints.down('xs')]: {
+            width: 300,
+        },
+    },
+    titulo_alerta: {
+        textAlign: 'center', 
+        color: coloresPaleta.aguaMarina, 
+        fontWeight: 'bold',
+        fontSize: '4rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '2.5rem',
+        },
+    },
+    boton_alerta_activado: {
+        backgroundColor: coloresPaleta.aguaMarina,
+        width: '50%',
+        borderRadius: '7px',
+        fontSize: '1.5rem',
+        padding: 7,
+        fontWeight: 'bold',
+        color: coloresPaleta.gris,
+        '&:hover': {
+            color: 'white',
+            backgroundColor: '#1d4ed8'
+        },
+    },
+    boton_alerta_desactivado: {
+        backgroundColor: coloresPaleta.gris,
+        width: '50%',
+        borderRadius: '7px',
+        fontSize: '1.5rem',
+        padding: 7,
+        fontWeight: 'bold',
+        color: coloresPaleta.blanco,
     }
 }));

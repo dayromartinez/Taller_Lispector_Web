@@ -22,7 +22,7 @@ function App() {
         <Route path='/inicio_sesion' element={<Login />}/>
         <Route path='/registrarse' element={<Registro />}/>
         <Route path='/postales' element={
-          <ProtectedRoutes publicacion={"El tiempo en que no nos vimos"}>
+          <ProtectedRoutes publicacion={"Postales"}>
             <PostalesPage />
           </ProtectedRoutes>}
         />

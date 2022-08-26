@@ -110,10 +110,12 @@ export function reserveCodePublication(idPublicacion : string, idUsuario : strin
             codigoPublicacion: codigoPublicacion,
         }
 
+        console.log('Codigo Publicacion: ', params)
+
         try {
             const response = await fetch(`${URL_BASE}/reserveCodePublication`,
                 {
-                    method: 'POST',
+                    method: 'PUT',
                     mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json'
@@ -123,15 +125,19 @@ export function reserveCodePublication(idPublicacion : string, idUsuario : strin
             )
 
             const data = await response.json();
-            if(data === "La reserva del código de la publicación ha sido realizada con éxito"){
+            console.log('DATA: ', data);
+            if(data?.['msg'] === "La reserva del código de la publicación ha sido realizada con éxito"){
+                console.log("SIRVIOOOOOOOOO")
+                localStorage.setItem('reservaPublicacion','ok');
                 dispatch(getUser(idUsuario));
                 dispatch(success({}));
             } else {
-                dispatch(failure('Algo ha salido mal revalidando el token del usuario y no sé más'))
+                console.log(data?.['msg'])
+                dispatch(failure(data?.['msg']))
             }
 
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
             dispatch(failure())
         }
     }
