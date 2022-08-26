@@ -13,9 +13,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useStyles } from '../styles/stylesComponentCommentaries';
 import UpdateComment from './UpdateComment';
 import DeleteComment from './DeleteComment';
+import { propsComponentCommentary } from '../interfaces/propsComponent';
 
 
-export const Commentaries = ({ comentarios, publicacion, contenido }) => {
+export const Commentaries = ({ comentarios, publicacion } : propsComponentCommentary) => {
 
     const classes = useStyles();
     const [sizeScreen, setSizeScreen] = useState(window.innerWidth);
@@ -57,28 +58,51 @@ export const Commentaries = ({ comentarios, publicacion, contenido }) => {
 
     const onSubmit = async (data: FormData) => {
 
-        const comentario: commentData = {
-            userId: usuario?.['uid'],
-            comentario: data.comentario,
-            publicacionId: publicacion?.['_id'],
-            contenidoId: contenido?.['_id'],
-            valoracion: raiting,
-        }
+        let comentario : commentData = {};
 
+        if(publicacion?.['publicacionId']){
+            comentario = {
+                userId: usuario?.['uid'],
+                comentario: data.comentario,
+                contenidoId: publicacion?.['publicacionId'],
+                publicacionId: publicacion?.['_id'],
+                valoracion: raiting,
+            }
+        }else{
+            comentario = {
+                userId: usuario?.['uid'],
+                comentario: data.comentario,
+                publicacionId: publicacion?.['_id'],
+                valoracion: raiting,
+            }
+        }
+        
         dispatch(createComment(comentario));
         setRaiting(0);
         setValue('comentario', '');
     }
 
-    const editCommentary = (userId : string, publicacionId : string, contenidoId: string, idComment : string, comment : string, raiting: number) => {
-        setUpdateComment({
-            userId: userId,
-            publicacionId: publicacionId,
-            contenidoId: contenidoId,
-            idComment: idComment,
-            comment: comment,
-            raiting: raiting,
-        });
+    const editCommentary = (userId : string, publicacionId : string, idComment : string, comment : string, raiting: number) => {
+        if(publicacion?.['publicacionId']){
+            setUpdateComment({
+                userId: userId,
+                publicacionId: publicacionId,
+                contenidoId: publicacion?.['publicacionId'],
+                idComment: idComment,
+                comment: comment,
+                raiting: raiting,
+            });
+        }else{
+            setUpdateComment({
+                userId: userId,
+                publicacionId: publicacionId,
+                idComment: idComment,
+                comment: comment,
+                raiting: raiting,
+                contenidoId: "",
+            });
+        }
+        
         setOpenAlertUpdate(true);
     }
 
@@ -100,8 +124,8 @@ export const Commentaries = ({ comentarios, publicacion, contenido }) => {
             {
                 openAlertUpdate ? (
                     <UpdateComment 
-                    userId={updateComment.userId} publicacionId={updateComment.publicacionId} contenidoId={updateComment.contenidoId} idCommentary={updateComment.idComment} 
-                    comment={updateComment.comment} raiting={updateComment.raiting} setOpen={setOpenAlertUpdate} open={openAlertUpdate}
+                    userId={updateComment.userId} publicacionId={updateComment.publicacionId} idCommentary={updateComment.idComment} 
+                    comment={updateComment.comment} raiting={updateComment.raiting} setOpen={setOpenAlertUpdate} open={openAlertUpdate} contenidoId={updateComment.contenidoId}
                     />
                 ):(null)
             }
@@ -173,7 +197,7 @@ export const Commentaries = ({ comentarios, publicacion, contenido }) => {
                                     comentario?.userId === usuario?.['uid'] || usuario?.['role'] === 'admin' ? (
                                         <Box>
                                             <Tooltip title="Editar Comentario">
-                                                <IconButton onClick={() => editCommentary(comentario?.userId, publicacion._id, comentario?.publicacionId, comentario?._id, comentario?.comentario, comentario?.valoracion)}>
+                                                <IconButton onClick={() => editCommentary(comentario?.userId, publicacion._id, comentario?._id, comentario?.comentario, comentario?.valoracion)}>
                                                     <EditIcon color='primary'/>
                                                 </IconButton>
                                             </Tooltip>

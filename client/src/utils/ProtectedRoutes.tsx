@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers/index';
 
-export const ProtectedRoutePostales = ({ children }) => {
+export const ProtectedRoutes = ({ children, publicacion }) => {
 
     // const [match, setMatch] = useState(false)
     const user = useSelector(( state : dataState ) => state.usuario);
@@ -11,7 +11,7 @@ export const ProtectedRoutePostales = ({ children }) => {
 
     if( token !== null ){        
         if( user?.['uid'] !== undefined ){
-            if( user?.['publicationsCode']?.[0]?.['publicacion'] !== 'El tiempo en que no nos vimos' && user?.['role'] !== 'admin' ){
+            if( !user?.['publicationsCode']?.includes(publicacion) && user?.['role'] !== 'admin' ){
                 return <Navigate to='/' />
             }
         }

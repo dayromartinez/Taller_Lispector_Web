@@ -6,7 +6,7 @@ import { PublicacionesPage } from './pages/Publicaciones'
 import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
 import { PostalesPage } from './pages/Postales';
-import { ProtectedRoutePostales } from './utils/ProtectedRoutePostales';
+import { ProtectedRoutes } from './utils/ProtectedRoutes';
 
 
 function App() {
@@ -22,9 +22,9 @@ function App() {
         <Route path='/inicio_sesion' element={<Login />}/>
         <Route path='/registrarse' element={<Registro />}/>
         <Route path='/postales' element={
-          <ProtectedRoutePostales>
+          <ProtectedRoutes publicacion={"El tiempo en que no nos vimos"}>
             <PostalesPage />
-          </ProtectedRoutePostales>}
+          </ProtectedRoutes>}
         />
       </Routes>
     </div>

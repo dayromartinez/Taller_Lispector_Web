@@ -10,7 +10,7 @@ export function createComment(datosComentario : commentData) {
         dispatch(loading())
         const nuevoComentario = {
             userId: datosComentario.userId,
-            publicacionId: datosComentario.contenidoId,
+            publicacionId: datosComentario.publicacionId,
             comentario: datosComentario.comentario,
             valoracion: datosComentario.valoracion,
         }
@@ -29,7 +29,11 @@ export function createComment(datosComentario : commentData) {
 
             const data = await response.json();
             if(data['commentCreated'] !== undefined){
-                dispatch(getPublication(datosComentario.publicacionId));
+                if(datosComentario.contenidoId !== undefined){
+                    dispatch(getPublication(datosComentario.contenidoId));
+                }else{
+                    dispatch(getPublication(datosComentario.publicacionId));
+                }
                 dispatch(success({ comentario: data.commentCreated, redirect: ``}));
             } else {
                 dispatch(failure('Algo ha salido mal revalidando el token del usuario o actualizando las publicaciones o la publicación en específico'))
@@ -47,7 +51,7 @@ export function updateComment(datosComentario : commentData) {
         dispatch(loading())
         const actualizarComentario = {
             userId: datosComentario.userId,
-            publicacionId: datosComentario.contenidoId,
+            publicacionId: datosComentario.publicacionId,
             comentarioId: datosComentario.comentarioId,
             comentario: datosComentario.comentario,
             valoracion: datosComentario.valoracion,
@@ -66,7 +70,11 @@ export function updateComment(datosComentario : commentData) {
 
             const data = await response.json();
             if(data['commentUpdated'] !== undefined){
-                dispatch(getPublication(datosComentario.publicacionId));
+                if(datosComentario.contenidoId === ""){
+                    dispatch(getPublication(datosComentario.publicacionId));
+                }else{
+                    dispatch(getPublication(datosComentario.contenidoId));
+                }
                 dispatch(success({comentario: actualizarComentario, redirect: ``}));
             } else {
                 dispatch(failure('Algo ha salido mal revalidando el token del usuario o actualizando las publicaciones o la publicación en específico'))

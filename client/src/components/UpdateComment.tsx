@@ -33,8 +33,8 @@ export default function UpdateComment({userId, publicacionId, contenidoId, idCom
 
         const datosComentario : commentData = {
             userId, 
-            publicacionId, 
-            contenidoId, 
+            publicacionId,
+            contenidoId,
             comentarioId: idCommentary, 
             comentario: commentary, 
             valoracion: raitingComment
