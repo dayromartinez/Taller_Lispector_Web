@@ -85,8 +85,8 @@ export function Calendario() {
 
   const onClick = (value: Date, event: any) => {
 
-    let fechaSesion1 : Date = new Date(2022, 7, 6);
-    let fechaSesion2 : Date = new Date(2022, 7, 20);
+    let fechaSesion1 : Date = new Date(2022, 8, 3);
+    let fechaSesion2 : Date = new Date(2022, 8, 17);
     if(value.getDate() === fechaSesion1.getDate() || value.getDate() === fechaSesion2.getDate()){
       // alert("¡Prepárese sumercé que lo que se viene para el cierre del ciclo de Ciencia Ficción es pura candela!");
       setOpen(true);
@@ -120,7 +120,7 @@ export function Calendario() {
           </Typography>
           </DialogContent>
       </BootstrapDialog>
-      <Calendar onChange={onChange} value={new Date(2022, 7, 20)} next2Label={null} prev2Label={null} onClickDay={onClick}/>
+      <Calendar onChange={onChange} value={new Date(2022, 8, 17)} next2Label={null} prev2Label={null} onClickDay={onClick}/>
     </>
   );
 }

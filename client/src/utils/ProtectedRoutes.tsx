@@ -5,7 +5,7 @@ import { dataState } from '../redux/reducers/index';
 
 export const ProtectedRoutes = ({ children, publicacion }) => {
 
-    // const [match, setMatch] = useState(false)
+
     const user = useSelector(( state : dataState ) => state.usuario);
     const token = localStorage.getItem('tokenUser');
 

@@ -21,19 +21,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: coloresPaleta.blanco,
-  boxShadow: 24,
-  p: 4,
-  borderRadius: '7px'
-};
-
-
 export const PublicacionesPage = () => {
   
   const classes = useStyles();
@@ -103,7 +90,7 @@ export const PublicacionesPage = () => {
 
   const onClickPostales = () => {
 
-    if( !usuario?.['publicationsCode']?.includes("Postales") && usuario?.['role'] !== 'admin' ){
+    if( !usuario?.['publicationsCode']?.includes("El tiempo en que no nos vimos") && usuario?.['role'] !== 'admin' ){
       
       if(!usuario?.['uid']){
         setMensajeAlerta("Para acceder a esta publicación, debes iniciar sesión previamente");
@@ -129,7 +116,7 @@ export const PublicacionesPage = () => {
   }, [publicacion]);
 
   useEffect(() => { 
-      if(localStorage.getItem('reservaPublicacion') === null && !usuario?.['publicationsCode']?.includes("Postales") && usuario?.['uid'] && usuario?.['role'] !== 'admin' && contador > 0){
+      if(localStorage.getItem('reservaPublicacion') === null && !usuario?.['publicationsCode']?.includes("El tiempo en que no nos vimos") && usuario?.['uid'] && usuario?.['role'] !== 'admin' && contador > 0){
         setMensajeAlerta(mensajeError);
         setOpenAlert(true);
       }
