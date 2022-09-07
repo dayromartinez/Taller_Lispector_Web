@@ -105,7 +105,7 @@ export const PublicacionesPage = () => {
   
   const sendCodePublication = () => {
     handleCloseAlertInput();
-    dispatch(reserveCodePublication(publicaciones[0]?.['_id'], usuario?.['uid'], "Postales", inputCodigoPublicacion));
+    dispatch(reserveCodePublication(publicaciones[0]?.['_id'], usuario?.['uid'], "El tiempo en que no nos vimos", inputCodigoPublicacion));
     setinputCodigoPublicacion("");
     setContador(contador + 1);
   }
@@ -157,7 +157,7 @@ export const PublicacionesPage = () => {
               <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '1.5rem', marginBottom: '2rem'}}>
                 <img src={iconoError} alt="Error" style={{width: '25%'}}/>
               </Box>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              <Typography id="modal-modal-description" sx={{ mt: 2, textAlign: 'center' }}>
                 {mensajeAlerta}.
               </Typography>
             </Box>
@@ -189,7 +189,7 @@ export const PublicacionesPage = () => {
                 <img src={iconoPregunta} alt="Error" style={{width: '25%'}}/>
               </Box>
               <Typography id="modal-modal-description" sx={{ mt: 2, textAlign: 'justify', mb: 4}}>
-                Esta cuenta no posee un código de acceso para acceder a esta publicación. Para poder visualizarla, por favor, digite un código de <b>16 dígitos</b> el cual debe tener la siguiente estructura: <b><i>AAAA-BBBB-CCCC-DDDD</i></b>. 
+                Esta cuenta no posee un código de acceso para visualizar esta publicación. Para poder adquirirla, por favor, digite un código de <b>16 dígitos</b> el cual debe tener la siguiente estructura: <b><i>AAAA-BBBB-CCCC-DDDD</i></b>. 
               </Typography>
               <Box sx={{display: 'flex', flexDirection: 'column'}}>
                 <input type='text' onChange={(e) => setinputCodigoPublicacion(e.target.value.toUpperCase())} value={inputCodigoPublicacion} style={{borderRadius: '7px', border: 'none', marginBottom: '2rem'}} placeholder="AAAA-BBBB-CCCC-DDDD" maxLength={19}/>

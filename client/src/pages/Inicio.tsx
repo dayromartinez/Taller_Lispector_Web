@@ -10,7 +10,7 @@ import primeraFoto from '../images/primera-foto.jpeg';
 import segundaFoto from '../images/segunda-foto.jpeg';
 import terceraFoto from '../images/tercera-imagen.jpeg';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useStyles } from '../styles/stylesPageInicio';
 import { useDispatch, useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers';
@@ -36,41 +36,6 @@ export const InicioPage = () => {
             setOpen(true);
         }
     }
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-    
-        switch(indexSlide) {
-    
-          case (0):
-            navigate('/postales');
-            break;
-    
-          case (1):
-            const link = document.createElement('a')
-            link.target = '_blank'
-            link.href = 'https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas'
-            link.click()
-            link.remove()
-            break;
-    
-          case (2):
-            navigate('/');
-            break;
-          
-          case (3):
-            navigate('/');
-            break;
-
-        case (4):
-            navigate('/');
-            break;
-          
-          default:
-            navigate('/');
-            break;
-        }
-      }
 
     useEffect(() => {
         openAlert();
@@ -221,15 +186,15 @@ export const InicioPage = () => {
                             publicaciones.map((publicacion) => (
                                 publicacion?.nombre === 'Colombia a Dos Miradas' ? (
                                   <SwiperSlide key={publicacion?.nombre}> 
-                                    <a href={publicacion?.urlDocumento} target='_blank'>
+                                    <NavLink to="/publicaciones">
                                       <img src={publicacion?.urlImagen} style={{marginTop: '2rem', cursor: 'pointer'}} alt="Colombia a dos miradas"/>
-                                    </a>
+                                    </NavLink>
                                   </SwiperSlide>
                                 )
                                 : publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
                                   <SwiperSlide 
                                     className={publicacion?.nombre === 'Ecos de Resistencia' ? (classes.imagen_ecos_de_resistencia):(classes.imagenes_lecturas_no_aplicadas)} 
-                                    onClick={() => navigate('/')}
+                                    onClick={() => navigate("/publicaciones")}
                                     key={publicacion?.nombre}
                                   >
                                     <img src={publicacion?.urlImagen} style={{cursor: 'pointer'}}/>
@@ -237,7 +202,7 @@ export const InicioPage = () => {
                                 ):(
                                     <SwiperSlide 
                                     className={classes.imagen_postal_slider} 
-                                    onClick={() => navigate('/postales')}
+                                    onClick={() => navigate("/publicaciones")}
                                     key={publicacion?.nombre}
                                     >
                                         <img src={publicacion?.urlImagen} style={{cursor: 'pointer'}}/>
@@ -245,27 +210,10 @@ export const InicioPage = () => {
                                 )
                             ))
                         }
-                        {/* <SwiperSlide className={classes.imagen_ecos_de_resistencia} onClick={() => navigate('/')}>
-                            <img src={ecosDeResistencia} style={{cursor: 'pointer'}} alt="Ecos de Resistencia"/>
-                        </SwiperSlide>
-                        <SwiperSlide> 
-                            <a href='https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas' target='_blank'>
-                            <img src={colombiaADosMiradas} style={{marginTop: '2rem', cursor: 'pointer'}} alt="Colombia a dos miradas"/>
-                            </a>
-                        </SwiperSlide>
-                        <SwiperSlide className={classes.imagenes_lecturas_no_aplicadas} onClick={() => navigate('/')}>
-                            <img src={lecturasNoAplicadas1} style={{cursor: 'pointer'}} alt="Lecturas no aplicadas I"/>
-                        </SwiperSlide>
-                        <SwiperSlide className={classes.imagenes_lecturas_no_aplicadas} onClick={() => navigate('/')}>
-                            <img src={lecturasNoAplicadas2} style={{cursor: 'pointer'}} alt="Lecturas no aplicadas II"/>
-                        </SwiperSlide>
-                        <SwiperSlide className={classes.imagenes_lecturas_no_aplicadas} onClick={() => navigate('/')}>
-                            <img src={selloLispector} style={{cursor: 'pointer'}} alt="Sello Lispector"/>
-                        </SwiperSlide> */}
                     </Swiper>
 
                     <Box className={classes.datos_publicacion}>
-                        <p className={classes.titulo_publicacion} onClick={onSubmit}>
+                        <p className={classes.titulo_publicacion} onClick={() => navigate("/publicaciones")}>
                             {publicaciones[indexSlide]?.nombre}
                         </p>
                         <p className={classes.descripcion_publicacion}>

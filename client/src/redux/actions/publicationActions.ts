@@ -110,8 +110,6 @@ export function reserveCodePublication(idPublicacion : string, idUsuario : strin
             codigoPublicacion: codigoPublicacion,
         }
 
-        console.log('Codigo Publicacion: ', params)
-
         try {
             const response = await fetch(`${URL_BASE}/reserveCodePublication`,
                 {
@@ -125,9 +123,7 @@ export function reserveCodePublication(idPublicacion : string, idUsuario : strin
             )
 
             const data = await response.json();
-            console.log('DATA: ', data);
             if(data?.['msg'] === "La reserva del código de la publicación ha sido realizada con éxito"){
-                console.log("SIRVIOOOOOOOOO")
                 localStorage.setItem('reservaPublicacion','ok');
                 dispatch(getUser(idUsuario));
                 dispatch(success({}));
@@ -135,7 +131,6 @@ export function reserveCodePublication(idPublicacion : string, idUsuario : strin
                 console.log(data?.['msg'])
                 dispatch(failure(data?.['msg']))
             }
-
         } catch (error) {
             console.log(error);
             dispatch(failure())

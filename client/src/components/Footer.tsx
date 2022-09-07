@@ -8,7 +8,7 @@ export const Footer: FC = () => {
   const year = new Date().getFullYear();
 
   return (
-      <footer className="text-center w-full" style={{'color': '#4D4D4D', marginTop: 450,}}>
+      <footer className="text-center w-full" style={{'color': '#4D4D4D', marginTop: 80}}>
         <div className='bg-footer' style={{ height: '200px' }}></div>
         <div className="text-center p-4 pb-1" style={{ backgroundColor: '#9FD5D1', height: '220px', margin: 0, padding: 0 }}>
 
