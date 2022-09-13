@@ -156,7 +156,8 @@ export const useStyles = makeStyles((theme) => ({
         marginTop: '2rem',
         textAlign: 'center',
         '&:hover': {
-        color: coloresPaleta.gris
+        color: coloresPaleta.gris,
+        cursor: 'pointer',
         },
     },
     container_alerta: {

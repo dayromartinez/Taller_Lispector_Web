@@ -7,12 +7,10 @@ import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
 import { PostalesPage } from './pages/Postales';
 import { ProtectedRoutes } from './utils/ProtectedRoutes';
+import { Publicacion } from './pages/Publicacion';
 
 
 function App() {
-
-  
-
   return (
     <div className="App">
       <Routes>
@@ -25,6 +23,18 @@ function App() {
           <ProtectedRoutes publicacion={"El tiempo en que no nos vimos"}>
             <PostalesPage />
           </ProtectedRoutes>}
+        />
+        <Route path='/ecos_de_resistencia' element={
+          <Publicacion nombrePublicacion={"Ecos de Resistencia"} />
+        }
+        />
+        <Route path='/lecturas_no_aplicadas_II' element={
+          <Publicacion nombrePublicacion={"Lecturas no aplicadas II"} />
+        }
+        />
+        <Route path='/lecturas_no_aplicadas_I' element={
+          <Publicacion nombrePublicacion={"Lecturas no aplicadas I"} />
+        }
         />
       </Routes>
     </div>

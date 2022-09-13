@@ -40,16 +40,17 @@ export const PublicacionesPage = () => {
   const navigate = useNavigate();
 
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (index) => {
     
-    switch(indexSlide) {
+    console.log('INDEX Publicaciones: ', index);
+    
+    switch(index) {
       
-      case (0):
-        navigate('/');
+      case (1):
+        navigate('/ecos_de_resistencia');
         break;
 
-      case (1):
+      case (2):
         const link = document.createElement('a')
         link.target = '_blank'
         link.href = 'https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas'
@@ -57,12 +58,12 @@ export const PublicacionesPage = () => {
         link.remove()
         break;
 
-      case (2):
-        navigate('/');
+      case (3):
+        navigate('/lecturas_no_aplicadas_II');
         break;
       
-      case (3):
-        navigate('/');
+      case (4):
+        navigate('/lecturas_no_aplicadas_I');
         break;
       
       default:
@@ -267,7 +268,7 @@ export const PublicacionesPage = () => {
               className={classes.swiper}
               onActiveIndexChange={(swiper) => setIndexSlide(swiper.activeIndex)}
             >
-              {publicaciones.map((publicacion) => (
+              {publicaciones.map((publicacion, index) => (
                 publicacion?.nombre === 'Colombia a Dos Miradas' ? (
                   <SwiperSlide key={publicacion?.nombre}> 
                     <a href='https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas' target='_blank'>
@@ -278,7 +279,7 @@ export const PublicacionesPage = () => {
                 : publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
                   <SwiperSlide 
                     className={publicacion?.nombre === 'Ecos de Resistencia' ? (classes.imagen_ecos_de_resistencia):(classes.imagenes_lecturas_no_aplicadas)} 
-                    onClick={() => navigate('/')}
+                    onClick={() => onSubmit(index)}
                     key={publicacion?.nombre}
                   >
                     <img src={publicacion?.urlImagen} style={{cursor: 'pointer'}}/>
@@ -288,7 +289,7 @@ export const PublicacionesPage = () => {
             </Swiper>
 
             <Box className={classes.datos_publicacion}>
-              <p className={classes.titulo_publicacion} onClick={onSubmit}>
+              <p className={classes.titulo_publicacion} onClick={() => onSubmit(indexSlide + 1)}>
                 {publicaciones[indexSlide + 1]?.nombre}
               </p>
               <p className={classes.descripcion_publicacion}>
@@ -298,7 +299,7 @@ export const PublicacionesPage = () => {
           </Box>
           {sizeScreen > 600 ? (
             <Box className={classes.publicaciones}>
-              {publicaciones.map((publicacion) => (
+              {publicaciones.map((publicacion, index) => (
                 publicacion?.nombre === 'Colombia a Dos Miradas' ? (
                   <Box>
                     <Box className={classes.camuflaje_Colombia_a_dos_miradas}>
@@ -311,10 +312,10 @@ export const PublicacionesPage = () => {
                     </a>
                   </Box>
                 ): publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
-                  <NavLink to="/">
+                  <Box onClick={() => onSubmit(index)}>
                     <img src={publicacion?.urlImagen} width={publicacion?.nombre === 'Ecos de Resistencia' ? 300 : 250} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} alt="Ecos de Resistencia"/>
                     <p className={classes.titulos_publicaciones_finales}>{publicacion?.nombre}</p>
-                  </NavLink>
+                  </Box>
                 ):(null)
               ))}
             </Box>

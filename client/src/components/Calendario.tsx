@@ -85,10 +85,8 @@ export function Calendario() {
 
   const onClick = (value: Date, event: any) => {
 
-    let fechaSesion1 : Date = new Date(2022, 8, 3);
-    let fechaSesion2 : Date = new Date(2022, 8, 17);
-    if(value.getDate() === fechaSesion1.getDate() || value.getDate() === fechaSesion2.getDate()){
-      // alert("¡Prepárese sumercé que lo que se viene para el cierre del ciclo de Ciencia Ficción es pura candela!");
+    let fechaSesion1 : Date = new Date(2022, 8, 17);
+    if(value.getDate() === fechaSesion1.getDate()){
       setOpen(true);
       setDatosAlerta({
         title: sesiones[0]?.titulo, 
