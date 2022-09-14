@@ -36,6 +36,8 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         marginTop: '2rem',
+        width: 350,
+        height: 450,
     },
 
     contenedor_imagen: {
@@ -73,9 +75,23 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '1.5rem',
         [theme.breakpoints.down('xs')]: {
             fontSize: '1rem',
-            width: '70%',
+            width: '90%',
         },
     },
+
+    containerPdf: {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+
+    pdfDocument: {
+        width: '70%',
+        height: '850px',
+        [theme.breakpoints.down('xs')]: {
+            width: '90%',
+            height: '500px'
+        },
+    }
 
 
 }));

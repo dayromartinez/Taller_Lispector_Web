@@ -52,7 +52,11 @@ export const Publicacion = ({nombrePublicacion}) => {
                             {publicacion?.descripcion}
                         </p>
                     </Box>
+                    <Box className={classes.containerPdf}>
+                        <iframe src={publicacion?.urlDocumento} className={classes.pdfDocument}></iframe>
+                    </Box>
                 </Box>
+
             </Box>
             <Footer />
         </Box>
