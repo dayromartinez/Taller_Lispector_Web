@@ -91,6 +91,17 @@ export const useStyles = makeStyles((theme) => ({
             width: '90%',
             height: '500px'
         },
+    },
+
+    titulo_comentarios: {
+        textAlign: 'center',
+        color: coloresPaleta.aguaMarina,
+        fontWeight: 'bold',
+        fontSize: '2.5rem',
+        marginTop: '5rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1.7rem',
+        }
     }
 
 

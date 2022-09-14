@@ -7,6 +7,7 @@ import { getPublication } from '../redux/actions/publicationActions';
 import { dataState } from '../redux/reducers';
 import { useStyles } from '../styles/stylesPagePublicacion';
 import { publicacionData } from '../interfaces/publicacionData';
+import { Commentaries } from '../components/Commentaries';
 
 
 
@@ -56,7 +57,10 @@ export const Publicacion = ({nombrePublicacion}) => {
                         <iframe src={publicacion?.urlDocumento} className={classes.pdfDocument}></iframe>
                     </Box>
                 </Box>
-
+                <Box>
+                    <Box className={classes.titulo_comentarios}>Comentarios para esta publicación</Box>
+                    <Commentaries comentarios={publicacion?.comentarios?.reverse()} publicacion={publicacion} />
+                </Box>
             </Box>
             <Footer />
         </Box>
