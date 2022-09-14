@@ -8,6 +8,7 @@ import { dataState } from '../redux/reducers';
 import { useStyles } from '../styles/stylesPagePublicacion';
 import { publicacionData } from '../interfaces/publicacionData';
 import { Commentaries } from '../components/Commentaries';
+import { AuthLayout } from '../layouts/AuthLayout';
 
 
 
@@ -19,7 +20,8 @@ export const Publicacion = ({nombrePublicacion}) => {
     const publicacion = useSelector( ({publicacion} : dataState) => publicacion);
     const dispatch = useDispatch();
 
-
+    
+    
     const getPublicacion = () => {
 
         const publication = publicaciones.filter((publicacion) => {
@@ -34,11 +36,10 @@ export const Publicacion = ({nombrePublicacion}) => {
     useEffect(() => {
         setSizeScreen(window.innerWidth);
         getPublicacion();
-    }, []);
+    }, [publicaciones]);
     
     return (
-        <Box>
-            <NavBarDesktop />
+        <AuthLayout>
             <Box className={classes.container_general}>
                 <Box className={classes.container_titulo_publicacion}>
                     {publicacion?.nombre}
@@ -62,7 +63,6 @@ export const Publicacion = ({nombrePublicacion}) => {
                     <Commentaries comentarios={publicacion?.comentarios?.reverse()} publicacion={publicacion} />
                 </Box>
             </Box>
-            <Footer />
-        </Box>
+        </AuthLayout>
     )
 }
