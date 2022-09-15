@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import { width } from '@mui/system';
 import { coloresPaleta } from './coloresPaleta';
 
 export const useStyles = makeStyles((theme) => ({
@@ -94,7 +95,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   imagen_postal_slider: {
-    display: "flex",
+    scale: 0.9
   },
   imagen_ecos_de_resistencia: {
     display: "flex",

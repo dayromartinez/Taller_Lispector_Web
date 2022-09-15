@@ -82,7 +82,7 @@ export const InicioPage = () => {
                                     ))
                                 }
                               </Swiper>
-                              <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Proximas Sesiones</Typography>
+                              <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Próximas Sesiones</Typography>
                             </Link>
                         </Box>                 
                     </Box>
@@ -113,7 +113,7 @@ export const InicioPage = () => {
                                     ))
                                 }
                               </Swiper>
-                              <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Proximas Sesiones</Typography>
+                              <Typography variant='h4' className='text-card-slider' sx={{fontWeight: 600}}>Próximas Sesiones</Typography>
                             </Link>
                         </Box>
                         <Box className='texts-first-container'>

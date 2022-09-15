@@ -54,9 +54,11 @@ export const Publicacion = ({nombrePublicacion}) => {
                             {publicacion?.descripcion}
                         </p>
                     </Box>
-                    <Box className={classes.containerPdf}>
-                        <iframe src={publicacion?.urlDocumento} className={classes.pdfDocument}></iframe>
-                    </Box>
+                    { nombrePublicacion !== 'Ecos de Resistencia' ? (
+                        <Box className={classes.containerPdf}>
+                            <iframe src={publicacion?.urlDocumento} className={classes.pdfDocument}></iframe>
+                        </Box>
+                    ) : null}
                 </Box>
                 <Box>
                     <Box className={classes.titulo_comentarios}>Comentarios para esta publicación</Box>

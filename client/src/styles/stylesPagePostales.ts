@@ -68,9 +68,11 @@ export const useStylesPostales = makeStyles((theme) => ({
         },
     },
     imagen_postal: {
+        maxWidth: '40%',
+        maxHeight: '40%',
         [theme.breakpoints.down('xs')]: {
-        maxWidth: '50%',
-        maxHeight: '50%',
+        maxWidth: '70%',
+        maxHeight: '70%',
         },
     },
 
