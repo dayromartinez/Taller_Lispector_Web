@@ -42,12 +42,10 @@ export const PublicacionesPage = () => {
 
   const onSubmit = (index) => {
     
-    console.log('INDEX Publicaciones: ', index);
-    
     switch(index) {
       
       case (1):
-        navigate('/ecos_de_resistencia');
+        navigate('/publicacion/ecos_de_resistencia');
         break;
 
       case (2):
@@ -59,11 +57,11 @@ export const PublicacionesPage = () => {
         break;
 
       case (3):
-        navigate('/lecturas_no_aplicadas_II');
+        navigate('/publicacion/lecturas_no_aplicadas_II');
         break;
       
       case (4):
-        navigate('/lecturas_no_aplicadas_I');
+        navigate('/publicacion/lecturas_no_aplicadas_I');
         break;
       
       default:

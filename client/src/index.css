@@ -191,6 +191,12 @@
         display: none;
     } 
 
+    .pdf_estilos {
+        display: flex;
+        justify-content: center;
+        width: 90%;
+        height: 80vh;
+    }
 
 }
 
@@ -369,6 +375,13 @@
     .fourth-phrase-home {
         padding: 440px 200px;
         width: 75%;
+    }
+
+    .pdf_estilos {
+        display: flex;
+        justify-content: center;
+        width: 70%;
+        height: 100vh;
     }
 
 }

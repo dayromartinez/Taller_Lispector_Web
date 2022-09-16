@@ -19,20 +19,20 @@ function App() {
         <Route path='/publicaciones' element={<PublicacionesPage />}/>
         <Route path='/inicio_sesion' element={<Login />}/>
         <Route path='/registrarse' element={<Registro />}/>
-        <Route path='/postales' element={
+        <Route path='/publicacion/postales' element={
           <ProtectedRoutes publicacion={"El tiempo en que no nos vimos"}>
             <PostalesPage />
           </ProtectedRoutes>}
         />
-        <Route path='/ecos_de_resistencia' element={
+        <Route path='/publicacion/ecos_de_resistencia' element={
           <Publicacion nombrePublicacion={"Ecos de Resistencia"} />
         }
         />
-        <Route path='/lecturas_no_aplicadas_II' element={
+        <Route path='/publicacion/lecturas_no_aplicadas_II' element={
           <Publicacion nombrePublicacion={"Lecturas no aplicadas II"} />
         }
         />
-        <Route path='/lecturas_no_aplicadas_I' element={
+        <Route path='/publicacion/lecturas_no_aplicadas_I' element={
           <Publicacion nombrePublicacion={"Lecturas no aplicadas I"} />
         }
         />

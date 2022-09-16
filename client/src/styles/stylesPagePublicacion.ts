@@ -102,7 +102,21 @@ export const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             fontSize: '1.7rem',
         }
-    }
+    },
 
+    titulo_documento: {
+        margin: '2rem 0', 
+        color: coloresPaleta.gris, 
+        fontWeight: 'bold',
+        fontSize: '2.5rem',
+        textAlign: 'center',
+        '&:hover': {
+        color: coloresPaleta.gris
+        },
+        [theme.breakpoints.down('xs')]: {
+        margin: '0rem 0 2rem 0', 
+        fontSize: '1.5rem',
+        },
+    }
 
 }));
