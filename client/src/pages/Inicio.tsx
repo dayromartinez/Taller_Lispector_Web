@@ -14,6 +14,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useStyles } from '../styles/stylesPageInicio';
 import { useDispatch, useSelector } from 'react-redux';
 import { dataState } from '../redux/reducers';
+import { Documento } from '../components/Documento';
 
 
 export const InicioPage = () => {
@@ -221,7 +222,6 @@ export const InicioPage = () => {
                         </p>
                     </Box>
                 </Box>
-                    
             </Box>
         </AuthLayout>
     )

@@ -85,8 +85,8 @@ export function Calendario() {
 
   const onClick = (value: Date, event: any) => {
 
-    let fechaSesion1 : Date = new Date(2022, 8, 17);
-    if(value.getDate() === fechaSesion1.getDate()){
+    let fechaSesion : Date = new Date(sesiones[0]?.date)
+    if(value.getDate() === fechaSesion.getDate()){
       setOpen(true);
       setDatosAlerta({
         title: sesiones[0]?.titulo, 
@@ -97,7 +97,8 @@ export function Calendario() {
         imagen: sesiones[0]?.imagenSesion,
       })
     }
-  } 
+  }
+  
 
   return (
     <>
@@ -118,7 +119,7 @@ export function Calendario() {
           </Typography>
           </DialogContent>
       </BootstrapDialog>
-      <Calendar onChange={onChange} value={new Date(2022, 8, 17)} next2Label={null} prev2Label={null} onClickDay={onClick}/>
+      <Calendar onChange={onChange} value={new Date(localStorage.getItem('fechaUltimaSesion'))} next2Label={null} prev2Label={null} onClickDay={onClick}/>
     </>
   );
 }

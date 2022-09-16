@@ -9,6 +9,7 @@ import { useStyles } from '../styles/stylesPagePublicacion';
 import { publicacionData } from '../interfaces/publicacionData';
 import { Commentaries } from '../components/Commentaries';
 import { AuthLayout } from '../layouts/AuthLayout';
+import { Documento } from '../components/Documento';
 
 
 
@@ -58,7 +59,8 @@ export const Publicacion = ({nombrePublicacion}) => {
                         <Box className={classes.containerPdf}>
                             <iframe src={publicacion?.urlDocumento} className={classes.pdfDocument}></iframe>
                         </Box>
-                    ) : null}
+                    ) : 
+                    (<Documento />)}
                 </Box>
                 <Box>
                     <Box className={classes.titulo_comentarios}>Comentarios para esta publicación</Box>

@@ -11,6 +11,7 @@ export const getAllSesions = () => {
             const sesions = await fetch(`${URL_BASE}/`)
             const data = await sesions.json()
             dispatch(success({ sesiones: data.sesiones, redirect: null}))
+            localStorage.setItem('fechaUltimaSesion', data.sesiones[0]?.date);
         } catch (error) {
             dispatch(failure())
         }

@@ -3,6 +3,7 @@ export type sesionData = {
     descripcion?: string,
     fecha?: string,
     hora?: string,
+    date?: string,
     direccionSesion?: string,
     gestores?: string,
     cicloId?: string,
