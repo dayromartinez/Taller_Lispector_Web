@@ -178,7 +178,9 @@ export function validateToken () {
             })
 
             const data = await res.json();
-            dispatch(success({usuario: data, redirect: ``}));
+            if(data?.msg !== "No hay token en la peticion o el token está caducado"){
+                dispatch(success({usuario: data, redirect: ``}));
+            }
 
         } catch (error) {
             console.log(error.message);
