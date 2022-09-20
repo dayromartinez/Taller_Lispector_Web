@@ -83,7 +83,7 @@ export const PublicacionesPage = () => {
   
   const handleCloseAlertOk = () => {
     setOpenAlertOk(false);
-    navigate('/postales');
+    navigate('/publicacion/postales');
     localStorage.removeItem('reservaPublicacion');
   }
 
