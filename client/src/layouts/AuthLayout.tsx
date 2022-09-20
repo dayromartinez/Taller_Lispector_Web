@@ -6,6 +6,7 @@ import { PublicLayout } from './PublicLayout';
 import { getAllPublications } from '../redux/actions/publicationActions';
 import { getAllSesions } from '../redux/actions/sesionActions';
 import { getAllCicles } from '../redux/actions/ciclesActions';
+import { validateToken } from '../redux/actions/userActions';
 
 export const AuthLayout = ({ children }) => {
 
@@ -27,6 +28,10 @@ export const AuthLayout = ({ children }) => {
     dispatch(getAllCicles());
 
   }, [user])
+
+  useEffect(() => {
+    dispatch(validateToken());
+  }, [])
 
   return (
     <>

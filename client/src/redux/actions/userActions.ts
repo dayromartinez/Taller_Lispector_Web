@@ -182,7 +182,8 @@ export function validateToken () {
 
         } catch (error) {
             console.log(error.message);
-            dispatch(failure())
+            dispatch(failure());
+            dispatch(logout());
         }
     }
 }

@@ -98,7 +98,7 @@ export const PublicacionesPage = () => {
       return setOpenAlertInput(true);
       
     }else{
-      return navigate('/postales');
+      return navigate('/publicacion/postales');
     }
   }
   

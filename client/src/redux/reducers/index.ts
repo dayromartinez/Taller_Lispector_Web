@@ -68,6 +68,7 @@ export default function rootReducer(state : dataState = initialState, actions) {
         case LOGOUT:
             localStorage.removeItem("tokenUser");
             localStorage.setItem("logOutUser", "true");
+            location.replace('/');
             location.reload();
             return initialState;
 
