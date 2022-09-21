@@ -11,6 +11,17 @@ import { Commentaries } from '../components/Commentaries';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { Documento } from '../components/Documento';
 
+import ecos1 from '../images/Ecos1.png';
+import ecos2 from '../images/Ecos2.png';
+import ecos3 from '../images/Ecos3.png';
+import ecos4 from '../images/Ecos4.png';
+import ecos5 from '../images/Ecos5.png';
+import ecos6 from '../images/Ecos6.png';
+import ecos7 from '../images/Ecos7.png';
+import ecos8 from '../images/Ecos8.png';
+import ecos9 from '../images/Ecos9.png';
+import ecos10 from '../images/Ecos10.png';
+
 
 
 export const Publicacion = ({nombrePublicacion}) => {
@@ -59,8 +70,24 @@ export const Publicacion = ({nombrePublicacion}) => {
                     <Box>
                         <p className={classes.titulo_documento}>Publicación</p>
                     </Box>
-                    { nombrePublicacion !== 'Ecos de Resistencia' ? 
-                    (<Documento nombrePublicacion={nombrePublicacion}/>) : (<Documento nombrePublicacion={nombrePublicacion}/>
+                    { nombrePublicacion !== 'Ecos de Resistencia' 
+                        ? (<Documento nombrePublicacion={nombrePublicacion}/>) 
+                        : ( <Box>
+                            <img src={ ecos2 } alt="Ecos de resistencia" className={classes.bannerEcos} />
+                            <img src={ ecos1 } alt="Ecos de resistencia" className={classes.bannerEcos} />
+                            <Box className={classes.containerImgsFlex}>
+                                <img src={ ecos4 } alt="Ecos de resistencia" className={classes.img_flex} />
+                                <img src={ ecos5 } alt="Ecos de resistencia" className={classes.img_flex} />
+                                <img src={ ecos6 } alt="Ecos de resistencia" className={classes.img_flex} />
+                            </Box>
+                            <img src={ ecos3 } alt="Ecos de resistencia" className={classes.bannerEcos} />
+                            <Box className={classes.containerImgsFlex}>
+                                <img src={ ecos7 } alt="Ecos de resistencia" className={classes.img_flex} />
+                                <img src={ ecos8 } alt="Ecos de resistencia" className={classes.img_flex} />
+                                <img src={ ecos9 } alt="Ecos de resistencia" className={classes.img_flex} />
+                            </Box>
+                            <img src={ ecos10 } alt="Ecos de resistencia" className={classes.bannerEcos} />
+                        </Box>
                     )}
                 </Box>
                 <Box>

@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { coloresPaleta } from './coloresPaleta';
+import { width } from '@mui/system';
 
 
 export const useStyles = makeStyles((theme) => ({
@@ -105,7 +106,7 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     titulo_documento: {
-        margin: '2rem 0', 
+        margin: '3rem 0', 
         color: coloresPaleta.gris, 
         fontWeight: 'bold',
         fontSize: '2.5rem',
@@ -117,6 +118,33 @@ export const useStyles = makeStyles((theme) => ({
         margin: '0rem 0 2rem 0', 
         fontSize: '1.5rem',
         },
+    },
+
+    bannerEcos: {
+        margin: '1rem auto',
+        width: '70%',
+        [theme.breakpoints.down('xs')]: {
+            width: '90%',
+            margin: '0.5rem auto',
+        }
+    },
+
+    containerImgsFlex: {
+        display: 'flex',
+        margin: '0 auto',
+        gap: '1rem',
+        width: '70%',
+        [theme.breakpoints.down('xs')]: {
+            width: '90%',
+            gap: '0.5rem',
+        }
+    },
+
+    img_flex: {
+        width: '32.5%',
+        [theme.breakpoints.down('xs')]: {
+            width: '32%'
+        }
     }
 
 }));
