@@ -56,8 +56,8 @@ export const InicioPage = () => {
                     {/* THIS IS ONLY TABLETS - DESKTOP */}
                     <Box className='first-container-home'>
                         <Box className='texts-first-container'>
-                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}>"Escribir es tratar de entender,</Typography>
-                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}> es tratar de reproducir lo irreproducible".</Typography>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}>«Escribir es tratar de entender,</Typography>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}> es tratar de reproducir lo irreproducible».</Typography>
                             <Typography variant='h3' sx={{color: '#9FD5D1', fontWeight: 700}}>Clarice Lispector</Typography>
                         </Box>
                         <Box className='card-slider'>
@@ -118,8 +118,8 @@ export const InicioPage = () => {
                             </Link>
                         </Box>
                         <Box className='texts-first-container'>
-                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}>"Escribir es tratar de entender,</Typography>
-                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}> es tratar de reproducir lo irreproducible".</Typography>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}>«Escribir es tratar de entender,</Typography>
+                            <Typography variant='body1' sx={{color: '#fff', fontSize: 22, fontWeight: 600}}> es tratar de reproducir lo irreproducible».</Typography>
                             <Typography variant='h3' sx={{color: '#9FD5D1', fontWeight: 700, fontSize: 35, marginTop: 2}}>Clarice Lispector</Typography>
                         </Box>
                     </Box>
@@ -161,10 +161,10 @@ export const InicioPage = () => {
                 </Box>
 
                 <Box className='fourth-container-home'>
-                    <Typography color='#9FD5D1' sx={{fontSize: 22, fontWeight: 'bold'}} className='fourth-phrase-home'>“No quiero tener la terrible limitación de quien vive sólo
+                    <Typography color='#9FD5D1' sx={{fontSize: 22, fontWeight: 'bold'}} className='fourth-phrase-home'>«No quiero tener la terrible limitación de quien vive sólo
                     de lo que puede tener un sentido.
                     Yo no:
-                    lo que quiero es una verdad inventada”.</Typography>
+                    lo que quiero es una verdad inventada».</Typography>
                 </Box>
 
                 <Box className='third-container-home' sx={{bgcolor: '#9FD5D1'}}>
