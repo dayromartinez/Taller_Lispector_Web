@@ -78,6 +78,7 @@ export const SesionesPage = () => {
   const [indexSlideCicles, setIndexSlideCicles] = useState({
     "Ciencia y Ficción": 0,
     "Mitos y leyendas": 0,
+    "Poesía Colombiana": 0,
     //CADA QUE SE INICIE UN NUEVO CICLO, DEBE AGREGARSE SU TITULO AQUI TAL CUAL COMO ESTA REGISTRADO EN EL BACKEND
   });
 
