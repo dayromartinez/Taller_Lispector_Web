@@ -32,6 +32,17 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '1.5rem',
         },
     },
+    titulo_sesiones_swiper: {
+        marginTop: '3rem', 
+        color: coloresPaleta.gris, 
+        fontWeight: 'bold',
+        fontSize: '3.5rem',
+        textAlign: 'center',
+        width: '90%',
+        [theme.breakpoints.down('xs')]: {
+        fontSize: '1.5rem',
+        },
+    },
     container_calendario_carrusel: {
         display: 'flex',
         padding: '3rem 3rem 3rem 3rem',
@@ -47,8 +58,8 @@ export const useStyles = makeStyles((theme) => ({
         height: 600,
         [theme.breakpoints.down('xs')]: {
         marginTop: '3rem',
-        width: 400,
-        height: 400,
+        width: 350,
+        height: 350,
         },
     },
     container_ciclo: {
@@ -71,50 +82,50 @@ export const useStyles = makeStyles((theme) => ({
     },
     container_piezas_ciclo: {
         display: 'flex',
-        justifyContent: 'space-evenly',
-        padding: '3rem 2rem 3rem 3rem',
-        width: '100%',
+        justifyContent: 'center',
+        gap: '1rem',
+        padding: '3rem 0rem 3rem 0rem',
+        width: '95%',
     },
-    container_pieza: {
-        
+    container_img_data_sesion: {
+        display: 'flex', 
+        flexDirection: 'column',
     },
     imagen_sesion: {
-        height: '80%',
-        width: '95%',
-        flexGrow: 1,
         boxShadow: '11px 10px 8px rgba(0, 0, 0, 0.603)',
-        [theme.breakpoints.down('lg')]: {
-            height: '60%',
-        },
+    },
+    container_sesion_data: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    container_data_sesion_mobile: {
+        width: '90%'
     },
     titulo_sesion: {
         color: coloresPaleta.gris, 
         fontWeight: 'bold',
-        fontSize: '2.5rem',
+        fontSize: '1.5rem',
         marginTop: '2rem',
-        marginRight: '2rem',
         textAlign: 'center',
         '&:hover': {
         cursor: 'pointer',
+        textDecoration: 'underline'
         },
         [theme.breakpoints.down('xs')]: {
-        marginTop: '1rem',
-        fontSize: '1.5rem',
-        marginRight: '0rem',
+            marginTop: '1rem',
+            fontSize: '1.5rem',
         },
     },
     fecha_sesion: {
         color: coloresPaleta.gris, 
         fontWeight: 600,
-        fontSize: '1.5rem',
+        fontSize: '1rem',
         marginTop: '0.5rem',
-        marginRight: '2rem',
-        marginBottom: '3rem',
         textAlign: 'center',
         [theme.breakpoints.down('xs')]: {
-        fontSize: '0.9rem',
-        marginRight: '0rem',
-        marginBottom: '2rem',
+            fontSize: '0.9rem',
+            marginRight: '0rem',
+            marginBottom: '2rem',
         },
     },
     container_sesion_actual: {
@@ -124,7 +135,7 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         marginTop: '3rem',
         [theme.breakpoints.down('xs')]: {
-        marginTop: '1.5rem',
+            marginTop: '1.5rem',
         },
     },
     imagen_sesion_actual: {
@@ -133,7 +144,7 @@ export const useStyles = makeStyles((theme) => ({
         width: '70%',
         boxShadow: '11px 10px 8px rgba(0, 0, 0, 0.603)',
         [theme.breakpoints.down('xs')]: {
-        marginTop: '1.5rem',
+            marginTop: '1.5rem',
         },
     },
     descripcion_sesion: {
@@ -144,9 +155,9 @@ export const useStyles = makeStyles((theme) => ({
         fontWeight: 500,
         fontSize: '1.5rem',
         [theme.breakpoints.down('xs')]: {
-        fontSize: '0.9rem',
-        width: '80%',
-        margin: '3rem 1rem 3rem 1rem',
+            fontSize: '0.9rem',
+            width: '80%',
+            margin: '3rem 1rem 3rem 1rem',
         },
     }
 }));

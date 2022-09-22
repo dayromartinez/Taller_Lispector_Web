@@ -178,14 +178,16 @@ export const SesionesPage = () => {
                 {sizeScreen > 600 ? (
                   <Box className={classes.container_piezas_ciclo}>
                     {ciclo.sesiones.map((sesion) => (
-                      <Box className={classes.container_pieza}>
+                      <Box className={classes.container_img_data_sesion}>
                         <img src={sesion?.imagenSesion} className={classes.imagen_sesion} onClick={() => invoqueModal(sesion?.titulo, sesion?.descripcion, sesion?.fecha, sesion?.hora, sesion?.direccionSesion, sesion?.imagenSesion)} style={{ cursor: 'pointer'}} alt="Sesión Stanislaw Lem"/>
-                        <p onClick={() => invoqueModal(sesion?.titulo, sesion?.descripcion, sesion?.fecha, sesion?.hora, sesion?.direccionSesion, sesion?.imagenSesion)} className={classes.titulo_sesion}>
-                          {sesion?.titulo}
-                        </p>
-                        <p className={classes.fecha_sesion}>
-                          {sesion?.fecha}
-                        </p>
+                        <Box>
+                          <p onClick={() => invoqueModal(sesion?.titulo, sesion?.descripcion, sesion?.fecha, sesion?.hora, sesion?.direccionSesion, sesion?.imagenSesion)} className={classes.titulo_sesion}>
+                            {sesion?.titulo}
+                          </p>
+                          <p className={classes.fecha_sesion}>
+                            {sesion?.fecha}
+                          </p>
+                        </Box>
                       </Box>
                     ))}
                   </Box>
@@ -213,12 +215,16 @@ export const SesionesPage = () => {
                         </SwiperSlide>
                       ))}
                     </Swiper>
-                    <p onClick={() => invoqueModal(ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.titulo, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.descripcion, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.fecha, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.hora, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.direccionSesion, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.imagenSesion)} className={classes.titulo_sesion}>
-                      {ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.titulo}
-                    </p>
-                    <p className={classes.fecha_sesion}>
-                      {ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.fecha}
-                    </p>
+                    <Box className={classes.container_sesion_data}>
+                      <Box className={classes.container_data_sesion_mobile}>
+                        <p onClick={() => invoqueModal(ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.titulo, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.descripcion, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.fecha, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.hora, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.direccionSesion, ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.imagenSesion)} className={classes.titulo_sesion}>
+                          {ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.titulo}
+                        </p>
+                        <p className={classes.fecha_sesion}>
+                          {ciclo.sesiones[indexSlideCicles[ciclo?.titulo]]?.fecha}
+                        </p>
+                      </Box>
+                    </Box>
                   </Box>
                 )}
               </Box>

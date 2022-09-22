@@ -144,6 +144,9 @@ export const useStyles = makeStyles((theme) => ({
         width: '32.5%',
         [theme.breakpoints.down('xs')]: {
             width: '32%'
+        },
+        [theme.breakpoints.down('lg')]: {
+            width: '32.1%'
         }
     }
 
