@@ -73,7 +73,7 @@ export const PostalesPage = () => {
                     <Box className={ classes.titulo_postales }>{ publicacion?.contenido?.[indexSlide]['nombre'] }</Box>
                         <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>
                         <Swiper 
-                            className="mySwiper" 
+                            className='mySwiper'
                             spaceBetween={100}
                             centeredSlides={true}
                             autoplay={{
@@ -86,7 +86,6 @@ export const PostalesPage = () => {
                             navigation={true}
                             modules={[Autoplay, Pagination, Navigation]}
                             onActiveIndexChange={(swiper) => onChangeSlide(swiper)}
-                            id='swiper_postales'
                         >
                         {
                             publicacion?.contenido?.map(postal => (

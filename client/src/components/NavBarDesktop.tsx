@@ -20,10 +20,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import { logout } from '../redux/actions/userActions';
 
 const pages = ['Inicio', 'Sesiones', 'Publicaciones'];
-export const settings = ['Perfil', 'Mis Publicaciones', 'Cerrar Sesión'];
+export const settings = ['Perfil', 'Cerrar Sesión'];
 
 export const colors = ['#42a5f5', '#ab47bc', '#d32f2f', '#f57c00', '#0288d1', '#388e3c', '#ffa726'];
-//const randomColor = Math.floor(Math.random() * colors.length);
 
 const NavBarDesktop = () => {
     
@@ -87,10 +86,6 @@ const NavBarDesktop = () => {
 
             case "Perfil":
                 navigate('/');
-                break;
-
-            case "Mis Publicaciones":
-                navigate('/publicaciones');
                 break;
 
             case "Cerrar Sesión":

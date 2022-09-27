@@ -148,6 +148,24 @@ export const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('lg')]: {
             width: '32.1%'
         }
+    },
+
+    ilustradora_link: {
+        color: coloresPaleta.aguaMarina,
+        fontWeight: 700,
+        fontSize: '1.5rem',
+        textAlign: 'center',
+        marginBottom: '2rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1rem',
+            marginBottom: '1rem',
+        }
+    },
+
+    hipervinculo: {
+        '&:hover': {
+            color: coloresPaleta.gris
+        },
     }
 
 }));

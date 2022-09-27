@@ -73,6 +73,7 @@ export const Publicacion = ({nombrePublicacion}) => {
                     { nombrePublicacion !== 'Ecos de Resistencia' 
                         ? (<Documento nombrePublicacion={nombrePublicacion}/>) 
                         : ( <Box>
+                            <p className={classes.ilustradora_link}>Ilustraciones y fotografías de esta publicación por: <a className={classes.hipervinculo} href='https://www.behance.net/gallery/135575365/Proyecto-Editorial-Fanzine-Ecos-de-Resistencia' target='_blank'>Luisa Burgos</a></p>
                             <img src={ ecos2 } alt="Ecos de resistencia" className={classes.bannerEcos} />
                             <img src={ ecos1 } alt="Ecos de resistencia" className={classes.bannerEcos} />
                             <Box className={classes.containerImgsFlex}>

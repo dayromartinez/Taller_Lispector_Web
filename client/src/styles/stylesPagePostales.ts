@@ -148,7 +148,6 @@ export const useStylesPostales = makeStyles((theme) => ({
 
     container_catalogo_postales: {
         margin: '0 auto',
-        /* background-color: #000; */
         padding: '0 0rem 0 6rem',
         justifyContent: 'center',
         alignItems: 'center',
@@ -158,13 +157,15 @@ export const useStylesPostales = makeStyles((theme) => ({
         gridGap: '1.5rem',
         [theme.breakpoints.down('xs')]: {
             padding: '0 0',
-            //margin: '0 50px ',
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
-            // marginLeft: 'auto',
-            // marginRight: 'auto',
         }
+    },
+
+    swiper_postales: {
+        width: '800px',
+        height: '885px',
     }
 
 }));

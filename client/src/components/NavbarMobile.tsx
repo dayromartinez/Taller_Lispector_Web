@@ -134,10 +134,6 @@ export default function NavbarMobile({ children }) {
               navigate('/');
               break;
 
-          case "Mis Publicaciones":
-              navigate('/publicaciones');
-              break;
-
           case "Cerrar Sesión":
               navigate('/');
               onLogout();
