@@ -85,7 +85,7 @@ const NavBarDesktop = () => {
         switch (option) {
 
             case "Perfil":
-                navigate('/');
+                navigate('/perfil');
                 break;
 
             case "Cerrar Sesión":

@@ -8,6 +8,7 @@ import { Registro } from './pages/Registro';
 import { PostalesPage } from './pages/Postales';
 import { ProtectedRoutes } from './utils/ProtectedRoutes';
 import { Publicacion } from './pages/Publicacion';
+import { Perfil } from './pages/Perfil';
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
         <Route path='/publicaciones' element={<PublicacionesPage />}/>
         <Route path='/inicio_sesion' element={<Login />}/>
         <Route path='/registrarse' element={<Registro />}/>
+        <Route path='/perfil' element={
+          <Perfil />} //TODO: Proteger ruta
+        />
         <Route path='/publicacion/postales' element={
           <ProtectedRoutes publicacion={"El tiempo en que no nos vimos"}>
             <PostalesPage />

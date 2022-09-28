@@ -87,7 +87,7 @@ const NavbarDesktopAdmin = () => {
         switch (option) {
 
             case "Perfil":
-                navigate('/');
+                navigate('/perfil');
                 break;
 
             case "Publicaciones":

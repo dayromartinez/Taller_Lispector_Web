@@ -132,7 +132,7 @@ export default function NavbarMobileAdmin({ children }) {
       switch (option) {
 
           case "Perfil":
-              navigate('/');
+            navigate('/perfil');
               break;
 
           case "Publicaciones":

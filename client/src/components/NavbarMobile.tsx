@@ -131,7 +131,7 @@ export default function NavbarMobile({ children }) {
       switch (option) {
 
           case "Perfil":
-              navigate('/');
+            navigate('/perfil');
               break;
 
           case "Cerrar Sesión":
