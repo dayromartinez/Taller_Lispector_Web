@@ -39,7 +39,7 @@ export const useStylesPerfil = makeStyles((theme) => ({
         justifyContent: 'space-between',
         [theme.breakpoints.down('xs')]: {
             fontSize: '1rem',
-            width: '70%',
+            width: '90%',
         },
     },
 
@@ -49,7 +49,7 @@ export const useStylesPerfil = makeStyles((theme) => ({
     },
 
     name_and_email: {
-        marginLeft: 20,
+        marginLeft: 15,
         lineHeight: '20px'
     },
 
@@ -57,14 +57,14 @@ export const useStylesPerfil = makeStyles((theme) => ({
         textAlign: 'justify', 
         width: '70%', 
         margin: '0 auto',
-        marginTop: '10rem',
+        marginTop: '7rem',
         marginBottom: '3rem',
         color: coloresPaleta.gris,
         fontWeight: 'bold',
         fontSize: '1.5rem',
         [theme.breakpoints.down('xs')]: {
             fontSize: '1rem',
-            width: '70%',
+            width: '90%',
         },
     },
 
@@ -79,12 +79,25 @@ export const useStylesPerfil = makeStyles((theme) => ({
         display: 'block',
     },
 
+    card_publicacion: {
+        display: 'flex',
+        marginBottom: '3.5rem',
+        [theme.breakpoints.down('sm')]: {
+            display: 'block',
+            marginBottom: '2rem',
+        },
+    },
+
     imgPublicacion: {
         width: 300,
         height: 'auto',
         alignSelf: 'center',
         cursor: 'pointer',
-        marginRight: 25
+        marginRight: 35,
+        [theme.breakpoints.down('sm')]: {
+            margin: '0 auto',
+            paddingBottom: '1.5rem'
+        },
     }
 
 }));

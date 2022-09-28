@@ -29,10 +29,10 @@ export const Perfil = () => {
             <Box className={classes.container_general_page}>
                 <Box className={classes.container_content}>
                     <IconButton sx={{ p: 0 }}>
-                        <Avatar alt={user?.['name']?.toUpperCase()} src={user?.['name']?.toUpperCase()} sx={{ bgcolor: `${colors[user?.['colorProfile']]}`, width: 100, height: 100, fontSize: 55 }} />
+                        <Avatar alt={user?.['name']?.toUpperCase()} src={user?.['name']?.toUpperCase()} sx={{ bgcolor: `${colors[user?.['colorProfile']]}`, width: 70, height: 70, fontSize: 45 }} />
                     </IconButton>
                     <Box className={classes.name_and_email}>
-                        <Typography variant='h4' fontWeight={600}>{user?.['name']}</Typography>
+                        <Typography variant='h5' fontWeight={600}>{user?.['name']}</Typography>
                         <Typography>{user?.['email']}</Typography>
                     </Box>
                 </Box>
@@ -48,7 +48,7 @@ export const Perfil = () => {
                 <Box className={classes.container_grilla}>
                     {
                         publicaciones?.filter(publicacion => user?.['publicationsCode']?.includes(publicacion.nombre)).map(publicacion => (
-                            <Box key={publicacion._id} display='flex'>
+                            <Box key={publicacion._id} className={classes.card_publicacion}>
                                 <img 
                                     src={publicacion?.urlImagen}
                                     width={200}
