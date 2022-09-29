@@ -32,6 +32,8 @@ export const AuthLayout = ({ children }) => {
   useEffect(() => {
     if(localStorage.getItem('tokenUser')){
       dispatch(validateToken());
+    }else{
+      localStorage.removeItem('tokenUser')
     }
   }, [])
 
