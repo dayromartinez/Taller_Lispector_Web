@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from '../redux/actions/userActions';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Perfil = () => {
 
@@ -25,13 +25,17 @@ export const Perfil = () => {
         return (
             publicaciones?.filter(publicacion => user?.['publicationsCode']?.includes(publicacion.nombre)).map(publicacion => (
                 <Box key={publicacion._id} className={classes.card_publicacion}>
-                    <img 
-                        src={publicacion?.urlImagen}
-                        width={200}
-                        className={classes.imgPublicacion}  
-                    />
+                    <Link to={`/publicacion/postales`}>
+                        <img 
+                            src={publicacion?.urlImagen}
+                            width={200}
+                            className={classes.imgPublicacion}  
+                        />
+                    </Link>
                     <Box>
-                        <p style={{ textAlign: 'center', marginBottom: 20 }}>{publicacion?.['nombre']}</p>
+                        <Link to={`/publicacion/postales`}>
+                            <p style={{ textAlign: 'center', marginBottom: 20 }}>{publicacion?.['nombre']}</p>
+                        </Link>
                         <Typography variant='body1'>{publicacion?.['descripcion']}</Typography>
                     </Box>
                 </Box>
@@ -41,7 +45,7 @@ export const Perfil = () => {
 
     const onLogout = () => {
         navigate('/')
-        
+
         dispatch(logout())
     }
 
@@ -71,8 +75,8 @@ export const Perfil = () => {
                 </Box>
             </Box>
             <Box className={classes.container_content_rol}>
-                <p style={{ fontWeight: 600, fontSize: '18px', paddingRight: 5 }}>Mi rol es:</p>
-                <h6>{user?.['role']}</h6>
+                <p style={{ fontWeight: 600, fontSize: '18px', paddingRight: 8 }}>Mi rol es:</p>
+                <h6 style={{ marginTop: 2 }}>{user?.['role']}</h6>
             </Box>
 
             <Box className={classes.container_mis_publicaciones}>
