@@ -72,7 +72,8 @@ export const PostalesPage = () => {
                 <Box bgcolor={coloresPaleta.aguaMarina} padding='50px 0' className='container_postales'>
                     <Box className={ classes.titulo_postales }>{ publicacion?.contenido?.[indexSlide]['nombre'] }</Box>
                         <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>
-                        <Swiper 
+                        <Swiper
+                            id='swiper_postales' 
                             className='mySwiper'
                             spaceBetween={100}
                             centeredSlides={true}
@@ -105,6 +106,7 @@ export const PostalesPage = () => {
                             ))
                         }
                         </Swiper>
+                        <Typography style={{ marginTop: '1.5rem'}} variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Ilustración por { publicacion?.contenido?.[indexSlide]['autores'][1] }</Typography>
                     {
                         publicacion?.contenido?.length > 0 
                         ? (<Box className={classes.container_texto_postales}>
