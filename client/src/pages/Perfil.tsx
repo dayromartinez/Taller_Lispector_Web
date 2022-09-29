@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from '../redux/actions/userActions';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 export const Perfil = () => {
 
@@ -25,16 +25,16 @@ export const Perfil = () => {
         return (
             publicaciones?.filter(publicacion => user?.['publicationsCode']?.includes(publicacion.nombre)).map(publicacion => (
                 <Box key={publicacion._id} className={classes.card_publicacion}>
-                    <Link to={`/publicacion/postales`}>
+                    <NavLink to={`/publicacion/postales`} style={{marginRight: '30px'}}>
                         <img 
                             src={publicacion?.urlImagen}
                             width={200}
                             className={classes.imgPublicacion}  
                         />
-                    </Link>
+                    </NavLink>
                     <Box>
                         <Link to={`/publicacion/postales`}>
-                            <p style={{ textAlign: 'center', marginBottom: 20 }}>{publicacion?.['nombre']}</p>
+                            <p className={classes.titulo_publicacion}>{publicacion?.['nombre']}</p>
                         </Link>
                         <Typography variant='body1'>{publicacion?.['descripcion']}</Typography>
                     </Box>

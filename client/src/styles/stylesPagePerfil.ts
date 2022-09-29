@@ -102,14 +102,25 @@ export const useStylesPerfil = makeStyles((theme) => ({
     },
 
     imgPublicacion: {
-        width: 300,
+        width: 600,
         height: 'auto',
         alignSelf: 'center',
         cursor: 'pointer',
-        marginRight: 35,
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('xs')]: {
+            width: 300,
             margin: '0 auto',
             paddingBottom: '1.5rem'
+        },
+    },
+
+    titulo_publicacion: {
+        textAlign: 'center', 
+        marginBottom: 20,
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1.5rem'
+        },
+        '&:hover': {
+            color: coloresPaleta.aguaMarina
         },
     }
 
