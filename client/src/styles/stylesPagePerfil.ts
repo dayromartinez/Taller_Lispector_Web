@@ -30,7 +30,7 @@ export const useStylesPerfil = makeStyles((theme) => ({
         width: '70%', 
         margin: '0 auto',
         marginTop: '5rem',
-        marginBottom: '3rem',
+        marginBottom: '0',
         color: coloresPaleta.gris,
         fontWeight: 'bold',
         fontSize: '1.5rem',
@@ -51,6 +51,19 @@ export const useStylesPerfil = makeStyles((theme) => ({
     name_and_email: {
         marginLeft: 15,
         lineHeight: '20px'
+    },
+
+    container_content_rol: {
+        textAlign: 'justify', 
+        width: '70%', 
+        margin: '0 auto',
+        marginTop: '2rem',
+        marginBottom: '3rem',
+        display: 'flex',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '1rem',
+            width: '90%',
+        },
     },
 
     container_mis_publicaciones: {

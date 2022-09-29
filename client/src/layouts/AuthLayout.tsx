@@ -30,7 +30,9 @@ export const AuthLayout = ({ children }) => {
   }, [user])
 
   useEffect(() => {
-    dispatch(validateToken());
+    if(localStorage.getItem('tokenUser')){
+      dispatch(validateToken());
+    }
   }, [])
 
   return (
