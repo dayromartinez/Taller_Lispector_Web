@@ -12,6 +12,48 @@ import "swiper/css/pagination";
 import { getPublication } from '../redux/actions/publicationActions';
 import { Markup } from 'interweave';
 import { Commentaries } from '../components/Commentaries';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
+
+import { datosAlerta } from '../interfaces/datosAlerta';
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
+const BootstrapDialogTitle = (props) => {
+  const { children, onClose, ...other } = props;
+
+  return (
+    <DialogTitle sx={{ mt: 1, fontWeight: 800, fontSize: '1.5rem', lineHeight: 1.1, textAlign: 'center' }} {...other}>
+      {children}
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 5,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  );
+};
 
 
 export const PostalesPage = () => {
@@ -22,7 +64,14 @@ export const PostalesPage = () => {
     const publicaciones = useSelector(({publicaciones} : dataState) => publicaciones);
     const publicacion = useSelector( ({publicacion} : dataState) => publicacion);
     const dispatch = useDispatch();
-    const [listImages, setListImages] = useState([]); 
+    const [listImages, setListImages] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [datosAlerta, setDatosAlerta] = useState<datosAlerta>({
+        title: "",
+        imagen: "", 
+        autor: "",
+        ilustrador: "",
+    }); 
 
     const onChangeSlide = (swiper) => {
         setIndexSlide(swiper.activeIndex);
@@ -35,6 +84,24 @@ export const PostalesPage = () => {
         swiper_postales.slideTo(index);
         setTextPostal(publicacion?.contenido?.[index]['texto']);
         document.getElementById('container_catalogo_postales').scrollIntoView();
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const invoqueModal = (titulo : string, autor: string, ilustrador: string, imagen : string) => {
+        setOpen(true);
+        setDatosAlerta({
+            title: titulo, 
+            autor,
+            imagen,
+            ilustrador
+        })
     }
 
     useEffect(() => {
@@ -51,6 +118,22 @@ export const PostalesPage = () => {
     return (
         <AuthLayout>
             <Box className={classes.container_general}>
+            <BootstrapDialog
+                onClose={handleClose}
+                aria-labelledby="customized-dialog-title"
+                open={open}
+                sx={{bgcolor: 'rgba(0,0,0, 0.7)'}}
+            >
+                <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+                    {datosAlerta.title}
+                </BootstrapDialogTitle>
+                <DialogContent dividers>
+                    <img src={datosAlerta.imagen} alt="Sesion" />
+                    <Typography gutterBottom sx={{textAlign: 'center', mb: 1, mt: 3, color: coloresPaleta.gris, fontWeight: 600}}>
+                        Escrito por {datosAlerta.autor} e ilustrado por {datosAlerta.ilustrador}
+                    </Typography>
+                </DialogContent>
+            </BootstrapDialog>
                 <Box className={classes.container_titulo_postales}>
                     El tiempo en que no nos vimos 📚
                 </Box>
@@ -93,12 +176,14 @@ export const PostalesPage = () => {
                                 ( postal['nombre'] === 'El Galto' ) ? (
                                     <SwiperSlide 
                                         key={postal['nombre']}
+                                        onClick={() => invoqueModal(postal['nombre'], postal['autores'][0], postal['autores'][1], 'https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH')}
                                     >
-                                        <img className='imgs-carrusel' src="https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH" alt="" />
+                                        <img className='imgs-carrusel' src="https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH" alt="" style={{cursor: 'pointer'}}/>
                                     </SwiperSlide>
                                 ) : (
                                     <SwiperSlide 
                                         key={postal['nombre']}
+                                        onClick={() => invoqueModal(postal['nombre'], postal['autores'][0], postal['autores'][1], postal['urlImagen'])}
                                     >
                                         <img className='imgs-carrusel' src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
                                     </SwiperSlide>
@@ -116,7 +201,7 @@ export const PostalesPage = () => {
                                     <Box className='grid-imgs-postales-galto'>
                                         {
                                             listImages.map(imagen => (
-                                                <img src={imagen} alt='Imagen del Galto' />
+                                                <img src={imagen} alt='Imagen del Galto' style={{cursor: 'pointer'}} onClick={() => invoqueModal(publicacion?.contenido[7]['nombre'], publicacion?.contenido[7]['autores'][0], publicacion?.contenido[7]['autores'][1], imagen)} />
                                             ))
                                         }
                                     </Box>

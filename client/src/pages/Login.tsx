@@ -11,7 +11,9 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { Loading } from '../components/Loading';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { Alert, Snackbar } from '@mui/material';
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { coloresPaleta } from '../styles/coloresPaleta';
 
 /* Claves de sitio de google de PRUEBA:
 Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
@@ -41,7 +43,7 @@ export const Login = () => {
     const [siteKey, setSiteKey] = useState<string>("");
     const [onClick, setOnClick] = useState<boolean>(false);
     const [loadingPage, setLoadingPage] = useState<boolean>(false);
-
+    const [visibilityPassword, setVisibilityPassword] = useState(false);
     const [open, setOpen] = React.useState(false);
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -129,7 +131,6 @@ export const Login = () => {
 
     return (
         <AuthLayout>
-          
             {
                 loadingPage ? (
                     <Loading />
@@ -175,22 +176,25 @@ export const Login = () => {
                                         <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="password">
                                             Contraseña
                                         </label>
-                                        <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" placeholder="***********"
-                                        {...register('contrasena', {
-                                            setValueAs: (value: string) => value.trim(),
-                                            required: {
-                                                value: true,
-                                                message: 'Este campo es requerido.',
-                                            },
-                                            minLength: {
-                                                value: 8,
-                                                message: 'Debe de tener un mínimo de 8 caracteres.',
-                                            },
-                                            validate: {
-                                                isPassword,
-                                            },
-                                        })}
-                                        />
+                                        <div style={{'position': 'relative'}}>  
+                                            <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type={visibilityPassword ? 'text':'password'} placeholder="***********"
+                                            {...register('contrasena', {
+                                                setValueAs: (value: string) => value.trim(),
+                                                required: {
+                                                    value: true,
+                                                    message: 'Este campo es requerido.',
+                                                },
+                                                minLength: {
+                                                    value: 8,
+                                                    message: 'Debe de tener un mínimo de 8 caracteres.',
+                                                },
+                                                validate: {
+                                                    isPassword,
+                                                },
+                                            })}
+                                            />
+                                            <button type='button' style={{'color': coloresPaleta.gris, 'position': 'absolute', 'marginTop': '.4rem', 'right': '10px'}} onClick={() => setVisibilityPassword(!visibilityPassword)} >{visibilityPassword ? (<VisibilityIcon />):(<VisibilityOffIcon />)}</button>
+                                        </div>
                                         <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="contrasena">
                                             {errors.contrasena ? (<span className="text-red-500 text-xs">{errors.contrasena.message}</span>) : ""}
                                         </label>    

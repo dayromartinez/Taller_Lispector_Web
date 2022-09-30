@@ -9,9 +9,12 @@ import { userData } from '../interfaces/userData';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { Alert, Snackbar } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 /** recaptcha */
 import ReCAPTCHA from 'react-google-recaptcha'
+import { coloresPaleta } from '../styles/coloresPaleta';
 
 
 
@@ -41,6 +44,8 @@ export const Registro = () => {
     const [isNotRobot, setIsNotRobot] = useState<boolean>(false);
     const [siteKey, setSiteKey] = useState<string>("");
     const [sizeScreen, setSizeScreen] = useState(window.innerWidth);
+    const [visibilityPassword, setVisibilityPassword] = useState(false);
+    const [visibilityConfirmPassword, setVisibilityConfirmPassword] = useState(false);
     const [open, setOpen] = React.useState(false);
 
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
@@ -222,22 +227,25 @@ export const Registro = () => {
                                     <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="password">
                                         Contraseña <span className='text-red-500'>*</span>
                                     </label>
-                                    <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="***********" 
-                                    {...register('contrasena', {
-                                        setValueAs: (value: string) => value.trim(),
-                                        required: {
-                                            value: true,
-                                            message: 'Este campo es requerido.',
-                                        },
-                                        minLength: {
-                                            value: 8,
-                                            message: 'Debe de tener un mínimo de 8 caracteres.',
-                                        },
-                                        validate: {
-                                            isPassword,
-                                        },
-                                    })}
-                                    />
+                                    <div style={{'position': 'relative'}}>  
+                                        <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type={visibilityPassword ? 'text':'password'} placeholder="***********"
+                                        {...register('contrasena', {
+                                            setValueAs: (value: string) => value.trim(),
+                                            required: {
+                                                value: true,
+                                                message: 'Este campo es requerido.',
+                                            },
+                                            minLength: {
+                                                value: 8,
+                                                message: 'Debe de tener un mínimo de 8 caracteres.',
+                                            },
+                                            validate: {
+                                                isPassword,
+                                            },
+                                        })}
+                                        />
+                                        <button type='button' style={{'color': coloresPaleta.gris, 'position': 'absolute', 'marginTop': '.4rem', 'right': '10px'}} onClick={() => setVisibilityPassword(!visibilityPassword)} >{visibilityPassword ? (<VisibilityIcon />):(<VisibilityOffIcon />)}</button>
+                                    </div>
                                     <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="contrasena">
                                         {errors.contrasena ? (<span className="text-red-500 text-xs">{errors.contrasena.message}</span>) : ""}
                                     </label>
@@ -246,22 +254,25 @@ export const Registro = () => {
                                     <label className="block text-gray-700 text-sm font-bold mb-2 text-left" htmlFor="verificar">
                                         Confirmar Contraseña <span className='text-red-500'>*</span>
                                     </label>
-                                    <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="verificar" type="password" placeholder="***********" 
-                                    {...register('verificar', {
-                                        setValueAs: (value: string) => value.trim(),
-                                        required: {
-                                            value: true,
-                                            message: 'Este campo es requerido.',
-                                        },
-                                        minLength: {
-                                            value: 8,
-                                            message: 'Debe de tener un mínimo de 8 caracteres.',
-                                        },
-                                        validate: {
-                                            isPasswordConfirm,
-                                        },
-                                    })}
-                                    />
+                                    <div style={{'position': 'relative'}}>
+                                        <input autoComplete="off" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="verificar" type={visibilityConfirmPassword ? 'text':'password'} placeholder="***********" 
+                                        {...register('verificar', {
+                                            setValueAs: (value: string) => value.trim(),
+                                            required: {
+                                                value: true,
+                                                message: 'Este campo es requerido.',
+                                            },
+                                            minLength: {
+                                                value: 8,
+                                                message: 'Debe de tener un mínimo de 8 caracteres.',
+                                            },
+                                            validate: {
+                                                isPasswordConfirm,
+                                            },
+                                        })}
+                                        />
+                                        <button type='button' style={{'color': coloresPaleta.gris, 'position': 'absolute', 'marginTop': '.4rem', 'right': '10px'}} onClick={() => setVisibilityConfirmPassword(!visibilityConfirmPassword)} >{visibilityConfirmPassword ? (<VisibilityIcon />):(<VisibilityOffIcon />)}</button>
+                                    </div>
                                     <label className="block text-gray-700 text-sm font-bold mt-2 text-left" htmlFor="verificar">
                                         {errors.verificar ? (<span className="text-red-500 text-xs">{errors.verificar.message}</span>) : ""}
                                     </label>

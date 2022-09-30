@@ -5,4 +5,6 @@ export interface datosAlerta {
     time?: string, 
     address?: string,
     imagen?: string,
+    autor?: string,
+    ilustrador?: string
 }
