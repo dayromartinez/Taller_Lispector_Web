@@ -10,6 +10,7 @@ import { ProtectedRoutes } from './utils/ProtectedRoutes';
 import { Publicacion } from './pages/Publicacion';
 import { Perfil } from './pages/Perfil';
 import { ProtectedRoutesUser } from './utils/ProtectedRoutesUser';
+import { NotFound } from './pages/NotFound';
 
 
 function App() {
@@ -43,6 +44,8 @@ function App() {
           <Publicacion nombrePublicacion={"Lecturas no aplicadas I"} />
         }
         />
+
+        <Route path='/*' element={<NotFound />} />
       </Routes>
     </div>
   )
