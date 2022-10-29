@@ -90,6 +90,9 @@ export const Publicacion = ({nombrePublicacion}) => {
                             <img src={ ecos10 } alt="Ecos de resistencia" className={classes.bannerEcos} />
                         </Box>
                     )}
+                    <Box>
+                        <p className={classes.textoAccesoPublicacion}>Para acceder a la publicación completa, puedes contactarnos a través de nuestras redes sociales. Encontrarás nuestras redes en la sección inferior de esta página. ¡Gracias por apoyar la literatura independiente!</p>
+                    </Box>
                 </Box>
                 <Box>
                     <Box className={classes.titulo_comentarios}>Comentarios para esta publicación</Box>

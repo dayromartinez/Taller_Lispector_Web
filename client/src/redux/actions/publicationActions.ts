@@ -126,7 +126,6 @@ export function reserveCodePublication(idPublicacion : string, idUsuario : strin
             if(data?.['msg'] === "La reserva del código de la publicación ha sido realizada con éxito"){
                 localStorage.setItem('reservaPublicacion','ok');
                 dispatch(getUser(idUsuario));
-                dispatch(success({}));
             } else {
                 console.log(data?.['msg'])
                 dispatch(failure(data?.['msg']))

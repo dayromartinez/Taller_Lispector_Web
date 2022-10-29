@@ -8,10 +8,10 @@ export const NotFound = () => {
             <div className="container-content">
                 <h2 className='t404'>404</h2>
                 <h1 className="title-page">¡Esta página no existe!</h1>
-                <p className="description-page">Lo sentimos, pero la página que estás buscando no fué encontrada.</p>
+                <p className="description-page">Lo sentimos, pero la página que estás buscando no fue encontrada.</p>
                 <div className="container-btn">
                     <Link to='/'>
-                        <button className="btn-goback">Volver al Inicio</button>
+                        <button className="btn-goback">Volver a Inicio</button>
                     </Link>
                 </div>
             </div>

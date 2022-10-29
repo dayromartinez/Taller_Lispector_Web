@@ -119,6 +119,18 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '1.5rem',
         },
     },
+    
+    textoAccesoPublicacion: {
+        textAlign: 'center',
+        margin: '3rem 11rem',
+        fontWeight: 'bold',
+        color: coloresPaleta.gris,
+        fontSize: '1.3rem',
+        [theme.breakpoints.down('xs')]: {
+            margin: '2rem 1rem',
+            fontSize: '.8rem',
+        },
+    },
 
     bannerEcos: {
         margin: '1rem auto',

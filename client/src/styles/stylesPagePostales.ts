@@ -37,6 +37,24 @@ export const useStylesPostales = makeStyles((theme) => ({
         justifyContent: 'center',
         marginTop: '2rem',
     },
+    creditosIlustracion: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: '1.5rem',
+        fontSize: '1.3rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '.9rem',
+        },
+    },
+    textoCreditosPostal1: {
+        color: coloresPaleta.aguaMarina,
+        fontWeight: 'bold'
+    },
+    textoCreditosPostal2: {
+        color: coloresPaleta.gris,
+        fontWeight: 'bold'
+    },
     tituloPostales: {
         marginTop: '3rem', 
         color: coloresPaleta.gris, 

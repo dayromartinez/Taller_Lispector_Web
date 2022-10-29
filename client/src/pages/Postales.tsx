@@ -115,6 +115,9 @@ export const PostalesPage = () => {
         }
     }, [publicaciones])
 
+    console.log('list images ', listImages);
+    
+
     return (
         <AuthLayout>
             <Box className={classes.container_general}>
@@ -142,7 +145,11 @@ export const PostalesPage = () => {
                     <Box className={classes.postal_Lispector} >
                         <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" />
                     </Box>
-                    
+                    <Box className={classes.creditosIlustracion}>
+                        <p className={classes.textoCreditosPostal1}>Diseño de portada:</p>
+                        &nbsp;
+                        <p className={classes.textoCreditosPostal2}>Mariana Valente</p>
+                    </Box>
                     <Box className={classes.container_descripcion_postales}>
                         <p className={classes.descripcion_postales}>
                             {publicaciones[0]?.descripcion}

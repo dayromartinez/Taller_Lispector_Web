@@ -28,7 +28,13 @@ export const PublicacionesPage = () => {
   const [openAlert, setOpenAlert] = useState(false);
   const [openAlertOk, setOpenAlertOk] = useState(false);
   const [openAlertInput, setOpenAlertInput] = useState(false);
-  const [inputCodigoPublicacion, setinputCodigoPublicacion] = useState('');
+  const [inputsCodigoPublicacion, setInputsCodigoPublicacion] = useState({
+    inputA: '',
+    inputB: '',
+    inputC: '',
+    inputD: '',
+  });
+  const [codigoPublicacion, setCodigoPublicacion] = useState('');
   const [mensajeAlerta, setMensajeAlerta] = useState("");
   const [contador, setContador] = useState(0);
   const [sizeScreen, setSizeScreen] = useState(window.innerWidth);
@@ -79,6 +85,12 @@ export const PublicacionesPage = () => {
 
   const handleCloseAlertInput = () => {
     setOpenAlertInput(false);
+    setInputsCodigoPublicacion({
+      inputA: '',
+      inputB: '',
+      inputC: '',
+      inputD: '',
+    });
   };
   
   const handleCloseAlertOk = () => {
@@ -104,11 +116,24 @@ export const PublicacionesPage = () => {
   
   const sendCodePublication = () => {
     handleCloseAlertInput();
-    dispatch(reserveCodePublication(publicaciones[0]?.['_id'], usuario?.['uid'], "El tiempo en que no nos vimos", inputCodigoPublicacion));
-    setinputCodigoPublicacion("");
+    dispatch(reserveCodePublication(publicaciones[0]?.['_id'], usuario?.['uid'], "El tiempo en que no nos vimos", codigoPublicacion));
+    setInputsCodigoPublicacion({
+      inputA: '',
+      inputB: '',
+      inputC: '',
+      inputD: '',
+    });
+    setCodigoPublicacion('');
     setContador(contador + 1);
   }
-  
+
+  const setValueInputsAlerta = (event) => {
+    setInputsCodigoPublicacion({
+      ...inputsCodigoPublicacion,
+      [event.target.name]: event.target.value.toUpperCase(),
+    });
+    return;
+  }
   
   useEffect(() => {
     setSizeScreen(window.innerWidth);
@@ -126,6 +151,10 @@ export const PublicacionesPage = () => {
       setOpenAlertOk(true);
     }
   }, [localStorage.getItem('reservaPublicacion')])
+
+  useEffect(() => {
+    setCodigoPublicacion(`${inputsCodigoPublicacion.inputA}-${inputsCodigoPublicacion.inputB}-${inputsCodigoPublicacion.inputC}-${inputsCodigoPublicacion.inputD}`)
+  }, [inputsCodigoPublicacion])
 
   
   return (
@@ -188,12 +217,20 @@ export const PublicacionesPage = () => {
                 <img src={iconoPregunta} alt="Error" style={{width: '25%'}}/>
               </Box>
               <Typography id="modal-modal-description" sx={{ mt: 2, textAlign: 'justify', mb: 4}}>
-                Esta cuenta no posee un código de acceso para visualizar esta publicación. Para poder adquirirla, por favor, digite un código de <b>16 dígitos</b> el cual debe tener la siguiente estructura: <b><i>AAAA-BBBB-CCCC-DDDD</i></b>. 
+                Esta cuenta no posee un código de acceso para visualizar esta publicación. Para poder adquirirla, por favor, digite un código de <b>16 caracteres alfanuméricos</b>, el cual debe tener la siguiente estructura: <b><i>AAAA-BBBB-CCCC-DDDD</i></b>. 
               </Typography>
               <Box sx={{display: 'flex', flexDirection: 'column'}}>
-                <input type='text' onChange={(e) => setinputCodigoPublicacion(e.target.value.toUpperCase())} value={inputCodigoPublicacion} style={{borderRadius: '7px', border: 'none', marginBottom: '2rem'}} placeholder="AAAA-BBBB-CCCC-DDDD" maxLength={19}/>
-                <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                  <button type='button' onClick={sendCodePublication} className={inputCodigoPublicacion.length === 19 ? classes.boton_alerta_activado : classes.boton_alerta_desactivado} disabled={!(inputCodigoPublicacion.length === 19)}>Enviar</button>
+                <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                  <input type='text' onChange={(e) => setValueInputsAlerta(e)} value={inputsCodigoPublicacion.inputA} name='inputA' className={classes.inputsCodigoPublicacion} placeholder="AAAA" maxLength={4}/>
+                  <span className={classes.guionCodigoPublicacion}>-</span>
+                  <input type='text' onChange={(e) => setValueInputsAlerta(e)} value={inputsCodigoPublicacion.inputB} name='inputB' className={classes.inputsCodigoPublicacion} placeholder="BBBB" maxLength={4}/>
+                  <span className={classes.guionCodigoPublicacion}>-</span>
+                  <input type='text' onChange={(e) => setValueInputsAlerta(e)} value={inputsCodigoPublicacion.inputC} name='inputC' className={classes.inputsCodigoPublicacion} placeholder="CCCC" maxLength={4}/>
+                  <span className={classes.guionCodigoPublicacion}>-</span>
+                  <input type='text' onChange={(e) => setValueInputsAlerta(e)} value={inputsCodigoPublicacion.inputD} name='inputD' className={classes.inputsCodigoPublicacion} placeholder="DDDD" maxLength={4}/>
+                </Box>
+                <Box sx={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
+                  <button type='button' onClick={sendCodePublication} className={codigoPublicacion.length === 19 ? classes.boton_alerta_activado : classes.boton_alerta_desactivado} disabled={!(codigoPublicacion.length === 19)}>Enviar</button>
                 </Box>
               </Box>
             </Box>
@@ -243,6 +280,11 @@ export const PublicacionesPage = () => {
             </Box>
             <Box className={classes.postal_Lispector} >
               <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" onClick={onClickPostales} style={{cursor: 'pointer'}} />
+            </Box>
+            <Box className={classes.creditosIlustracion}>
+              <p className={classes.textoCreditosPostal1}>Diseño de portada:</p>
+              &nbsp;
+              <p className={classes.textoCreditosPostal2}>Mariana Valente</p>
             </Box>
             <Box className={classes.container_descripcion_postales}>
               <p className={classes.descripcion_postales}>

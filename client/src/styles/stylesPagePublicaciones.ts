@@ -26,6 +26,24 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         marginTop: '2rem',
     },
+    creditosIlustracion: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: '1.5rem',
+        fontSize: '1rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '.8rem',
+        },
+    },
+    textoCreditosPostal1: {
+        color: coloresPaleta.aguaMarina,
+        fontWeight: 'bold'
+    },
+    textoCreditosPostal2: {
+        color: coloresPaleta.gris,
+        fontWeight: 'bold'
+    },
     tituloPostales: {
         marginTop: '3rem', 
         color: coloresPaleta.gris, 
@@ -36,7 +54,7 @@ export const useStyles = makeStyles((theme) => ({
         color: coloresPaleta.aguaMarina
         },
         [theme.breakpoints.down('xs')]: {
-        fontSize: '1.5rem',
+            fontSize: '1.5rem',
         },
     },
     container_descripcion_postales: {
@@ -206,5 +224,34 @@ export const useStyles = makeStyles((theme) => ({
         padding: 7,
         fontWeight: 'bold',
         color: coloresPaleta.blanco,
+    },
+    inputsCodigoPublicacion: {
+        borderRadius: '7px', 
+        border: 'none', 
+        marginBottom: '2rem', 
+        width: '4.5rem', 
+        textAlign: 'center', 
+        color: coloresPaleta.gris, 
+        fontWeight: 'bold',
+        [theme.breakpoints.down('xs')]: {
+            width: '3.4rem',
+            fontSize: '.9rem',
+            marginBottom: '1rem',
+            textAlign: 'left',
+            paddingLeft: '.4rem',
+            paddingRight: '.3rem',
+            paddintTop: '.3rem',
+            paddingBottom: '.4rem',
+        }
+    },
+    guionCodigoPublicacion: {
+        marginTop: '.4rem', 
+        marginLeft: '.5rem', 
+        marginRight: '.5rem',
+        fontWeight: 'bold',
+        [theme.breakpoints.down('xs')]: {
+            marginLeft: '.2rem', 
+            marginRight: '.2rem',
+        }
     }
 }));
