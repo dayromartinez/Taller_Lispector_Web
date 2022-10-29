@@ -116,6 +116,7 @@ export const PublicacionesPage = () => {
   
   const sendCodePublication = () => {
     handleCloseAlertInput();
+    console.log('Despachando ACCIÓN, ID USUARIO: ', usuario?.['uid']);
     dispatch(reserveCodePublication(publicaciones[0]?.['_id'], usuario?.['uid'], "El tiempo en que no nos vimos", codigoPublicacion));
     setInputsCodigoPublicacion({
       inputA: '',

@@ -168,7 +168,7 @@ export const PostalesPage = () => {
                             spaceBetween={100}
                             centeredSlides={true}
                             autoplay={{
-                                delay: 120000,
+                                delay: 660000,
                                 disableOnInteraction: false,
                             }}
                             pagination={{
