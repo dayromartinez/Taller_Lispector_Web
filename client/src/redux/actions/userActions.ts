@@ -178,12 +178,18 @@ export function validateToken () {
             })
 
             const data = await res.json();
-            if(data?.msg !== "No hay token en la peticion o el token está caducado"){
-                dispatch(success({usuario: data, redirect: ``}));
+            console.log('PREVIO A LA RESPUESTA DEL TOKEN');
+            console.log('DATA:', data);
+            
+            
+            if(data?.msg === "No hay token en la peticion o el token está caducado"){
+                dispatch(failure());
+                localStorage.removeItem('tokenUser');
             }
 
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
+            localStorage.removeItem('tokenUser');
             dispatch(failure());
             dispatch(logout());
         }
