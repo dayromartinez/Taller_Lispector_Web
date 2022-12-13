@@ -1,5 +1,5 @@
 import { loading, success, failure } from "./userActions";
-export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/sesions';
+export const URL_BASE : string = 'https://site--api--2nv4m26nwvt9.code.run/sesions';
 import { sesionData } from "../../interfaces/sesionData";
 import { getAllCicles } from "./ciclesActions";
 

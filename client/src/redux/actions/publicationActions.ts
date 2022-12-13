@@ -1,4 +1,4 @@
-export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/publications';
+export const URL_BASE : string = 'https://site--api--2nv4m26nwvt9.code.run/publications';
 import { loading, success, failure, getUser } from "./userActions";
 import { publicacionData } from "../../interfaces/publicacionData";
 

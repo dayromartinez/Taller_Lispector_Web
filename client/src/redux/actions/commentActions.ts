@@ -1,4 +1,4 @@
-export const URL_BASE : string = 'https://taller-lispector-backend.herokuapp.com/comments';
+export const URL_BASE : string = 'https://site--api--2nv4m26nwvt9.code.run/comments';
 import { loading, success, failure, getUser } from "./userActions";
 import { getPublication, getAllPublications } from "./publicationActions";
 import { commentData } from "../../interfaces/commentData";
