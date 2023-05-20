@@ -288,7 +288,7 @@ export const PublicacionesPage = () => {
               </button>
             </Box>
             <Box className={classes.postal_Lispector} >
-              <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" onClick={onClickPostales} style={{cursor: 'pointer'}} />
+              <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" onClick={onClickPostales} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} />
             </Box>
             <Box className={classes.creditosIlustracion}>
               <p className={classes.textoCreditosPostal1}>Diseño de portada:</p>
@@ -373,7 +373,7 @@ export const PublicacionesPage = () => {
                     style={{ display: 'flex', justifyContent: 'center'}}
                     >
                       <img src={publicacion?.urlImagen} alt="Panimus"
-                      style={{ height: 380, cursor: 'pointer'}}
+                      style={{ height: 380, cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}}
                     />
                     </Box>
                     <a className={classes.titulos_publicaciones_finales} href={publicacion?.urlDocumento} target='_blank'>
