@@ -54,19 +54,28 @@ export const PublicacionesPage = () => {
         navigate('/publicacion/ecos_de_resistencia');
         break;
 
+
       case (2):
-        const link = document.createElement('a')
-        link.target = '_blank'
-        link.href = 'https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas'
-        link.click()
-        link.remove()
+        const redireccionAPanimus = document.createElement('a');
+        redireccionAPanimus.target = '_blank';
+        redireccionAPanimus.href = 'https://view.genial.ly/63d31a61432819001ab8fb33/presentation-proyecto-panimus';
+        redireccionAPanimus.click();
+        redireccionAPanimus.remove();
         break;
 
       case (3):
+        const link = document.createElement('a');
+        link.target = '_blank';
+        link.href = 'https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas';
+        link.click();
+        link.remove();
+        break;
+
+      case (4):
         navigate('/publicacion/lecturas_no_aplicadas_II');
         break;
       
-      case (4):
+      case (5):
         navigate('/publicacion/lecturas_no_aplicadas_I');
         break;
       
@@ -116,7 +125,6 @@ export const PublicacionesPage = () => {
   
   const sendCodePublication = () => {
     handleCloseAlertInput();
-    console.log('Despachando ACCIÓN, ID USUARIO: ', usuario?.['uid']);
     dispatch(reserveCodePublication(publicaciones[0]?.['_id'], usuario?.['uid'], "El tiempo en que no nos vimos", codigoPublicacion));
     setInputsCodigoPublicacion({
       inputA: '',
@@ -311,10 +319,11 @@ export const PublicacionesPage = () => {
             >
               {publicaciones.map((publicacion, index) => (
                 publicacion?.nombre === 'Colombia a Dos Miradas' ? (
-                  <SwiperSlide key={publicacion?.nombre}> 
-                    <a href='https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas' target='_blank'>
-                      <img src={publicacion?.urlImagen} style={{marginTop: '2rem', cursor: 'pointer'}} alt="Colombia a dos miradas"/>
-                    </a>
+                  <SwiperSlide 
+                  onClick={() => onSubmit(index)}
+                  key={publicacion?.nombre}
+                  > 
+                    <img src={publicacion?.urlImagen} style={{marginTop: '2rem', cursor: 'pointer'}} alt="Colombia a dos miradas"/>
                   </SwiperSlide>
                 )
                 : publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
@@ -343,18 +352,39 @@ export const PublicacionesPage = () => {
               {publicaciones.map((publicacion, index) => (
                 publicacion?.nombre === 'Colombia a Dos Miradas' ? (
                   <Box>
-                    <Box className={classes.camuflaje_Colombia_a_dos_miradas}>
-                      <a href={publicacion?.urlDocumento} target='_blank'>
-                        <img src={publicacion?.urlImagen} width={250} style={{ cursor: 'pointer'}} alt="Colombia a dos miradas"/>
-                      </a>
+                    <Box 
+                    onClick={() => onSubmit(index)}
+                    style={{ display: 'flex', justifyContent: 'center'}}
+                    >
+                      <Box
+                        className={classes.camuflaje_Colombia_a_dos_miradas}
+                      >
+                        <img src={publicacion?.urlImagen} width={250} style={{ cursor: 'pointer', textAlign: 'center'}} alt="Colombia a dos miradas"/>
+                      </Box>
                     </Box>
                     <a className={classes.titulos_publicaciones_finales} href={publicacion?.urlDocumento} target='_blank'>
-                      {publicacion?.nombre}
+                      <p className={classes.titulos_publicaciones_finales}>{publicacion?.nombre}</p>
                     </a>
                   </Box>
-                ): publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
+                ) : publicacion?.nombre === 'Panimus' ? (
+                  <Box>
+                    <Box 
+                    onClick={() => onSubmit(index)}
+                    style={{ display: 'flex', justifyContent: 'center'}}
+                    >
+                      <img src={publicacion?.urlImagen} alt="Panimus"
+                      style={{ height: 380, cursor: 'pointer'}}
+                    />
+                    </Box>
+                    <a className={classes.titulos_publicaciones_finales} href={publicacion?.urlDocumento} target='_blank'>
+                      <p className={classes.titulos_publicaciones_finales}>{publicacion?.nombre}</p>
+                    </a>
+                  </Box>
+                ) : publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
                   <Box onClick={() => onSubmit(index)}>
-                    <img src={publicacion?.urlImagen} width={publicacion?.nombre === 'Ecos de Resistencia' ? 300 : 250} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} alt="Ecos de Resistencia"/>
+                    <Box style={{ display: 'flex', justifyContent: 'center'}}>
+                      <img src={publicacion?.urlImagen} width={publicacion?.nombre === 'Ecos de Resistencia' ? 300 : 250} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} alt="Ecos de Resistencia"/>
+                    </Box>
                     <p className={classes.titulos_publicaciones_finales}>{publicacion?.nombre}</p>
                   </Box>
                 ):(null)

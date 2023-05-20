@@ -265,7 +265,7 @@ export const InicioPage = () => {
               sx={{ fontSize: 22, textAlign: "justify", marginTop: 2 }}
             >
               A lo largo de 3 años en diversas actividades culturales, literarias y comunitarias, 
-              como lo son la FILBO (2019 y 2022), Lectura Bajo los Árboles (2019), 
+              como lo son la FILBO (2019, 2022 y 2023), Lectura Bajo los Árboles (2019), 
               la Feria Local de las Artes de Suba (2021) y Usaquén (2022), así como en
               el primer Festival del Aguante y Festibaguya (2021) y en un Picnic
               Literario en el Jardín Botánico de Bogotá (2022).

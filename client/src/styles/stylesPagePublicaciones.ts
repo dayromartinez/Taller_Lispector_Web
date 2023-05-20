@@ -158,15 +158,17 @@ export const useStyles = makeStyles((theme) => ({
     },
     publicaciones: {
         backgroundColor: coloresPaleta.aguaMarina,
-        padding: '5rem 5rem 5rem 5rem',
-        display: 'flex',
-        justifyContent: 'space-between',
+        paddingTop: '2rem',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gap: '.5rem'
     },
     camuflaje_Colombia_a_dos_miradas: {
         backgroundColor: 'white',
-        height: '85%',
-        paddingTop: '6rem',
-        marginBottom: '2rem',
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '5.5rem 1rem 5.5rem 1rem',
+        marginBottom: '0rem',
         boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'
     },
     titulos_publicaciones_finales: {
@@ -174,6 +176,7 @@ export const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         fontSize: '1.5rem',
         marginTop: '2rem',
+        marginBottom: '2rem',
         textAlign: 'center',
         '&:hover': {
         color: coloresPaleta.gris,
