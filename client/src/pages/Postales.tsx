@@ -183,9 +183,9 @@ export const PostalesPage = () => {
                                 ( postal['nombre'] === 'El Galto' ) ? (
                                     <SwiperSlide 
                                         key={postal['nombre']}
-                                        onClick={() => invoqueModal(postal['nombre'], postal['autores'][0], postal['autores'][1], 'https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH')}
+                                        onClick={() => invoqueModal(postal['nombre'], postal['autores'][0], postal['autores'][1], postal['urlImagen'].split(" ")[0])}
                                     >
-                                        <img className='imgs-carrusel' src="https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH" alt="" style={{cursor: 'pointer'}}/>
+                                        <img className='imgs-carrusel' src={postal['urlImagen'].split(" ")[0]} alt="" style={{cursor: 'pointer'}}/>
                                     </SwiperSlide>
                                 ) : (
                                     <SwiperSlide 
@@ -233,7 +233,7 @@ export const PostalesPage = () => {
                                 </Box>
                             ):(
                                 <Box>
-                                    <img onClick={() => onClickImage(7)} className={classes.imagenes_catalogo} src='https://drive.google.com/uc?export=view&id=1zT0T_xgrtQnCmjQA-PcixfVNxQud_htH' alt="Catalogo postales"/>
+                                    <img onClick={() => onClickImage(7)} className={classes.imagenes_catalogo} src={postal['urlImagen'].split(" ")[0]} alt="Catalogo postales"/>
                                     <p onClick={() => onClickImage(7)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
                                     <p className={classes.nombre_autor_postal_catalogo}>Por {postal['autores'][0]}</p>
                                 </Box>
