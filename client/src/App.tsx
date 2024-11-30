@@ -11,6 +11,7 @@ import { Publicacion } from './pages/Publicacion';
 import { Perfil } from './pages/Perfil';
 import { ProtectedRoutesUser } from './utils/ProtectedRoutesUser';
 import { NotFound } from './pages/NotFound';
+import { AguaVivaPage } from './pages/AguaViva';
 
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
         />
         <Route path='/publicacion/lecturas_no_aplicadas_I' element={
           <Publicacion nombrePublicacion={"Lecturas no aplicadas I"} />
+        }
+        />
+        <Route path='/publicacion/agua_viva' element={
+          <AguaVivaPage />
         }
         />
 
