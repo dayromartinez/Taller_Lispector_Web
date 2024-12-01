@@ -51,11 +51,14 @@ export const PublicacionesPage = () => {
     switch(index) {
       
       case (1):
+        navigate('/publicacion/agua_viva');
+        break;
+
+      case (2):
         navigate('/publicacion/ecos_de_resistencia');
         break;
 
-
-      case (2):
+      case (3):
         const redireccionAPanimus = document.createElement('a');
         redireccionAPanimus.target = '_blank';
         redireccionAPanimus.href = 'https://view.genial.ly/63d31a61432819001ab8fb33/presentation-proyecto-panimus';
@@ -63,7 +66,7 @@ export const PublicacionesPage = () => {
         redireccionAPanimus.remove();
         break;
 
-      case (3):
+      case (4):
         const link = document.createElement('a');
         link.target = '_blank';
         link.href = 'https://view.genial.ly/5e966c2ae948540e05018d81/interactive-content-colombia-a-dos-miradas';
@@ -71,11 +74,11 @@ export const PublicacionesPage = () => {
         link.remove();
         break;
 
-      case (4):
+      case (5):
         navigate('/publicacion/lecturas_no_aplicadas_II');
         break;
       
-      case (5):
+      case (6):
         navigate('/publicacion/lecturas_no_aplicadas_I');
         break;
       
