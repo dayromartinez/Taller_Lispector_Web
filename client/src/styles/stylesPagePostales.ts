@@ -184,6 +184,17 @@ export const useStylesPostales = makeStyles((theme) => ({
     swiper_postales: {
         width: '800px',
         height: '885px',
+    },
+
+    titulo_textArea: {
+        color: coloresPaleta.gris,
+        fontWeight: 'bold', 
+        fontSize: '1.7rem',
+        margin: '3rem 2rem 2rem 4rem',
+        [theme.breakpoints.down("xs")]: {
+            margin: '1rem 2rem',
+            fontSize: '1.3rem',
+        }
     }
 
 }));
