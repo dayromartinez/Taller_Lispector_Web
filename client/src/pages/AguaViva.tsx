@@ -18,6 +18,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import AguaVivaAliados from '../utils/Agua_viva_aliados.png';
 
 
 import { datosAlerta } from '../interfaces/datosAlerta';
@@ -115,8 +116,6 @@ export const AguaVivaPage = () => {
             setListImages(publicacion?.contenido[7]['urlImagen'].split(' '));
         }
     }, [publicaciones])
-
-    console.log('list images ', listImages);
     
 
     return (
@@ -222,6 +221,10 @@ export const AguaVivaPage = () => {
                     <Box>
                         <Box className={classes.titulo_textArea}>Haz click aquí para escuchar un paisaje sonoro creado a partir de grabaciones hechas en nuestros recorridos por los cuerpos de agua de la cuenca del río Arzobispo:</Box>
                         {<WidgetSoundCloud />}
+                    </Box>
+                    <Box className={classes.contenedor_imagen_aliados}>
+                        <Box>Sin su apoyo, nada de esto habría sido posible:</Box>
+                        {<img src={AguaVivaAliados} className={classes.imagen_aliados_agua_viva} alt="Aliados Agua Viva"/>}
                     </Box>
                     <Commentaries comentarios={publicacion?.contenido?.[indexSlide]?.['comentarios'].reverse()} publicacion={publicacion?.contenido?.[indexSlide]} />
                 </Box>

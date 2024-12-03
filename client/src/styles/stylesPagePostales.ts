@@ -195,6 +195,20 @@ export const useStylesPostales = makeStyles((theme) => ({
             margin: '1rem 2rem',
             fontSize: '1.3rem',
         }
-    }
+    },
 
+    contenedor_imagen_aliados: {
+        display: 'grid',
+        placeItems: 'center',
+        fontWeight: 'bold',
+        fontSize: '3rem',
+        color: coloresPaleta.gris,
+        marginTop: '5rem'
+    },
+
+    imagen_aliados_agua_viva: {
+        cursor: 'pointer',
+        width: '50%',
+        height: '80%'
+    }
 }));
