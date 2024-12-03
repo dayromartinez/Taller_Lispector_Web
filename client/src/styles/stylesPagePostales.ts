@@ -193,7 +193,7 @@ export const useStylesPostales = makeStyles((theme) => ({
         margin: '3rem 2rem 2rem 4rem',
         [theme.breakpoints.down("xs")]: {
             margin: '1rem 2rem',
-            fontSize: '1.3rem',
+            fontSize: '1.2rem',
         }
     },
 
@@ -202,13 +202,20 @@ export const useStylesPostales = makeStyles((theme) => ({
         placeItems: 'center',
         fontWeight: 'bold',
         fontSize: '3rem',
+        marginTop: '5rem',
+        marginBottom: '10rem',
         color: coloresPaleta.gris,
-        marginTop: '5rem'
+        [theme.breakpoints.down('xs')]: {
+            margin: '3rem 2rem',
+            fontSize: '1.5rem',
+        },
     },
 
     imagen_aliados_agua_viva: {
+        marginTop: '3rem',
         cursor: 'pointer',
-        width: '50%',
-        height: '80%'
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '1rem',
+        },
     }
 }));
