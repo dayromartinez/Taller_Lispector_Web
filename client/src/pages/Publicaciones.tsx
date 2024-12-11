@@ -51,7 +51,7 @@ export const PublicacionesPage = () => {
     switch(index) {
       
       case (1):
-        navigate('/publicacion/agua_viva');
+        onClickPostales();
         break;
 
       case (2):
@@ -124,6 +124,10 @@ export const PublicacionesPage = () => {
     }else{
       return navigate('/publicacion/postales');
     }
+  }
+
+  const onClickFirstPublication = () => {
+    return navigate('/publicacion/agua_viva');
   }
   
   const sendCodePublication = () => {
@@ -286,17 +290,17 @@ export const PublicacionesPage = () => {
           </Box>
           <Box>
             <Box sx={{textAlign: 'center'}}>
-              <button className={classes.tituloPostales} type='button' onClick={onClickPostales}>
+              <button className={classes.tituloPostales} type='button' onClick={onClickFirstPublication}>
                 {publicaciones[0]?.nombre}
               </button>
             </Box>
             <Box className={classes.postal_Lispector} >
-              <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Postal Lispector" onClick={onClickPostales} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} />
+              <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Agua Viva Portada" onClick={onClickFirstPublication} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} />
             </Box>
             <Box className={classes.creditosIlustracion}>
               <p className={classes.textoCreditosPostal1}>Diseño de portada:</p>
               &nbsp;
-              <p className={classes.textoCreditosPostal2}>Mariana Valente</p>
+              <p className={classes.textoCreditosPostal2}>Mauricio Londoño</p>
             </Box>
             <Box className={classes.container_descripcion_postales}>
               <p className={classes.descripcion_postales}>
@@ -329,7 +333,7 @@ export const PublicacionesPage = () => {
                     <img src={publicacion?.urlImagen} style={{marginTop: '2rem', cursor: 'pointer'}} alt="Colombia a dos miradas"/>
                   </SwiperSlide>
                 )
-                : publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
+                : publicacion?.nombre !== 'Agua Viva' ? (
                   <SwiperSlide 
                     className={publicacion?.nombre === 'Ecos de Resistencia' ? (classes.imagen_ecos_de_resistencia):(classes.imagenes_lecturas_no_aplicadas)} 
                     onClick={() => onSubmit(index)}
@@ -383,14 +387,21 @@ export const PublicacionesPage = () => {
                       <p className={classes.titulos_publicaciones_finales}>{publicacion?.nombre}</p>
                     </a>
                   </Box>
-                ) : publicacion?.nombre !== 'El tiempo en que no nos vimos' ? (
+                ) : publicacion?.nombre === 'El tiempo en que no nos vimos' ? (
+                  <Box onClick={() => onSubmit(index)}>
+                    <Box style={{ display: 'flex', justifyContent: 'center'}}>
+                      <img src={publicacion?.urlImagen} width={290} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} alt="Ecos de Resistencia"/>
+                    </Box>
+                    <p className={classes.titulos_publicaciones_finales}>{publicacion?.nombre}</p>
+                  </Box>
+                ): publicacion?.nombre !== 'Agua Viva' ? (
                   <Box onClick={() => onSubmit(index)}>
                     <Box style={{ display: 'flex', justifyContent: 'center'}}>
                       <img src={publicacion?.urlImagen} width={publicacion?.nombre === 'Ecos de Resistencia' ? 300 : 250} style={{cursor: 'pointer', boxShadow: '10px 10px 8px rgba(0, 0, 0, 0.603)'}} alt="Ecos de Resistencia"/>
                     </Box>
                     <p className={classes.titulos_publicaciones_finales}>{publicacion?.nombre}</p>
                   </Box>
-                ):(null)
+                ): (null)
               ))}
             </Box>
           ) : null}

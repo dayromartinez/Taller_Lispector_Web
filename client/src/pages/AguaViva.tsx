@@ -73,7 +73,9 @@ export const AguaVivaPage = () => {
         imagen: "", 
         autor: "",
         ilustrador: "",
-    }); 
+    });
+    const [horizontalPostalList, setHorizontalPostalList] = useState([]);
+    const [verticalPostalList, setVerticalPostalList] = useState([]);
 
     const onChangeSlide = (swiper) => {
         setIndexSlide(swiper.activeIndex);
@@ -108,7 +110,7 @@ export const AguaVivaPage = () => {
 
     useEffect(() => {
         if(publicaciones.length > 0){
-            dispatch(getPublication(publicaciones[1]?._id));
+            dispatch(getPublication(publicaciones[0]?._id));
         }
 
         if(publicacion?.contenido?.length > 0 && textPostal === ''){
@@ -133,7 +135,7 @@ export const AguaVivaPage = () => {
                 <DialogContent dividers>
                     <img src={datosAlerta.imagen} alt="Sesion" />
                     <Typography gutterBottom sx={{textAlign: 'center', mb: 1, mt: 3, color: coloresPaleta.gris, fontWeight: 600}}>
-                        Escrito y fotografía por {datosAlerta.autor}
+                        {datosAlerta.ilustrador == "Clarice Lispector" ? `Fotografía por ${datosAlerta.autor}` : `Escrito y fotografía por ${datosAlerta.autor}`}
                     </Typography>
                 </DialogContent>
             </BootstrapDialog>
@@ -143,7 +145,7 @@ export const AguaVivaPage = () => {
                 
                 <Box>
                     <Box className={classes.postal_Lispector} >
-                        <img className={classes.imagen_postal} src={publicaciones[1]?.urlImagen} alt="Postal Lispector" />
+                        <img className={classes.imagen_postal} src={publicaciones[0]?.urlImagen} alt="Agua Viva" />
                     </Box>
                     <Box className={classes.creditosIlustracion}>
                         <p className={classes.textoCreditosPostal1}>Diseño de portada:</p>
@@ -152,7 +154,7 @@ export const AguaVivaPage = () => {
                     </Box>
                     <Box className={classes.container_descripcion_postales}>
                         <p className={classes.descripcion_postales}>
-                            {publicaciones[1]?.descripcion}
+                            {publicaciones[0]?.descripcion}
                         </p>
                     </Box>
                 </Box>
