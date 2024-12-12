@@ -61,8 +61,10 @@ const BootstrapDialogTitle = (props) => {
 export const AguaVivaPage = () => {
 
     const classes = useStylesPostales();
-    const [indexSlide, setIndexSlide] = useState(0);
-    const [textPostal, setTextPostal] = useState(''); 
+    const [indexHorizontalSlide, setIndexHorizontalSlide] = useState(0);
+    const [indexVerticalSlide, setIndexVerticalSlide] = useState(0);
+    const [textHorizontalPostal, setTextHorizontalPostal] = useState('');
+    const [textVerticalPostal, setTextVerticalPostal] = useState('');  
     const publicaciones = useSelector(({publicaciones} : dataState) => publicaciones);
     const publicacion = useSelector( ({publicacion} : dataState) => publicacion);
     const dispatch = useDispatch();
@@ -77,17 +79,30 @@ export const AguaVivaPage = () => {
     const [horizontalPostalList, setHorizontalPostalList] = useState([]);
     const [verticalPostalList, setVerticalPostalList] = useState([]);
 
-    const onChangeSlide = (swiper) => {
-        setIndexSlide(swiper.activeIndex);
-        setTextPostal(publicacion?.contenido?.[swiper.activeIndex]['texto']);
+    const onChangeHorizontalSlide = (swiper) => {
+        setIndexHorizontalSlide(swiper.activeIndex);
+        setTextHorizontalPostal(horizontalPostalList?.[swiper.activeIndex]['texto']);
+    }
+    
+    const onChangeVerticalSlide = (swiper) => {
+        setIndexVerticalSlide(swiper.activeIndex);
+        setTextVerticalPostal(verticalPostalList?.[swiper.activeIndex]['texto']);
     }
 
-    const onClickImage = (index) => {
-        const swiper_postales = document.querySelector('#swiper_postales')['swiper'];
-        setIndexSlide(index);
+    const onClickHorizontalImage = (index) => {
+        const swiper_postales = document.querySelector('#swiper_postales_horizontales')['swiper'];
+        setIndexHorizontalSlide(index);
         swiper_postales.slideTo(index);
-        setTextPostal(publicacion?.contenido?.[index]['texto']);
-        document.getElementById('container_catalogo_postales').scrollIntoView();
+        setTextVerticalPostal(horizontalPostalList?.[index]['texto']);
+        document.getElementById('container_catalogo_postales_horizontales').scrollIntoView();
+    }
+
+    const onClickVerticalImage = (index) => {
+        const swiper_postales = document.querySelector('#swiper_postales_verticales')['swiper'];
+        setIndexVerticalSlide(index);
+        swiper_postales.slideTo(index);
+        setTextVerticalPostal(verticalPostalList?.[index]['texto']);
+        document.getElementById('container_catalogo_postales_verticales').scrollIntoView();
     }
 
     const handleClickOpen = () => {
@@ -113,11 +128,22 @@ export const AguaVivaPage = () => {
             dispatch(getPublication(publicaciones[0]?._id));
         }
 
-        if(publicacion?.contenido?.length > 0 && textPostal === ''){
-            setTextPostal(publicacion.contenido[0]['texto']);
-            setListImages(publicacion?.contenido[7]['urlImagen'].split(' '));
+        if(publicacion?.contenido?.length > 0 && textHorizontalPostal === '' && textVerticalPostal === ''){
+            setHorizontalPostalList(publicacion.contenido.filter(postal => postal?.['tendencia'] === "horizontal"));
+            setVerticalPostalList(publicacion.contenido.filter(postal => postal?.['tendencia'] === "vertical"));
         }
-    }, [publicaciones])
+    }, [publicaciones, publicacion])
+
+    useEffect(() => {
+        
+        if(horizontalPostalList?.length > 0 && verticalPostalList?.length > 0){
+            setTextHorizontalPostal(horizontalPostalList[0]['texto']);
+            setTextVerticalPostal(verticalPostalList[0]['texto']);
+            console.log(horizontalPostalList);
+            console.log(verticalPostalList);
+            console.log(publicacion);
+        }
+    }, [horizontalPostalList, verticalPostalList])
     
 
     return (
@@ -158,67 +184,100 @@ export const AguaVivaPage = () => {
                         </p>
                     </Box>
                 </Box>
-                <div id='container_catalogo_postales'>
+                <div id='container_catalogo_postales_horizontales'>
                     {/*NO BORRAR, ES PARA EL TOTOP*/}
                 </div>
                 <Box bgcolor={coloresPaleta.aguaMarina} padding='50px 0' className='container_postales'>
-                    <Box className={ classes.titulo_postales }>{ publicacion?.contenido?.[indexSlide]['nombre'] }</Box>
-                        <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por { publicacion?.contenido?.[indexSlide]['autores'][0] }</Typography>
-                        <Swiper
-                            id='swiper_postales' 
-                            className='mySwiper'
-                            spaceBetween={100}
-                            centeredSlides={true}
-                            autoplay={{
-                                delay: 660000,
-                                disableOnInteraction: false,
-                            }}
-                            pagination={{
-                                clickable: true,
-                            }}
-                            navigation={true}
-                            modules={[Autoplay, Pagination, Navigation]}
-                            onActiveIndexChange={(swiper) => onChangeSlide(swiper)}
-                        >
-                        {
-                            publicacion?.contenido?.map(postal => (
-                                ( postal['nombre'] === 'El Galto' ) ? (
-                                    <SwiperSlide 
-                                        key={postal['nombre']}
-                                        onClick={() => invoqueModal(postal['nombre'], postal['autores'][0], postal['autores'][1], postal['urlImagen'].split(" ")[0])}
-                                    >
-                                        <img className='imgs-carrusel' src={postal['urlImagen'].split(" ")[0]} alt="" style={{cursor: 'pointer'}}/>
-                                    </SwiperSlide>
-                                ) : (
-                                    <SwiperSlide 
-                                        key={postal['nombre']}
-                                        onClick={() => invoqueModal(postal['nombre'], postal['autores'][0], postal['autores'][1], postal['urlImagen'])}
-                                    >
-                                        <img className='imgs-carrusel' src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
-                                    </SwiperSlide>
-                                ) 
-                            ))
-                        }
-                        </Swiper>
+                    <Box className={ classes.titulo_dimension_postales }>Postales Horizontales</Box>
                     {
-                        publicacion?.contenido?.length > 0 
-                        ? (<Box className={classes.container_texto_postales}>
-                            <Markup className={ classes.textos_postales } content={textPostal} />
-                            {
-                                ( indexSlide === 7 ) ? (
-                                    <Box className='grid-imgs-postales-galto'>
-                                        {
-                                            listImages.map(imagen => (
-                                                <img src={imagen} alt='Imagen del Galto' style={{cursor: 'pointer'}} onClick={() => invoqueModal(publicacion?.contenido[7]['nombre'], publicacion?.contenido[7]['autores'][0], publicacion?.contenido[7]['autores'][1], imagen)} />
-                                            ))
-                                        }
-                                    </Box>
-                                ) : (
-                                    null
-                                )
-                            }
-                        </Box>) 
-                        : null
+                        horizontalPostalList.length > 0 ? (
+                            <Box>
+                                <Box className={ classes.titulo_postales }>{ horizontalPostalList?.[indexHorizontalSlide]['nombre'] }</Box>
+                                    <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por { horizontalPostalList?.[indexHorizontalSlide]['autores'][0] }</Typography>
+                                    <Swiper
+                                        id='swiper_postales_horizontales' 
+                                        className={classes.swiper_horizontal_postales}
+                                        spaceBetween={100}
+                                        centeredSlides={true}
+                                        autoplay={{
+                                            delay: 660000,
+                                            disableOnInteraction: false,
+                                        }}
+                                        pagination={{
+                                            clickable: true,
+                                        }}
+                                        navigation={true}
+                                        modules={[Autoplay, Pagination, Navigation]}
+                                        onActiveIndexChange={(swiper) => onChangeHorizontalSlide(swiper)}
+                                    >
+                                    {
+                                        horizontalPostalList?.map(postal => (
+                                            <SwiperSlide 
+                                                key={postal['nombre']}
+                                                onClick={() => invoqueModal(postal['nombre'], postal['autores'][0], postal['autores'][1], postal['urlImagen'])}
+                                            >
+                                                <img className='imgs-carrusel' src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
+                                            </SwiperSlide>
+                                        ))
+                                    }
+                                    </Swiper>
+                                {
+                                    horizontalPostalList?.length > 0 
+                                    ? (
+                                        <Box className={classes.container_texto_postales}>
+                                            <Markup className={ classes.textos_postales } content={textHorizontalPostal} />
+                                        </Box>
+                                    ) : null
+                                }
+                            </Box>
+                        ):(null)
+                    }
+                    <div id='container_catalogo_postales_verticales'>
+                        {/*NO BORRAR, ES PARA EL TOTOP*/}
+                    </div>
+                    <Box className={ classes.titulo_dimension_postales }>Postales Verticales</Box>
+                    {
+                        verticalPostalList.length > 0 ? (
+                            <Box>
+                                <Box className={ classes.titulo_postales }>{ verticalPostalList?.[indexVerticalSlide]['nombre'] }</Box>
+                                    <Typography variant='body1' fontSize='1.2rem' color={coloresPaleta.gris} textAlign='center' marginBottom={3}>Por { verticalPostalList?.[indexVerticalSlide]['autores'][0] }</Typography>
+                                    <Swiper
+                                        id='swiper_postales_verticales' 
+                                        className='mySwiper'
+                                        spaceBetween={100}
+                                        centeredSlides={true}
+                                        autoplay={{
+                                            delay: 660000,
+                                            disableOnInteraction: false,
+                                        }}
+                                        pagination={{
+                                            clickable: true,
+                                        }}
+                                        navigation={true}
+                                        modules={[Autoplay, Pagination, Navigation]}
+                                        onActiveIndexChange={(swiper) => onChangeVerticalSlide(swiper)}
+                                    >
+                                    {
+                                        verticalPostalList?.map(postal => (
+                                            <SwiperSlide 
+                                                key={postal['nombre']}
+                                                onClick={() => invoqueModal(postal['nombre'], postal['autores'][0], postal['autores'][1], postal['urlImagen'])}
+                                            >
+                                                <img className='imgs-carrusel' src={postal['urlImagen']} style={{cursor: 'pointer'}}/>
+                                            </SwiperSlide>
+                                        ))
+                                    }
+                                    </Swiper>
+                                {
+                                    verticalPostalList?.length > 0 
+                                    ? (
+                                        <Box className={classes.container_texto_postales}>
+                                            <Markup className={ classes.textos_postales } content={textVerticalPostal} />
+                                        </Box>
+                                    ) : null
+                                }
+                            </Box>
+                        ):(null)
                     }
                     <Box>
                         <Box className={classes.titulo_textArea}>Haz click aquí para escuchar un paisaje sonoro creado a partir de grabaciones hechas en nuestros recorridos por los cuerpos de agua de la cuenca del río Arzobispo:</Box>
@@ -228,25 +287,27 @@ export const AguaVivaPage = () => {
                         <Box>Sin su apoyo, nada de esto habría sido posible:</Box>
                         {<img src={AguaVivaAliados} className={classes.imagen_aliados_agua_viva} alt="Aliados Agua Viva"/>}
                     </Box>
-                    <Commentaries comentarios={publicacion?.contenido?.[indexSlide]?.['comentarios'].reverse()} publicacion={publicacion?.contenido?.[indexSlide]} />
                 </Box>
                 <Box>
                     <Box className={classes.titulo_otras_postales}>Otras Postales</Box>
+                    <Box className={classes.titulo_dimension_otras_postales}>Horizontales</Box>
                     <Box className={classes.container_catalogo_postales}>
-                        {publicacion?.contenido?.map((postal, index) => (
-                            postal?.['nombre'] !== 'El Galto' ? (
-                                <Box>
-                                    <img onClick={() => onClickImage(index)} className={classes.imagenes_catalogo} src={postal['urlImagen']} alt="Catalogo postales"/>
-                                    <p onClick={() => onClickImage(index)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
-                                    <p className={classes.nombre_autor_postal_catalogo}>Por {postal['autores'][0]}</p>
-                                </Box>
-                            ):(
-                                <Box>
-                                    <img onClick={() => onClickImage(7)} className={classes.imagenes_catalogo} src={postal['urlImagen'].split(" ")[0]} alt="Catalogo postales"/>
-                                    <p onClick={() => onClickImage(7)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
-                                    <p className={classes.nombre_autor_postal_catalogo}>Por {postal['autores'][0]}</p>
-                                </Box>
-                            )
+                        {horizontalPostalList?.map((postal, index) => (
+                            <Box>
+                                <img onClick={() => onClickHorizontalImage(index)} className={classes.imagenes_catalogo} src={postal['urlImagen']} alt="Catalogo postales"/>
+                                <p onClick={() => onClickHorizontalImage(index)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
+                                <p className={classes.nombre_autor_postal_catalogo}>Por {postal['autores'][0]}</p>
+                            </Box>
+                        ))}
+                    </Box>
+                    <Box className={classes.titulo_dimension_otras_postales}>Verticales</Box>
+                    <Box className={classes.container_catalogo_postales}>
+                        {verticalPostalList?.map((postal, index) => (
+                            <Box>
+                                <img onClick={() => onClickVerticalImage(index)} className={classes.imagenes_catalogo} src={postal['urlImagen']} alt="Catalogo postales"/>
+                                <p onClick={() => onClickVerticalImage(index)} className={classes.nombre_postal_catalogo}>{postal['nombre']}</p>
+                                <p className={classes.nombre_autor_postal_catalogo}>Por {postal['autores'][0]}</p>
+                            </Box>
                         ))}
                     </Box>
                 </Box>

@@ -95,9 +95,9 @@ export const useStylesPostales = makeStyles((theme) => ({
     },
 
     container_texto_postales: {
-        padding: '35px 100px',
+        padding: '5rem 8rem 10rem 8rem',
         [theme.breakpoints.down('xs')]: {
-            padding: '35px 25px',
+            padding: '2.5rem 4rem 8rem 4rem',
         }
     },
 
@@ -106,6 +106,17 @@ export const useStylesPostales = makeStyles((theme) => ({
         color: coloresPaleta.gris,
         fontWeight: 'bold',
         fontSize: '3rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '2rem',
+        }
+    },
+
+    titulo_dimension_postales: {
+        textAlign: 'center',
+        color: coloresPaleta.gris,
+        fontWeight: 'bold',
+        fontSize: '5rem',
+        paddingBottom: '3rem',
         [theme.breakpoints.down('xs')]: {
             fontSize: '2rem',
         }
@@ -123,8 +134,19 @@ export const useStylesPostales = makeStyles((theme) => ({
         textAlign: 'center',
         color: coloresPaleta.aguaMarina,
         fontWeight: 'bold',
-        fontSize: '2.5rem',
+        fontSize: '3.5rem',
         marginTop: '3rem',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '2rem',
+        }
+    },
+
+    titulo_dimension_otras_postales : {
+        textAlign: 'center',
+        color: coloresPaleta.aguaMarina,
+        fontWeight: 'bold',
+        fontSize: '2.5rem',
+        marginTop: '4rem',
         [theme.breakpoints.down('xs')]: {
             fontSize: '1.7rem',
         }
@@ -217,5 +239,14 @@ export const useStylesPostales = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             marginTop: '1rem',
         },
-    }
+    },
+
+    swiper_horizontal_postales: {
+        width: 800,
+        height: 400,
+        [theme.breakpoints.down('xs')]: {
+            width: 300,
+            height: 200,
+        }
+    },
 }));
