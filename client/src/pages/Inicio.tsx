@@ -207,12 +207,8 @@ export const InicioPage = () => {
             color="#F6EEE9"
             sx={{ fontSize: 22, textAlign: "justify", marginTop: 3, fontWeight: '600' }}
           >
-            Somos un proyecto cultural de lectores y escritores emergentes que
-            encontraron un punto de convergencia en su pasión por la literatura
-            y decidieron conjugar sus saberes para construir un espacio de
-            creación literaria alternativo, plural y comunitario, donde la
-            palabra sea una vorágine de historias que resignifiquen nuestro
-            cohabitar y devenir en el mundo.
+            El Taller Lispector es un colectivo literario, un espacio de creación cultural, plural y comunitario conformado por profesionales multidisciplinares, que encontraron un punto de convergencia en su pasión por la literatura y la escritura. 
+            A lo largo de seis años, se han llevado a cabo diversas actividades como tertulias, encuentros, sesiones y ciclos literarios presenciales y virtuales.
           </Typography>
         </Box>
 
@@ -264,11 +260,9 @@ export const InicioPage = () => {
               color="#4D4D4D"
               sx={{ fontSize: 22, textAlign: "justify", marginTop: 2 }}
             >
-              A lo largo de 3 años en diversas actividades culturales, literarias y comunitarias, 
-              como lo son la FILBO (2019, 2022 y 2023), Lectura Bajo los Árboles (2019), 
-              la Feria Local de las Artes de Suba (2021) y Usaquén (2022), así como en
-              el primer Festival del Aguante y Festibaguya (2021) y en un Picnic
-              Literario en el Jardín Botánico de Bogotá (2022).
+              Durante estos seis años de trayectoria, han surgido siete publicaciones autogestionadas, cinco de ellas físicas y dos digitales, 
+              en las que se reflejan las influencias literarias, sociales y culturales de los asistentes e integrantes del colectivo, 
+              con una mirada de la escritura creativa como acto de resistencia.
             </Typography>
           </Box>
         </Box>
